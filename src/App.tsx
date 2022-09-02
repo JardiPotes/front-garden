@@ -1,3 +1,4 @@
+import React from 'react'
 import jardiLogo from './assets/jardi-logo.png'
 import './App.css'
 
