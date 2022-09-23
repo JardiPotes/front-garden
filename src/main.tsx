@@ -9,6 +9,7 @@ import {
   Route,
 } from "react-router-dom";
 import {Header} from './components/Header'
+import {Rules} from './pages/Rules'
 
 
 const router = createBrowserRouter([
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
     path: "/",
     element: <HomePage />,
   },
+  {
+    path:"/rules",
+    element:<Rules/>
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
