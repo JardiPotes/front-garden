@@ -11,11 +11,13 @@ border-radius: 2px;
 position: sticky;
 top: 0px;
 width: 100%;
-`;
+`
 
-export const StyledNav = styled.nav `
-  display : flex;
-  justify-content : flex-end;
+export const StyledLogin = styled.div `
+  display: flex;
+  flex-direction: column;
+  align-self : flex-end;
+  padding: 10px; 
   `
   
 export const Logo = styled.div `
@@ -29,7 +31,7 @@ max-width: 80px;
 `
 
 export const StyledLink = styled(Link)`
- 
+    padding: 10px; 
 `
 
 

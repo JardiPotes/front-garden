@@ -9,12 +9,18 @@ export function Header(){
     return(
         <S.Wrapper>
             <S.Logo> <img src={Logo} /> </S.Logo>
-            <S.StyledNav> 
-      {/* <S.StyledLink to=""> A propos </S.StyledLink>
-      <S.StyledLink to="" >
-        Jouer
-      </S.StyledLink> */}
-    </S.StyledNav>
+            <nav> 
+                <S.StyledLink to="home"> Home </S.StyledLink>
+                <S.StyledLink to="rules" >
+                    Fonctionnement
+                </S.StyledLink>
+            </nav>
+            <S.StyledLogin>
+                <S.StyledLink to=""> Se connecter </S.StyledLink>
+                <S.StyledLink to="" >
+                    Créer un compte
+                </S.StyledLink>
+            </S.StyledLogin>
         </S.Wrapper>
     )
 }
