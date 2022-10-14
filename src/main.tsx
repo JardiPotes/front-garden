@@ -1,7 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import HomePage from './pages/HomePage'
-import './index.css'
 import {
   createBrowserRouter,
   RouterProvider,
@@ -11,9 +10,7 @@ import { Layout } from './Layout'
 
 const GlobalStyle = createGlobalStyle`
     #root { 
-      display: flex;
-      flex-direction: column;
-      padding: 0 3% 1% 3%;
+      padding: 0 3% 0 3%;
     }
 `
 
