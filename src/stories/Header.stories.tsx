@@ -12,4 +12,4 @@ export default {
 
 const Template = () => <Header />;
 
-export const HeaderTemplate = Template.bind({});
+export const Default = Template.bind({});
