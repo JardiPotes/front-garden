@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import { createGlobalStyle } from 'styled-components'
 import { Layout } from './Layout'
+import { ProfilePage } from './pages/Profile';
 
 const GlobalStyle = createGlobalStyle`
     #root { 
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
         path: "home",
         element: <HomePage />,
       },
+      {
+        path: "profil", 
+        element: <ProfilePage /> 
+      }
     ],
   },
 ]);
