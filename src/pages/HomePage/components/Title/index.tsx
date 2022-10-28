@@ -1,6 +1,5 @@
 import React from 'react'
 import {WORDINGS} from '../../wordings'
-
 export function Title(){
 
     return(
