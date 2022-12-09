@@ -22,7 +22,6 @@ export function Header() {
       <SearchBar/>
       <S.StyledLink to="home">
         <S.StyledLogin>
-          {" "}
           <img src={Login} />
         </S.StyledLogin>
       </S.StyledLink>
