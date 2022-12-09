@@ -5,14 +5,11 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import { createGlobalStyle } from 'styled-components'
-import { Layout } from './Layout'
 
-const GlobalStyle = createGlobalStyle`
-    #root { 
-      padding: 0 3% 0 3%;
-    }
-`
+import { Layout } from './Layout'
+import { GlobalStyle } from './GlobaleStyles';
+
+
 
 
 const router = createBrowserRouter([
