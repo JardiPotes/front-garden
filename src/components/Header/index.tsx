@@ -9,7 +9,6 @@ export function Header() {
     <S.Wrapper>
       <S.LogoTitleWrapper>
         <S.Logo>
-          {" "}
           <img src={Logo} />
         </S.Logo>
         <S.StyledTitleLink to="home">JARDIPOTES</S.StyledTitleLink>
