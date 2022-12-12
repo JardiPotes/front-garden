@@ -14,7 +14,7 @@ export const Layout = () => {
             <Header />
             <div id="content">
             <HomePage/>
-                <Outlet />
+                {/* <Outlet /> */}
 
              
             </div>
