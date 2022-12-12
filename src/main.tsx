@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 
 import { Layout } from './Layout'
-import { GlobalStyle } from './GlobaleStyles';
+import { GlobalStyle } from './GlobalStyles';
 
 
 
