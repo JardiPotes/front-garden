@@ -110,6 +110,26 @@ border: none;
 }
 `
 
+export const ModalBodyTextAreaBody = styled.textarea`
+text-align: center; 
+color: ${Colors.textInput};
+margin-top: 2em;
+width: 35em;
+height: 5em;
+background-color: ${Colors.inputArea};
+border-radius: 50em;
+margin-top: 5em;
+align-items: center;
+border: none;
+
+
+&:focus {
+  border-color: ${Colors.line};
+  box-shadow: 0 0 15px 0 ${Colors.line};
+  outline: 0;
+}
+`
+
 export const ModalBodyColumnTitle = styled.h2 `
 font-color: 'black';
 font-size: 1.5em;

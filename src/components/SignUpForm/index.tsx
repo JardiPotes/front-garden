@@ -1,15 +1,15 @@
 import React from "react";
 import { useState } from "react";
-import * as S from "../ModalForm/styles";
+import * as S from "../SignUpForm/styles";
 import Logo from "../../assets/jardi-logo-trans.png";
 import CrossIcon from "../../assets/cross-icon.png";
 import { Button } from "../Buttons";
 import {ModalFormWordings, ButtonWordings} from '../../wordings'
 
 
-export const Modal = ({isOpen, setIsOpen}) => {
+export const SignUpModal = ({isOpen, setIsOpen}) => {
   const [text, setText] = useState("");
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
     setText(event.target.value);
   };
   if (!isOpen) return null
@@ -29,14 +29,13 @@ export const Modal = ({isOpen, setIsOpen}) => {
         </S.ModalHeader>
         <S.HeaderUnderLine></S.HeaderUnderLine>
         <S.ModalBodyWrapper>
-          <S.ModalBodyInputBody placeholder="ilovecss@sarcasm.fr" onChange={handleChange} onSubmit={e => {
+          <S.ModalBodyInputBody placeholder="Huguette-JMiche" onChange={handleChange} onSubmit={e => {
             e.preventDefault();
           }}></S.ModalBodyInputBody>
-          <S.ModalBodyInputBody type= "password" placeholder="********" onChange={handleChange} onSubmit={e => {
+          <S.ModalBodyTextAreaBody type= "textarea" placeholder="J'aimerais bien vous inviter à faire une raclette dans mon jardin situé Paris 16ème arrondissement quand il fait 50 degrés." onChange={handleChange} onSubmit={e => {
             e.preventDefault();
-          }}></S.ModalBodyInputBody>
-
-          <Button>{ButtonWordings.continue}</Button>
+          }}></S.ModalBodyTextAreaBody>
+          <Button>{ButtonWordings.join}</Button>
         </S.ModalBodyWrapper>
       </S.Modal>
     )

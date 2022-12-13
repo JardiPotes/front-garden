@@ -1,19 +1,21 @@
 import React from "react";
 import * as S from "./styles";
-import { WORDINGS } from "../../wordings";
-import Chicken from "../../../../assets/chicken-icon.png";
-import Flowers from "../../../../assets/flowers-icon.png";
+import { HomePageWordings } from "../../../../wordings";
+//import Chicken from "../../../../assets/chicken-icon.png";
+import WhiteChicken from "../../../../assets/white-chicken.png"
+import WhiteFlower from "../../../../assets/white-flower.png"
+//import Flowers from "../../../../assets/flowers-icon.png";
 
 export const TitleCard = () => {
   return (
     <S.TitleCardStyle>
       <S.FlowersIcon>
-        <img src={Flowers} />
+        <img src={WhiteFlower} />
       </S.FlowersIcon>
 
-      <S.TitleCardText>{WORDINGS.title}</S.TitleCardText>
+      <S.TitleCardText>{HomePageWordings.title}</S.TitleCardText>
       <S.ChickenIcon>
-        <img src={Chicken} />
+        <img src={WhiteChicken} />
       </S.ChickenIcon>
     </S.TitleCardStyle>
   );
