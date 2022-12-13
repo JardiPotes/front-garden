@@ -4,15 +4,19 @@ import * as S from "../SignUpForm/styles";
 import Logo from "../../assets/jardi-logo-trans.png";
 import CrossIcon from "../../assets/cross-icon.png";
 import { Button } from "../Buttons";
-import {ModalFormWordings, ButtonWordings} from '../../wordings'
+import { ModalFormWordings, ButtonWordings } from "../../wordings";
+import { Uploader } from "../Uploader";
 
-
-export const SignUpModal = ({isOpen, setIsOpen}) => {
+export const SignUpModal = ({ isOpen, setIsOpen }) => {
   const [text, setText] = useState("");
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleChange = (
+    event:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
     setText(event.target.value);
   };
-  if (!isOpen) return null
+  if (!isOpen) return null;
   return (
     isOpen && (
       <S.Modal>
@@ -29,12 +33,21 @@ export const SignUpModal = ({isOpen, setIsOpen}) => {
         </S.ModalHeader>
         <S.HeaderUnderLine></S.HeaderUnderLine>
         <S.ModalBodyWrapper>
-          <S.ModalBodyInputBody placeholder="Huguette-JMiche" onChange={handleChange} onSubmit={e => {
-            e.preventDefault();
-          }}></S.ModalBodyInputBody>
-          <S.ModalBodyTextAreaBody type= "textarea" placeholder="J'aimerais bien vous inviter à faire une raclette dans mon jardin situé Paris 16ème arrondissement quand il fait 50 degrés." onChange={handleChange} onSubmit={e => {
-            e.preventDefault();
-          }}></S.ModalBodyTextAreaBody>
+          <S.ModalBodyInputBody
+            placeholder="Huguette-JMiche"
+            onChange={handleChange}
+            onSubmit={(e) => {
+              e.preventDefault();
+            }}
+          ></S.ModalBodyInputBody>
+          <S.ModalBodyTextAreaBody
+            placeholder="J'aimerais bien vous inviter à faire une raclette dans mon jardin situé Paris 16ème arrondissement quand il fait 50 degrés."
+            onChange={handleChange}
+            onSubmit={(e) => {
+              e.preventDefault();
+            }}
+          ></S.ModalBodyTextAreaBody>
+          <Uploader />
           <Button>{ButtonWordings.join}</Button>
         </S.ModalBodyWrapper>
       </S.Modal>
