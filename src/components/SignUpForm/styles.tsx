@@ -93,12 +93,11 @@ export const ModalBodyWrapper = styled.div`
 export const ModalBodyInputBody = styled.input`
   text-align: center;
   color: ${Colors.textInput};
-  margin-top: 2em;
+  margin-top: 1em;
   width: 35em;
   height: 5em;
   background-color: ${Colors.inputArea};
   border-radius: 50em;
-  margin-top: 5em;
   align-items: center;
   border: none;
 
@@ -112,12 +111,11 @@ export const ModalBodyInputBody = styled.input`
 export const ModalBodyTextAreaBody = styled.textarea`
   text-align: center;
   color: ${Colors.textInput};
-  margin-top: 2em;
+  margin-top: 1em;
   width: 35em;
   height: 5em;
   background-color: ${Colors.inputArea};
   border-radius: 50em;
-  margin-top: 5em;
   align-items: center;
   border: none;
 
@@ -126,11 +124,6 @@ export const ModalBodyTextAreaBody = styled.textarea`
     box-shadow: 0 0 15px 0 ${Colors.line};
     outline: 0;
   }
-`;
-
-export const ModalBodyColumnTitle = styled.h2`
-  font-color: "black";
-  font-size: 1.5em;
 `;
 
 export const UploadImage = styled.button`
@@ -145,4 +138,24 @@ export const UploadImage = styled.button`
   }
 `;
 
-export const hasGarden = styled.input``;
+export const hasGardenInput = styled.input`
+text-align: center;
+color: 'black';
+`;
+
+export const inputLabel = styled.label`
+font-size: 1em;
+text-align: left;
+color: 'black';
+`
+
+export const labelInputWrapper = styled.div`
+display: flex;
+flex-direction: column;
+margin-top: 2em;
+`
+export const hasGardenWrapper = styled.div`
+display: flex;
+margin-top: 2em;
+
+`

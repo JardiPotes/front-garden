@@ -98,7 +98,6 @@ width: 35em;
 height: 5em;
 background-color: ${Colors.inputArea};
 border-radius: 50em;
-margin-top: 5em;
 align-items: center;
 border: none;
 
@@ -115,4 +114,14 @@ font-color: 'black';
 font-size: 1.5em;
 `
 
-export const ModalBodySignUp = styled.div``;
+export const inputLabel = styled.label`
+font-size: 1em;
+text-align: left;
+color: 'black';
+`
+
+export const labelInputWrapper = styled.div`
+display: flex;
+flex-direction: column;
+margin-top: 2em;
+`
