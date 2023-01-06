@@ -8,11 +8,29 @@ const Colors = {
   cross: "#000000",
 } as const;
 
+export const BackgroundOverlay = styled.div `
+height: 100%;
+width: 0;
+position: fixed;
+z-index: 1; 
+left: 0;
+top: 0;
+background-color: rgb(0,0,0); 
+background-color: rgba(0,0,0, 0.9);
+overflow-x: hidden; 
+transition: 0.5s;
+`
+
 export const Modal = styled.div`
   min-height: 40em;
   max-width: 40em;
   border-radius: 50px;
   background-color: ${Colors.bg};
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: auto;
 `;
 
 export const ModalHeader = styled.div`
@@ -55,6 +73,7 @@ border-radius: 50px;
 export const Cross = styled.button`
 background-color: ${Colors.bg};
 border: 5px transparent solid;
+border-radius: 50px;
   & > img {
     max-width: 30%;
     max-heigth: 30%;
@@ -79,7 +98,6 @@ width: 35em;
 height: 5em;
 background-color: ${Colors.inputArea};
 border-radius: 50em;
-margin-top: 5em;
 align-items: center;
 border: none;
 
@@ -96,4 +114,14 @@ font-color: 'black';
 font-size: 1.5em;
 `
 
-export const ModalBodySignUp = styled.div``;
+export const inputLabel = styled.label`
+font-size: 1em;
+text-align: left;
+color: 'black';
+`
+
+export const labelInputWrapper = styled.div`
+display: flex;
+flex-direction: column;
+margin-top: 2em;
+`

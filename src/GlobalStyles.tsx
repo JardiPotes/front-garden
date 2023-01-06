@@ -2,7 +2,8 @@ import { createGlobalStyle } from 'styled-components';
 
 const Colors = {
     "bg": '#FAF0E6',
-    "txt": "black",
+    "txt": 'black',
+    "TitleCard" : '#86E7B8',
 
 } as const
 
