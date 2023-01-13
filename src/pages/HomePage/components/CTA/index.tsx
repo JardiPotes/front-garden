@@ -1,13 +1,22 @@
-import React, { FunctionComponent } from 'react'
-import { WORDINGS } from '../../wordings'
+import React, {useState} from 'react'
+import { Button } from '../../../../components/Buttons'
+import { Modal } from '../../../../components/ModalForm'
+import { HomePageWordings, ButtonWordings } from '../../../../wordings'
+import DocImg from '../../../../assets/dog-icon.png'
 
-type CTAProps = {
-    cta_type: 'cta_host' | 'cta_guest'
-}
+import * as S from './styles'
 
-export const CTA: FunctionComponent<CTAProps> = ({cta_type}) => {
 
+export const CTA: React.FC = () => {
+    const [isOpen, setIsOpen] = useState(false)
     return(
-        <h3>{WORDINGS[cta_type]}</h3>
+       <S.Wrapper>
+<S.Description>{HomePageWordings.description}</S.Description>
+<S.ButtonDogIconWrapper>
+<Button onClick={() => setIsOpen(true)}>{ButtonWordings.join}</Button>
+<S.DogIcon><img src = {DocImg} /></S.DogIcon>
+</S.ButtonDogIconWrapper>
+<Modal isOpen={isOpen} setIsOpen = {setIsOpen} />
+       </S.Wrapper>
     )
-}
+}    

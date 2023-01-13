@@ -1,12 +1,18 @@
-import React from "react";
-// import { Title } from "./components/Title";
-// import { Description } from "./components/Description";
-// import { CTA } from "./components/CTA";
-import { Modal } from "../../components/ModalForm";
+import React, { useState } from "react";
 
-export default function HomePage(){
-    
-    return (
-        <Modal />
-    )
+import { CTA } from "./components/CTA";
+
+import { TitleCard } from "./components/TitleCard";
+// import { SignUpModal } from "../../components/SignUpForm";
+import * as S from './styles'
+
+export default function HomePage() {
+  // const [isOpen, setIsOpen] = useState(true)
+  return (
+    <S.Wrapper>
+      <TitleCard />
+      <CTA />
+      {/* <SignUpModal isOpen={isOpen} setIsOpen = {setIsOpen} /> */}
+    </S.Wrapper>
+  );
 }
