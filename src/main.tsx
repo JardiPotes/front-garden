@@ -3,6 +3,9 @@ import ReactDOM from "react-dom/client";
 import HomePage from "./pages/HomePage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
+import { QueryClientProvider } from "react-query";
+import { queryClient } from "./ClientProvider";
+
 import { Layout } from "./Layout";
 import { GlobalStyle } from "./GlobalStyles";
 
@@ -20,8 +23,10 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <React.StrictMode>
-    <GlobalStyle />
-    <RouterProvider router={router} />
-  </React.StrictMode>
+  <QueryClientProvider client={queryClient}>
+    <React.StrictMode>
+      <GlobalStyle />
+      <RouterProvider router={router} />
+    </React.StrictMode>
+  </QueryClientProvider>
 );

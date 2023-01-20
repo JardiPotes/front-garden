@@ -7,7 +7,7 @@ import DocImg from "../../../../assets/dog-icon.png";
 import * as S from "./styles";
 
 export const CTA: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
     <S.Wrapper>
       <S.Description>{HomePageWordings.description}</S.Description>
