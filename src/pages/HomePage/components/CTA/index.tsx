@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import {useState} from 'react'
 import { Button } from '../../../../components/Buttons'
 import { Modal } from '../../../../components/ModalForm'
 import { HomePageWordings, ButtonWordings } from '../../../../wordings'

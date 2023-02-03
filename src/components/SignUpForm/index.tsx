@@ -1,4 +1,3 @@
-import React from "react";
 import { useState } from "react";
 import * as S from "../SignUpForm/styles";
 import Logo from "../../assets/jardi-logo-trans.png";

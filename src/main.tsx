@@ -1,16 +1,10 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import HomePage from './pages/HomePage'
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import HomePage from "./pages/HomePage";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import { Layout } from './Layout'
-import { GlobalStyle } from './GlobalStyles';
-
-
-
+import { Layout } from "./Layout";
+import { GlobalStyle } from "./GlobalStyles";
 
 const router = createBrowserRouter([
   {
@@ -25,9 +19,9 @@ const router = createBrowserRouter([
   },
 ]);
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <GlobalStyle />
     <RouterProvider router={router} />
   </React.StrictMode>
-)
+);

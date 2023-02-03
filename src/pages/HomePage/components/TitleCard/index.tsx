@@ -1,4 +1,3 @@
-import React from "react";
 import * as S from "./styles";
 import { HomePageWordings } from "../../../../wordings";
 //import Chicken from "../../../../assets/chicken-icon.png";

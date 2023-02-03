@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { CarouselItemType } from '../../../../type';
 
 export type Props = CarouselItemType
