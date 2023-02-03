@@ -6,12 +6,15 @@ import { Button } from "../Buttons";
 import { ModalFormWordings, ButtonWordings } from "../../wordings";
 import { SignUpModal } from "../SignUpForm";
 
-export const Modal = ({ isOpen, setIsOpen }) => {
-  const [text, setText] = useState("");
+type ModalProps = {
+  isOpen: boolean;
+};
+
+export const Modal = ({ isOpen, setIsOpen }: ModalProps) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [isCompleted, setIsCompleted] = useState(false);
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setText(event.target.value);
-  };
+
   if (!isOpen) return null;
   return (
     isOpen && (
@@ -33,10 +36,8 @@ export const Modal = ({ isOpen, setIsOpen }) => {
             <S.inputLabel>{ModalFormWordings.email}</S.inputLabel>
             <S.ModalBodyInputBody
               placeholder="ilovecss@sarcasm.fr"
-              onChange={handleChange}
-              onSubmit={(e) => {
-                e.preventDefault();
-              }}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             ></S.ModalBodyInputBody>
           </S.labelInputWrapper>
           <S.labelInputWrapper>
@@ -44,10 +45,8 @@ export const Modal = ({ isOpen, setIsOpen }) => {
             <S.ModalBodyInputBody
               type="password"
               placeholder="********"
-              onChange={handleChange}
-              onSubmit={(e) => {
-                e.preventDefault();
-              }}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             ></S.ModalBodyInputBody>
           </S.labelInputWrapper>
           <Button onClick={() => setIsCompleted(true)}>
@@ -56,9 +55,9 @@ export const Modal = ({ isOpen, setIsOpen }) => {
         </S.ModalBodyWrapper>
         <SignUpModal
           isCompleted={isCompleted}
-          setIsCompleted={setIsCompleted}
-          isOpen={isOpen}
           setIsOpen={setIsOpen}
+          email={email}
+          password={password}
         />
       </S.Modal>
     )
