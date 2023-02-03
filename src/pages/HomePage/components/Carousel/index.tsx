@@ -1,26 +1,71 @@
-import { CarouselSwipe } from "./CarouselSwipe";
+import { useState } from "react";
+import * as S from "./styles";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faChevronLeft,
+  faChevronRight,
+} from "@fortawesome/free-solid-svg-icons";
 
+type CarouselItemType = {
+  imageSrc: string;
+  imageAlt: string;
+};
 
-
-export function CarouselHome() {
-
-    const items = [
-        {
-          imageSrc: "/images/gardentest.jpg",
-          imageAlt: "Garden1",
-        },
-        {
-          imageSrc: "/images/jardin2.png",
-          imageAlt: 'A rock formation',
-        },
-        {
-          imageSrc: "/images/jardin1.png",
-          imageAlt: 'Some flowers',
-        }]
-        return (
-            <div className="container">
-              <CarouselSwipe items={items} />
-            </div>
-          );
-
+interface SlideData {
+  items: Array<CarouselItemType>;
+  activeIndex: number;
 }
+
+const data = [
+  {
+    imageSrc: "/images/garden1.jpg",
+    imageAlt: "Garden1",
+  },
+  {
+    imageSrc: "/images/garden2.jpg",
+    imageAlt: "A rock formation",
+  },
+  {
+    imageSrc: "/images/garden3.jpg",
+    imageAlt: "Some flowers",
+  },
+];
+
+export const SlideView = () => <Slideshow items={data} />;
+
+const Slideshow = (props: Array<CarouselItemType>) => {
+  const [{ items, activeIndex }, setState] = useState<SlideData>({
+    items: props.items,
+    activeIndex: 0,
+  });
+
+  const moveTo = (newIndex: number) => () => {
+    if (newIndex === -1) {
+      setState((s) => ({ ...s, activeIndex: items.length - 1 }));
+      return;
+    }
+    if (newIndex === items.length) {
+      setState((s) => ({ ...s, activeIndex: 0 }));
+      return;
+    }
+
+    setState((s) => ({ ...s, activeIndex: newIndex }));
+  };
+
+  return (
+    <S.SlideWrapper>
+      <S.ImageBox>
+        <img
+          alt={items[activeIndex].imageAlt}
+          src={items[activeIndex].imageSrc}
+        />
+        <S.NavButton position="left" onClick={moveTo(activeIndex - 1)}>
+          <FontAwesomeIcon icon={faChevronLeft} />
+        </S.NavButton>
+        <S.NavButton position="right" onClick={moveTo(activeIndex + 1)}>
+          <FontAwesomeIcon icon={faChevronRight} />
+        </S.NavButton>
+      </S.ImageBox>
+    </S.SlideWrapper>
+  );
+};
