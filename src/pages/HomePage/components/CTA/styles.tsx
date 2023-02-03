@@ -1,31 +1,27 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-display: flex;
-flex-direction: column;
-max-width: 30%;
-justify-content: center;
-`
-
+  display: flex;
+  flex-direction: column;
+  max-width: 30%;
+  justify-content: center;
+`;
 
 export const Description = styled.p`
-font-size: 1.5em;
-text-align: left;
-`
+  font-size: 1.5em;
+  text-align: left;
+`;
 
 export const DogIcon = styled.div`
-& > img{
+  & > img {
     max-width: 80%;
     max-heigth: 80%;
     object-fit: contain;
-   
-}
-
-`
+  }
+`;
 
 export const ButtonDogIconWrapper = styled.div`
-display: flex;
-align-items: center;
-justify-content: center;
-
-`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;

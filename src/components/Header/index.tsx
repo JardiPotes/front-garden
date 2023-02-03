@@ -18,7 +18,7 @@ export function Header() {
           <S.StyledLink to="rules">FAQ</S.StyledLink>
         </S.LinkWrapper>
       </nav>
-      <SearchBar/>
+      <SearchBar />
       <S.StyledLink to="home">
         <S.StyledLogin>
           <img src={Login} />
