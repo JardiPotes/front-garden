@@ -1,4 +1,3 @@
-import React from "react";
 import * as S from "./styles";
 import Logo from "../../assets/jardi-logo-trans.png";
 import Login from "../../assets/login.png";
