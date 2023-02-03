@@ -139,23 +139,22 @@ export const UploadImage = styled.button`
 `;
 
 export const hasGardenInput = styled.input`
-text-align: center;
-color: 'black';
+  text-align: center;
+  color: "black";
 `;
 
 export const inputLabel = styled.label`
-font-size: 1em;
-text-align: left;
-color: 'black';
-`
+  font-size: 1em;
+  text-align: left;
+  color: "black";
+`;
 
 export const labelInputWrapper = styled.div`
-display: flex;
-flex-direction: column;
-margin-top: 2em;
-`
+  display: flex;
+  flex-direction: column;
+  margin-top: 2em;
+`;
 export const hasGardenWrapper = styled.div`
-display: flex;
-margin-top: 2em;
-
-`
+  display: flex;
+  margin-top: 2em;
+`;

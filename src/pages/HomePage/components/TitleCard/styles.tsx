@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Colors = {
   TitleCard: "#86E7B8",
-  textColor: 'white',
+  textColor: "white",
 } as const;
 
 export const TitleCardStyle = styled.div`

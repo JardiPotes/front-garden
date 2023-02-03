@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { StyledInput, Input } from "./styles";
 
-
 export const SearchBar = () => {
   const [text, setText] = useState("");
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,7 +18,7 @@ export const SearchBar = () => {
           value={text}
           onChange={handleChange}
           placeholder="Rechercher"
-          onSubmit={e => {
+          onSubmit={(e) => {
             e.preventDefault();
           }}
         />
@@ -45,4 +44,3 @@ export const SearchBar = () => {
     </form>
   );
 };
-
