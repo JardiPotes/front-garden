@@ -34,6 +34,6 @@ export const ModalFormWordings = {
   password: "Mot de passe",
   pseudo: "Pseudonyme",
   bio: "Biographie",
-  profilePicture: "Photo de profile",
+  profilePicture: "Photo de profil",
   haveGarden: "As-tu un jardin ?",
 };
