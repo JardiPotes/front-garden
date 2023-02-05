@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import { CTA } from "./components/CTA";
 import { TitleCard } from "./components/TitleCard";
 import * as S from "./styles";

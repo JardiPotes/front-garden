@@ -33,7 +33,7 @@ const data = [
 
 export const SlideView = () => <Slideshow items={data} />;
 
-const Slideshow = (props: Array<CarouselItemType>) => {
+const Slideshow = (props: { items: CarouselItemType[] }) => {
   const [{ items, activeIndex }, setState] = useState<SlideData>({
     items: props.items,
     activeIndex: 0,

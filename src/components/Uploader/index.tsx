@@ -34,15 +34,14 @@ export const Uploader = () => {
       //       console.error(error);
       //     });
     }
-
-    return (
-      <>
-        {" "}
-        <input name="file" type="file" onChange={handleChange} />
-        <S.UploadButton onClick={handleSubmit}>
-          <img src={UploadIcon} />
-        </S.UploadButton>
-      </>
-    );
   };
+
+  return (
+    <>
+      <input name="file" type="file" onChange={handleChange} />
+      <S.UploadButton onClick={handleSubmit}>
+        <img src={UploadIcon} />
+      </S.UploadButton>
+    </>
+  );
 };
