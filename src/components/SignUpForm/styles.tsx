@@ -22,15 +22,24 @@ export const BackgroundOverlay = styled.div`
 `;
 
 export const Modal = styled.div`
-  min-height: 40em;
-  max-width: 40em;
+  display: flex;
+  flex-direction: column;
+  max-width: 100vw;
+  max-height: 100vw;
+  height: 95%;
   border-radius: 50px;
   background-color: ${Colors.bg};
   position: fixed;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  padding: auto;
+  z-index: 3;
+  overflow: scroll;
+
+  ::-webkit-scrollbar {
+    height: 100%;
+    width: 0;
+  }
 `;
 
 export const ModalHeader = styled.div`
@@ -65,7 +74,7 @@ export const LogoTitleWrapper = styled.div`
 export const HeaderUnderLine = styled.div`
   width: 35em;
   height: 0.5em;
-  margin: auto;
+  margin: 1px;
   background-color: ${Colors.line};
   border-radius: 50px;
 `;
@@ -87,6 +96,7 @@ export const ModalBodyWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin: auto;
+  margin-top: 2px;
   align-items: center;
 `;
 

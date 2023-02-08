@@ -10,18 +10,13 @@ import { AxiosError } from "axios";
 import { useMutation } from "react-query";
 
 type SignUpModalProps = {
-  isCompleted: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  email: string;
-  password: string;
 };
 
-export const SignUpModal: FC<SignUpModalProps> = ({
-  isCompleted,
-  setIsOpen,
-  email,
-  password,
-}) => {
+export const SignUpModal = ({ setIsOpen }: SignUpModalProps) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isCompleted, setIsCompleted] = useState(false);
   const [nickname, setNickname] = useState("");
   const [profileImage, setProfileImage] = useState("");
   const [bio, setBio] = useState("");
@@ -72,62 +67,76 @@ export const SignUpModal: FC<SignUpModalProps> = ({
     }
   };
 
-  if (!isCompleted) return null;
   return (
-    isCompleted && (
-      <S.Modal>
-        <S.ModalHeader>
-          <S.LogoTitleWrapper>
-            <S.Logo>
-              <img src={Logo} />
-            </S.Logo>
-            <S.Title>{ModalFormWordings.headline}</S.Title>
-          </S.LogoTitleWrapper>
-          <S.Cross onClick={(): void => setIsOpen(false)}>
-            <img src={CrossIcon} />
-          </S.Cross>
-        </S.ModalHeader>
-        <S.HeaderUnderLine />
-        <S.ModalBodyWrapper>
-          <S.labelInputWrapper>
-            <S.inputLabel>{ModalFormWordings.pseudo}</S.inputLabel>
-            <S.ModalBodyInputBody
-              placeholder="Huguette-JMiche"
-              value={nickname}
-              onChange={(e): void => setNickname(e.target.value)}
-            />
-          </S.labelInputWrapper>
-          <S.labelInputWrapper>
-            <S.inputLabel>{ModalFormWordings.bio}</S.inputLabel>
-            <S.ModalBodyTextAreaBody
-              placeholder="J'aimerais bien vous inviter à faire une raclette dans mon jardin situé Paris 16ème arrondissement quand il fait 50 degrés."
-              value={bio}
-              onChange={(e): void => setBio(e.target.value)}
-            />
-          </S.labelInputWrapper>
+    <S.Modal>
+      <S.ModalHeader>
+        <S.LogoTitleWrapper>
+          <S.Logo>
+            <img src={Logo} />
+          </S.Logo>
+          <S.Title>{ModalFormWordings.headline}</S.Title>
+        </S.LogoTitleWrapper>
+        <S.Cross onClick={() => setIsOpen(false)}>
+          <img src={CrossIcon} />
+        </S.Cross>
+      </S.ModalHeader>
+      <S.HeaderUnderLine />
+      <S.ModalBodyWrapper>
+        <S.labelInputWrapper>
+          <S.inputLabel>{ModalFormWordings.email}</S.inputLabel>
+          <S.ModalBodyInputBody
+            placeholder="ilovecss@sarcasm.fr"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </S.labelInputWrapper>
+        <S.labelInputWrapper>
+          <S.inputLabel>{ModalFormWordings.password}</S.inputLabel>
+          <S.ModalBodyInputBody
+            type="password"
+            placeholder="********"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </S.labelInputWrapper>
+        <S.labelInputWrapper>
+          <S.inputLabel>{ModalFormWordings.pseudo}</S.inputLabel>
+          <S.ModalBodyInputBody
+            placeholder="Huguette-JMiche"
+            value={nickname}
+            onChange={(e) => setNickname(e.target.value)}
+          />
+        </S.labelInputWrapper>
+        <S.labelInputWrapper>
+          <S.inputLabel>{ModalFormWordings.bio}</S.inputLabel>
+          <S.ModalBodyTextAreaBody
+            placeholder="J'aimerais bien vous inviter à faire une raclette dans mon jardin situé Paris 16ème arrondissement quand il fait 50 degrés."
+            value={bio}
+            onChange={(e) => setBio(e.target.value)}
+          />
+        </S.labelInputWrapper>
 
-          <S.hasGardenWrapper>
-            <S.inputLabel>{ModalFormWordings.haveGarden}</S.inputLabel>
-            <S.inputLabel>oui</S.inputLabel>
-            <S.hasGardenInput
-              type="radio"
-              name="hasGarden"
-              id="oui"
-              value="true"
-              onChange={(e): void => setHasGarden(e.target.value)}
-            />
-            <S.inputLabel>non</S.inputLabel>
-            <S.hasGardenInput
-              type="radio"
-              name="hasGarden"
-              id="non"
-              value="false"
-              onChange={(e): void => setHasGarden(e.target.value)}
-            />
-          </S.hasGardenWrapper>
-          <Button onClick={postData}>{ButtonWordings.join}</Button>
-        </S.ModalBodyWrapper>
-      </S.Modal>
-    )
+        <S.hasGardenWrapper>
+          <S.inputLabel>{ModalFormWordings.haveGarden}</S.inputLabel>
+          <S.inputLabel>oui</S.inputLabel>
+          <S.hasGardenInput
+            type="radio"
+            name="hasGarden"
+            id="oui"
+            value="true"
+            onChange={(e) => setHasGarden(e.target.value)}
+          />
+          <S.inputLabel>non</S.inputLabel>
+          <S.hasGardenInput
+            type="radio"
+            name="hasGarden"
+            id="non"
+            value="false"
+            onChange={(e) => setHasGarden(e.target.value)}
+          />
+        </S.hasGardenWrapper>
+        <Button onClick={postData}>{ButtonWordings.join}</Button>
+      </S.ModalBodyWrapper>
+    </S.Modal>
   );
 };
