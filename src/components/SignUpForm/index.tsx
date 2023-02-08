@@ -6,7 +6,7 @@ import { Button } from "../Buttons";
 import { ModalFormWordings, ButtonWordings } from "../../wordings";
 
 import axios from "../../ClientProvider/axiosConfig";
-import { AxiosError, AxiosResponse } from "axios";
+import { AxiosError } from "axios";
 import { useMutation } from "react-query";
 
 type SignUpModalProps = {
