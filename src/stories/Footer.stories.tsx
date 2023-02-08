@@ -1,4 +1,5 @@
 import { ComponentMeta } from "@storybook/react";
+import { FC } from "react";
 
 import { Footer } from "../components/Footer";
 
@@ -8,6 +9,6 @@ export default {
   parameters: {},
 } as ComponentMeta<typeof Footer>;
 
-const Template = () => <Footer />;
+const Template: FC = () => <Footer />;
 
 export const Default = Template.bind({});

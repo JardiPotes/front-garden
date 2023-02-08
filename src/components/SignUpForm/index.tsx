@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, FC } from "react";
 import * as S from "../SignUpForm/styles";
 import Logo from "../../assets/jardi-logo-trans.png";
 import CrossIcon from "../../assets/cross-icon.png";
@@ -16,12 +16,12 @@ type SignUpModalProps = {
   password: string;
 };
 
-export const SignUpModal = ({
+export const SignUpModal: FC<SignUpModalProps> = ({
   isCompleted,
   setIsOpen,
   email,
   password,
-}: SignUpModalProps) => {
+}) => {
   const [nickname, setNickname] = useState("");
   const [profileImage, setProfileImage] = useState("");
   const [bio, setBio] = useState("");
@@ -29,7 +29,7 @@ export const SignUpModal = ({
 
   const [createUserResult, setCreateUserResult] = useState<string | null>(null);
 
-  const formatResponse = (res) => {
+  const formatResponse = (res: unknown): string => {
     return JSON.stringify(res, null, 2);
   };
 
@@ -64,7 +64,7 @@ export const SignUpModal = ({
     if (isCreataingUser) setCreateUserResult("creating...");
   }, [isCreataingUser]);
 
-  const postData = () => {
+  const postData = (): void => {
     try {
       createUser();
     } catch (err) {
@@ -83,18 +83,18 @@ export const SignUpModal = ({
             </S.Logo>
             <S.Title>{ModalFormWordings.headline}</S.Title>
           </S.LogoTitleWrapper>
-          <S.Cross onClick={() => setIsOpen(false)}>
+          <S.Cross onClick={(): void => setIsOpen(false)}>
             <img src={CrossIcon} />
           </S.Cross>
         </S.ModalHeader>
-        <S.HeaderUnderLine></S.HeaderUnderLine>
+        <S.HeaderUnderLine />
         <S.ModalBodyWrapper>
           <S.labelInputWrapper>
             <S.inputLabel>{ModalFormWordings.pseudo}</S.inputLabel>
             <S.ModalBodyInputBody
               placeholder="Huguette-JMiche"
               value={nickname}
-              onChange={(e) => setNickname(e.target.value)}
+              onChange={(e): void => setNickname(e.target.value)}
             />
           </S.labelInputWrapper>
           <S.labelInputWrapper>
@@ -102,7 +102,7 @@ export const SignUpModal = ({
             <S.ModalBodyTextAreaBody
               placeholder="J'aimerais bien vous inviter à faire une raclette dans mon jardin situé Paris 16ème arrondissement quand il fait 50 degrés."
               value={bio}
-              onChange={(e) => setBio(e.target.value)}
+              onChange={(e): void => setBio(e.target.value)}
             />
           </S.labelInputWrapper>
 
@@ -114,7 +114,7 @@ export const SignUpModal = ({
               name="hasGarden"
               id="oui"
               value="true"
-              onChange={(e) => setHasGarden(e.target.value)}
+              onChange={(e): void => setHasGarden(e.target.value)}
             />
             <S.inputLabel>non</S.inputLabel>
             <S.hasGardenInput
@@ -122,7 +122,7 @@ export const SignUpModal = ({
               name="hasGarden"
               id="non"
               value="false"
-              onChange={(e) => setHasGarden(e.target.value)}
+              onChange={(e): void => setHasGarden(e.target.value)}
             />
           </S.hasGardenWrapper>
           <Button onClick={postData}>{ButtonWordings.join}</Button>

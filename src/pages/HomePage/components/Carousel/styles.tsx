@@ -1,5 +1,4 @@
-import styled, { css } from "styled-components";
-import { Link } from "react-router-dom";
+import styled, { css, FlattenSimpleInterpolation } from "styled-components";
 
 export const SlideWrapper = styled.div`
   position: relative;
@@ -25,7 +24,7 @@ export const ImageBox = styled.div`
   }
 `;
 
-export const NavButton = styled.button`
+export const NavButton = styled.button<{ position: "left" | "right" }>`
   cursor: pointer;
   position: absolute;
   top: 45%;
@@ -34,13 +33,13 @@ export const NavButton = styled.button`
   border: none;
   background: rgba(255, 255, 255, 0.7);
 
-  ${({ position }) =>
+  ${({ position }): false | FlattenSimpleInterpolation =>
     position === "left" &&
     css`
       left: 10px;
     `}
 
-  ${({ position }) =>
+  ${({ position }): false | FlattenSimpleInterpolation =>
     position === "right" &&
     css`
       right: 10px;

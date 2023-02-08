@@ -3,9 +3,10 @@ import { HomePageWordings } from "../../../../wordings";
 //import Chicken from "../../../../assets/chicken-icon.png";
 import WhiteChicken from "../../../../assets/white-chicken.png";
 import WhiteFlower from "../../../../assets/white-flower.png";
+import { FC } from "react";
 //import Flowers from "../../../../assets/flowers-icon.png";
 
-export const TitleCard = () => {
+export const TitleCard: FC = () => {
   return (
     <S.TitleCardStyle>
       <S.FlowersIcon>
