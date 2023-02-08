@@ -12,3 +12,4 @@
 
 ### Run linting :
 - `yarn lint` (or `yarn lint:fix` to fix autofixable warnings/errors)
+- ESlint and Prettier extensions exist in most mainstream IDEs 🛂. You could format on save and/or display warning/error squiggly lines 〰️ without running the script.

@@ -1,20 +1,20 @@
-import { useState } from "react";
+import { FC, useState } from "react";
 
 import UploadIcon from "../../assets/upload-icon.png";
 import * as S from "./styles";
 
-export const Uploader = () => {
+export const Uploader: FC = () => {
   const [selectedFile, setSelectedFile] = useState();
   const [isFilePicked, setIsFilePicked] = useState(false);
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | MouseEvent>
-  ) => {
+  ): void => {
     setSelectedFile(event.target.files[0]);
     setIsFilePicked(true);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (): void => {
     if (isFilePicked) {
       const formData = new FormData();
       formData.append("File", selectedFile);

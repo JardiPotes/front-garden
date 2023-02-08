@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { FC, useState, Dispatch, SetStateAction } from "react";
 import * as S from "../ModalForm/styles";
 import Logo from "../../assets/jardi-logo-trans.png";
 import CrossIcon from "../../assets/cross-icon.png";
@@ -8,10 +8,10 @@ import { SignUpModal } from "../SignUpForm";
 
 type ModalProps = {
   isOpen: boolean;
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsOpen: Dispatch<SetStateAction<boolean>>;
 };
 
-export const Modal = ({ isOpen, setIsOpen }: ModalProps) => {
+export const Modal: FC<ModalProps> = ({ isOpen, setIsOpen }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isCompleted, setIsCompleted] = useState(false);
@@ -27,19 +27,19 @@ export const Modal = ({ isOpen, setIsOpen }: ModalProps) => {
             </S.Logo>
             <S.Title>{ModalFormWordings.headline}</S.Title>
           </S.LogoTitleWrapper>
-          <S.Cross onClick={() => setIsOpen(false)}>
+          <S.Cross onClick={(): void => setIsOpen(false)}>
             <img src={CrossIcon} />
           </S.Cross>
         </S.ModalHeader>
-        <S.HeaderUnderLine></S.HeaderUnderLine>
+        <S.HeaderUnderLine />
         <S.ModalBodyWrapper>
           <S.labelInputWrapper>
             <S.inputLabel>{ModalFormWordings.email}</S.inputLabel>
             <S.ModalBodyInputBody
               placeholder="ilovecss@sarcasm.fr"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            ></S.ModalBodyInputBody>
+              onChange={(e): void => setEmail(e.target.value)}
+            />
           </S.labelInputWrapper>
           <S.labelInputWrapper>
             <S.inputLabel>{ModalFormWordings.password}</S.inputLabel>
@@ -47,10 +47,10 @@ export const Modal = ({ isOpen, setIsOpen }: ModalProps) => {
               type="password"
               placeholder="********"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            ></S.ModalBodyInputBody>
+              onChange={(e): void => setPassword(e.target.value)}
+            />
           </S.labelInputWrapper>
-          <Button onClick={() => setIsCompleted(true)}>
+          <Button onClick={(): void => setIsCompleted(true)}>
             {ButtonWordings.continue}
           </Button>
         </S.ModalBodyWrapper>

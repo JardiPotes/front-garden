@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { FC, useState } from "react";
 import * as S from "./styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -10,6 +10,10 @@ type CarouselItemType = {
   imageSrc: string;
   imageAlt: string;
 };
+
+interface SlideshowProps {
+  items: Array<CarouselItemType>;
+}
 
 interface SlideData {
   items: Array<CarouselItemType>;
@@ -31,9 +35,9 @@ const data = [
   },
 ];
 
-export const SlideView = () => <Slideshow items={data} />;
+export const SlideView: FC = () => <Slideshow items={data} />;
 
-const Slideshow = (props: { items: CarouselItemType[] }) => {
+const Slideshow: FC<SlideshowProps> = (props) => {
   const [{ items, activeIndex }, setState] = useState<SlideData>({
     items: props.items,
     activeIndex: 0,

@@ -1,12 +1,12 @@
-import { useState } from "react";
+import { FC, useState, ChangeEvent } from "react";
 import { StyledInput, Input } from "./styles";
 
-export const SearchBar = () => {
+export const SearchBar: FC = () => {
   const [text, setText] = useState("");
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
     setText(event.target.value);
   };
-  const clearInput = () => {
+  const clearInput = (): void => {
     setText("");
   };
 
@@ -18,7 +18,7 @@ export const SearchBar = () => {
           value={text}
           onChange={handleChange}
           placeholder="Rechercher"
-          onSubmit={(e) => {
+          onSubmit={(e): void => {
             e.preventDefault();
           }}
         />
