@@ -8,6 +8,7 @@ import { GlobalStyle } from "./GlobalStyles";
 import { Layout } from "./Layout";
 import { GardenPage } from "./pages/Gardens";
 import HomePage from "./pages/HomePage";
+import { Profile } from "./pages/Profile";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
       {
         path: "gardens",
         element: <GardenPage />,
+      },
+      {
+        path: "profile",
+        element: <Profile />,
       },
     ],
   },
