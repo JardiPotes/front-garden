@@ -149,7 +149,7 @@ export const UploadImage = styled.button`
   }
 `;
 
-export const hasGardenInput = styled.input`
+export const radioInput = styled.input`
   text-align: center;
   color: "black";
 `;
@@ -165,7 +165,21 @@ export const labelInputWrapper = styled.div`
   flex-direction: column;
   margin-top: 2em;
 `;
-export const hasGardenWrapper = styled.div`
+
+export const radioWrapper = styled.div`
   display: flex;
+  width: 105%;
+  justify-content: flex-start;
   margin-top: 2em;
+  align-items: center;
+`;
+
+export const radioInputWrapper = styled.div`
+  margin-left: 1em;
+`;
+
+export const Tip = styled.div`
+  width: 105%;
+  font-size: 0.8em;
+  text-align: left;
 `;

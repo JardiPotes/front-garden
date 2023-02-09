@@ -36,4 +36,6 @@ export const ModalFormWordings = {
   bio: "Biographie",
   profilePicture: "Photo de profil",
   haveGarden: "As-tu un jardin ?",
+  experience: "Ton expérience en jardinage :",
+  experienceTip: "De 1: 'je n'y connais rien' à 5: 'expert des plantes'",
 };

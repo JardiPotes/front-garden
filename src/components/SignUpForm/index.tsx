@@ -1,17 +1,16 @@
-import { useState, useEffect, FC } from "react";
+import { useState, useEffect } from "react";
 import * as S from "../SignUpForm/styles";
 import Logo from "../../assets/jardi-logo-trans.png";
 import CrossIcon from "../../assets/cross-icon.png";
 import { Button } from "../Buttons";
 import { ModalFormWordings, ButtonWordings } from "../../wordings";
 import { useForm, SubmitHandler } from "react-hook-form";
-
 import axios from "../../ClientProvider/axiosConfig";
 import { AxiosError } from "axios";
 import { useMutation } from "react-query";
 
-const MandatoryField = () => {
-  return <div>Ce champs est obligatoire !</div>;
+const MandatoryField: React.FC = () => {
+  return <div>Ce champ est obligatoire !</div>;
 };
 
 type SignUpModalProps = {
@@ -23,16 +22,19 @@ type UserData = {
   password: string;
   nickname: string;
   profileImage: File;
-  bio: string;
+  bio?: string;
   hasGarden: boolean;
+  experience?: number;
 };
 
-export const SignUpModal = ({ setIsOpen }: SignUpModalProps) => {
+export const SignUpModal: React.FC<SignUpModalProps> = ({ setIsOpen }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<UserData>();
+
+  const expOptions = [1, 2, 3, 4, 5];
 
   const [createUserResult, setCreateUserResult] = useState<
     Record<string, string | null>
@@ -42,7 +44,7 @@ export const SignUpModal = ({ setIsOpen }: SignUpModalProps) => {
     return JSON.stringify(res, null, 2);
   };
 
-  const postData = (data: UserData) => {
+  const postData: SubmitHandler<UserData> = (data) => {
     try {
       createUser(data);
     } catch (err) {
@@ -50,21 +52,9 @@ export const SignUpModal = ({ setIsOpen }: SignUpModalProps) => {
     }
   };
 
-  const onSubmit: SubmitHandler<UserData> = (data) => {
-    postData(data);
-  };
-
   const { isLoading: isCreatingUser, mutate: createUser } = useMutation(
     async (data: UserData) => {
-      const { email, password, nickname, profileImage, bio, hasGarden } = data;
-      return await axios.post(`auth/register`, {
-        email,
-        password,
-        nickname,
-        profileImage,
-        bio,
-        hasGarden,
-      });
+      return await axios.post(`auth/register`, data);
     },
     {
       onSuccess: () => {
@@ -74,6 +64,7 @@ export const SignUpModal = ({ setIsOpen }: SignUpModalProps) => {
         });
       },
       onError: (err: AxiosError) => {
+        // eslint-disable-next-line no-console
         console.dir({ err });
         const errMessage = formatResponse(err?.response?.data);
         setCreateUserResult({
@@ -98,7 +89,7 @@ export const SignUpModal = ({ setIsOpen }: SignUpModalProps) => {
           </S.Logo>
           <S.Title>{ModalFormWordings.headline}</S.Title>
         </S.LogoTitleWrapper>
-        <S.Cross onClick={() => setIsOpen(false)}>
+        <S.Cross onClick={(): void => setIsOpen(false)}>
           <img src={CrossIcon} />
         </S.Cross>
       </S.ModalHeader>
@@ -136,25 +127,45 @@ export const SignUpModal = ({ setIsOpen }: SignUpModalProps) => {
             {...register("bio")}
           />
         </S.labelInputWrapper>
-        <S.hasGardenWrapper>
+        <S.radioWrapper>
+          <S.inputLabel>{ModalFormWordings.experience}</S.inputLabel>
+          {expOptions.map((option) => (
+            <S.radioInputWrapper key={option.toString()}>
+              <S.inputLabel>{option}</S.inputLabel>
+              <S.radioInput
+                type="radio"
+                id={option.toString()}
+                {...register("experience")}
+                value={option}
+              />
+            </S.radioInputWrapper>
+          ))}
+        </S.radioWrapper>
+        <S.Tip>{ModalFormWordings.experienceTip}</S.Tip>
+        <S.radioWrapper>
           <S.inputLabel>{ModalFormWordings.haveGarden}</S.inputLabel>
-          <S.inputLabel>oui</S.inputLabel>
-          <S.hasGardenInput
-            type="radio"
-            id="oui"
-            {...register("hasGarden", { required: true })}
-            value="true"
-          />
-          <S.inputLabel>non</S.inputLabel>
-          <S.hasGardenInput
-            type="radio"
-            id="non"
-            {...register("hasGarden", { required: true })}
-            value="false"
-          />
-        </S.hasGardenWrapper>
+          <S.radioInputWrapper>
+            <S.inputLabel>oui</S.inputLabel>
+            <S.radioInput
+              type="radio"
+              id="oui"
+              {...register("hasGarden", { required: true })}
+              value="true"
+            />
+          </S.radioInputWrapper>
+          <S.radioInputWrapper>
+            <S.inputLabel>non</S.inputLabel>
+            <S.radioInput
+              type="radio"
+              id="non"
+              {...register("hasGarden", { required: true })}
+              value="false"
+            />
+          </S.radioInputWrapper>
+        </S.radioWrapper>
         {errors.hasGarden && <MandatoryField />}
-        <Button onClick={handleSubmit(onSubmit)}>{ButtonWordings.join}</Button>
+        {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
+        <Button onClick={handleSubmit(postData)}>{ButtonWordings.join}</Button>
         {createUserResult.status && createUserResult.message}
       </S.ModalBodyWrapper>
     </S.Modal>
