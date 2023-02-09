@@ -57,7 +57,7 @@ export const SignUpModal = ({ setIsOpen }: SignUpModalProps) => {
   const { isLoading: isCreatingUser, mutate: createUser } = useMutation(
     async (data: UserData) => {
       const { email, password, nickname, profileImage, bio, hasGarden } = data;
-      return await axios.post(`/register`, {
+      return await axios.post(`auth/register`, {
         email,
         password,
         nickname,
@@ -75,9 +75,10 @@ export const SignUpModal = ({ setIsOpen }: SignUpModalProps) => {
       },
       onError: (err: AxiosError) => {
         console.dir({ err });
+        const errMessage = formatResponse(err?.response?.data);
         setCreateUserResult({
           status: "error",
-          message: `Oups, il y a un problème : ${err.message}`,
+          message: `Oups, il y a un problème : ${errMessage}`,
         });
       },
     }
