@@ -25,6 +25,7 @@ export const TitleCardText = styled.h1`
   margin: 1em;
   color: ${Colors.textColor};
 `;
+
 export const ChickenIcon = styled.div`
   padding-bottom: 6.5em;
   padding-left: 3em;

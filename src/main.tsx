@@ -24,7 +24,7 @@ const router = createBrowserRouter([
         element: <GardenPage />,
       },
       {
-        path: "profile",
+        path: "profile/:id",
         element: <Profile />,
       },
     ],
