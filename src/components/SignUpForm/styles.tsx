@@ -104,6 +104,7 @@ export const ModalBodyInputBody = styled.input`
   text-align: center;
   color: ${Colors.textInput};
   margin-top: 1em;
+  margin-bottom: 0.5em;
   width: 35em;
   height: 5em;
   background-color: ${Colors.inputArea};
