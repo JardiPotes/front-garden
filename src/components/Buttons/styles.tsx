@@ -11,7 +11,6 @@ export const ButtonStyle = styled.button`
   height: 3em;
   min-width: 15em;
   border-radius: 30px;
-  margin-top: 2em;
   border: 1px transparent solid;
 
   &:focus {

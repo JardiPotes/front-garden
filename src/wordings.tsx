@@ -10,6 +10,7 @@ export const ButtonWordings = {
   join: "REJOINS-NOUS",
   continue: "CONTINUE",
   connection: "CONNEXION",
+  logout: "DECONNEXION",
 };
 
 export const FooterWordings = {
