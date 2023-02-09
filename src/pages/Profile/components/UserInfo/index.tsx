@@ -1,9 +1,23 @@
 import { FC } from "react";
+import { Avatar } from "./Avatar";
+import { BioCard } from "./BioCard";
 import * as S from "./styles";
 
-export const UserInfo: FC = ({ user }) => (
+interface UserInfoProps {
+  user: {
+    profileImage: string;
+    nickname: string;
+    experience: number;
+    bio: string;
+    location: string;
+  };
+}
+
+export const UserInfo: FC<UserInfoProps> = ({
+  user: { profileImage, location, nickname, experience, bio },
+}) => (
   <S.Wrapper>
-    <Avatar image={user.avatar} />
-    <BioCard name={user.name} experience={user.experience} prez={user.prez} />
+    <Avatar profileImage={profileImage} location={location} />
+    <BioCard nickname={nickname} experience={experience} bio={bio} />
   </S.Wrapper>
 );

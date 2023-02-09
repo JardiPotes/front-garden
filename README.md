@@ -13,3 +13,7 @@
 ### Run linting :
 - `yarn lint` (or `yarn lint:fix` to fix autofixable warnings/errors)
 - ESlint and Prettier extensions exist in most mainstream IDEs 🛂. You could format on save and/or display warning/error squiggly lines 〰️ without running the script.
+
+### Recommended exensions :
+- **vscode-styled-components** => Syntax highlighting and Intellisense completion for styled-components 🌈
+- **ESlint** and **Prettier** extensions => See ***#Run linting***

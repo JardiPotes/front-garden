@@ -11,7 +11,14 @@ body {
     margin: 0;
     padding: 0; 
     background-color: ${Colors.bg};
-    font-family: Amiko
+    font-family: Amiko;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 `;
 
