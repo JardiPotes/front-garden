@@ -22,15 +22,24 @@ export const BackgroundOverlay = styled.div`
 `;
 
 export const Modal = styled.div`
-  min-height: 40em;
-  max-width: 40em;
+  display: flex;
+  flex-direction: column;
+  max-width: 100vw;
+  max-height: 100vw;
+  height: 95%;
   border-radius: 50px;
   background-color: ${Colors.bg};
   position: fixed;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  padding: auto;
+  z-index: 3;
+  overflow: scroll;
+
+  ::-webkit-scrollbar {
+    height: 100%;
+    width: 0;
+  }
 `;
 
 export const ModalHeader = styled.div`
@@ -65,7 +74,7 @@ export const LogoTitleWrapper = styled.div`
 export const HeaderUnderLine = styled.div`
   width: 35em;
   height: 0.5em;
-  margin: auto;
+  margin: 1px;
   background-color: ${Colors.line};
   border-radius: 50px;
 `;
@@ -81,12 +90,13 @@ export const Cross = styled.button`
   }
 `;
 
-export const ModalBodyWrapper = styled.div`
+export const ModalBodyWrapper = styled.form`
   width: 80%;
   height: 60%;
   display: flex;
   flex-direction: column;
   margin: auto;
+  margin-top: 2px;
   align-items: center;
 `;
 
@@ -94,6 +104,7 @@ export const ModalBodyInputBody = styled.input`
   text-align: center;
   color: ${Colors.textInput};
   margin-top: 1em;
+  margin-bottom: 0.5em;
   width: 35em;
   height: 5em;
   background-color: ${Colors.inputArea};
@@ -138,7 +149,7 @@ export const UploadImage = styled.button`
   }
 `;
 
-export const hasGardenInput = styled.input`
+export const radioInput = styled.input`
   text-align: center;
   color: "black";
 `;
@@ -154,7 +165,21 @@ export const labelInputWrapper = styled.div`
   flex-direction: column;
   margin-top: 2em;
 `;
-export const hasGardenWrapper = styled.div`
+
+export const radioWrapper = styled.div`
   display: flex;
+  width: 105%;
+  justify-content: flex-start;
   margin-top: 2em;
+  align-items: center;
+`;
+
+export const radioInputWrapper = styled.div`
+  margin-left: 1em;
+`;
+
+export const Tip = styled.div`
+  width: 105%;
+  font-size: 0.8em;
+  text-align: left;
 `;

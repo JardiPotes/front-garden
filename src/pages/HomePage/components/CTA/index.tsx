@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Button } from "../../../../components/Buttons";
-import { Modal } from "../../../../components/ModalForm";
 import { HomePageWordings, ButtonWordings } from "../../../../wordings";
 import DocImg from "../../../../assets/dog-icon.png";
 
 import * as S from "./styles";
+import { SignUpModal } from "../../../../components/SignUpForm";
 
 export const CTA: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -17,7 +17,7 @@ export const CTA: React.FC = () => {
           <img src={DocImg} />
         </S.DogIcon>
       </S.ButtonDogIconWrapper>
-      <Modal isOpen={isOpen} setIsOpen={setIsOpen} />
+      {isOpen && <SignUpModal setIsOpen={setIsOpen} />}
     </S.Wrapper>
   );
 };
