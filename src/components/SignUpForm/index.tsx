@@ -4,6 +4,7 @@ import Logo from "../../assets/jardi-logo-trans.png";
 import CrossIcon from "../../assets/cross-icon.png";
 import { Button } from "../Buttons";
 import { ModalFormWordings, ButtonWordings } from "../../wordings";
+import { useForm } from "react-hook-form";
 
 import axios from "../../ClientProvider/axiosConfig";
 import { AxiosError } from "axios";
@@ -14,13 +15,11 @@ type SignUpModalProps = {
 };
 
 export const SignUpModal = ({ setIsOpen }: SignUpModalProps) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [isCompleted, setIsCompleted] = useState(false);
-  const [nickname, setNickname] = useState("");
-  const [profileImage, setProfileImage] = useState("");
-  const [bio, setBio] = useState("");
-  const [hasGarden, setHasGarden] = useState("");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const [createUserResult, setCreateUserResult] = useState<string | null>(null);
 
@@ -28,8 +27,14 @@ export const SignUpModal = ({ setIsOpen }: SignUpModalProps) => {
     return JSON.stringify(res, null, 2);
   };
 
-  const { isLoading: isCreataingUser, mutate: createUser } = useMutation(
-    async () => {
+  const onSubmit = (data) => {
+    postData(data);
+  };
+
+  const { isLoading: isCreatingUser, mutate: createUser } = useMutation(
+    async (data) => {
+      console.log(data)
+      const { email, password, nickname, profileImage, bio, hasGarden } = data;
       return await axios.post(`/register`, {
         email,
         password,
@@ -56,12 +61,12 @@ export const SignUpModal = ({ setIsOpen }: SignUpModalProps) => {
   );
 
   useEffect(() => {
-    if (isCreataingUser) setCreateUserResult("creating...");
-  }, [isCreataingUser]);
+    if (isCreatingUser) setCreateUserResult("creating...");
+  }, [isCreatingUser]);
 
-  const postData = (): void => {
+  const postData = (data) => {
     try {
-      createUser();
+      createUser(data);
     } catch (err) {
       setCreateUserResult(formatResponse(err));
     }
@@ -86,8 +91,7 @@ export const SignUpModal = ({ setIsOpen }: SignUpModalProps) => {
           <S.inputLabel>{ModalFormWordings.email}</S.inputLabel>
           <S.ModalBodyInputBody
             placeholder="ilovecss@sarcasm.fr"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            {...register("email", { required: true })}
           />
         </S.labelInputWrapper>
         <S.labelInputWrapper>
@@ -95,47 +99,41 @@ export const SignUpModal = ({ setIsOpen }: SignUpModalProps) => {
           <S.ModalBodyInputBody
             type="password"
             placeholder="********"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            {...register("password", { required: true })}
           />
         </S.labelInputWrapper>
         <S.labelInputWrapper>
           <S.inputLabel>{ModalFormWordings.pseudo}</S.inputLabel>
           <S.ModalBodyInputBody
             placeholder="Huguette-JMiche"
-            value={nickname}
-            onChange={(e) => setNickname(e.target.value)}
+            {...register("nickname", { required: true })}
           />
         </S.labelInputWrapper>
         <S.labelInputWrapper>
           <S.inputLabel>{ModalFormWordings.bio}</S.inputLabel>
           <S.ModalBodyTextAreaBody
             placeholder="J'aimerais bien vous inviter à faire une raclette dans mon jardin situé Paris 16ème arrondissement quand il fait 50 degrés."
-            value={bio}
-            onChange={(e) => setBio(e.target.value)}
+            {...register("bio")}
           />
         </S.labelInputWrapper>
-
         <S.hasGardenWrapper>
           <S.inputLabel>{ModalFormWordings.haveGarden}</S.inputLabel>
           <S.inputLabel>oui</S.inputLabel>
           <S.hasGardenInput
             type="radio"
-            name="hasGarden"
             id="oui"
+            {...register("hasGarden", { required: true })}
             value="true"
-            onChange={(e) => setHasGarden(e.target.value)}
           />
           <S.inputLabel>non</S.inputLabel>
           <S.hasGardenInput
             type="radio"
-            name="hasGarden"
             id="non"
+            {...register("hasGarden", { required: true })}
             value="false"
-            onChange={(e) => setHasGarden(e.target.value)}
           />
         </S.hasGardenWrapper>
-        <Button onClick={postData}>{ButtonWordings.join}</Button>
+        <Button onClick={handleSubmit(onSubmit)}>{ButtonWordings.join}</Button>
       </S.ModalBodyWrapper>
     </S.Modal>
   );

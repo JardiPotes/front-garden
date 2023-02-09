@@ -90,7 +90,7 @@ export const Cross = styled.button`
   }
 `;
 
-export const ModalBodyWrapper = styled.div`
+export const ModalBodyWrapper = styled.form`
   width: 80%;
   height: 60%;
   display: flex;
