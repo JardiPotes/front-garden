@@ -23,6 +23,8 @@ export const StyledTitleLink = styled(Link)`
 `;
 
 export const StyledLogin = styled.div`
+  display: flex;
+  align-items: center;
   & > img {
     max-width: 100%;
     max-heigth: 100%;
