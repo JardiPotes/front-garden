@@ -7,6 +7,9 @@ const Colors = {
 } as const;
 
 export const ButtonStyle = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: ${Colors.primary};
   height: 3em;
   min-width: 15em;
