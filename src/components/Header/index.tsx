@@ -4,7 +4,7 @@ import Logo from "../../assets/jardi-logo-trans.png";
 import Login from "../../assets/login.png";
 import { SearchBar } from "../SearchBar";
 import { FC } from "react";
-import { LoginModal } from "../ModalForm";
+import { LoginModal } from "../LoginForm";
 import { LogOutButton } from "../LogOut";
 import { Button } from "../Buttons";
 import { ButtonWordings } from "../../wordings";

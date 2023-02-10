@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
-import * as S from "../SignUpForm/styles";
-import Logo from "../../assets/jardi-logo-trans.png";
-import CrossIcon from "../../assets/cross-icon.png";
+import * as S from "../Modal/styles";
 import { Button } from "../Buttons";
 import { ModalFormWordings, ButtonWordings } from "../../wordings";
 import { useForm, SubmitHandler } from "react-hook-form";
 import axios from "../../ClientProvider/axiosConfig";
 import { AxiosError } from "axios";
 import { useMutation } from "react-query";
+import { ModalHeader } from "../Modal";
 
 const MandatoryField: React.FC = () => {
   return <div>Ce champ est obligatoire !</div>;
@@ -82,18 +81,7 @@ export const SignUpModal: React.FC<SignUpModalProps> = ({ setIsOpen }) => {
 
   return (
     <S.Modal>
-      <S.ModalHeader>
-        <S.LogoTitleWrapper>
-          <S.Logo>
-            <img src={Logo} />
-          </S.Logo>
-          <S.Title>{ModalFormWordings.headline}</S.Title>
-        </S.LogoTitleWrapper>
-        <S.Cross onClick={(): void => setIsOpen(false)}>
-          <img src={CrossIcon} />
-        </S.Cross>
-      </S.ModalHeader>
-      <S.HeaderUnderLine />
+      <ModalHeader setIsOpen={setIsOpen} />
       <S.ModalBodyWrapper>
         <S.labelInputWrapper>
           <S.inputLabel>{ModalFormWordings.email}</S.inputLabel>
