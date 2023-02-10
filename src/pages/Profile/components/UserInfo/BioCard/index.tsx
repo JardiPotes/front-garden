@@ -15,10 +15,15 @@ export const BioCard: FC<BioCardProps> = ({ nickname, bio, experience }) => (
     <S.Title>{nickname}</S.Title>
     <S.Experience>
       {UserProfileWordings.experience}{" "}
-      {new Array(experience).fill(0).map((_, i) => (
-        <FontAwesomeIcon key={`experience-${i}`} icon={faSeedling} />
+      {Array.from({ length: experience }).map((_, i) => (
+        <FontAwesomeIcon
+          key={`experience-${i}`}
+          icon={faSeedling}
+          bounce
+          style={{ padding: "0.2ch", animationIterationCount: 1 }}
+        />
       ))}
     </S.Experience>
-    <span>{bio}</span>
+    <S.Bio>{bio}</S.Bio>
   </S.Wrapper>
 );

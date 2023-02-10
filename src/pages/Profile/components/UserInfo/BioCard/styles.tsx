@@ -21,3 +21,7 @@ export const Title = styled.h1`
 export const Experience = styled.span`
   margin: 0;
 `;
+
+export const Bio = styled.span`
+  margin: auto;
+`;

@@ -2,13 +2,12 @@ import { FC } from "react";
 import * as S from "./styles";
 
 interface AvatarProps {
-  profileImage: string;
-  location: string;
+  profile_image: string | null;
 }
 
-export const Avatar: FC<AvatarProps> = ({ profileImage, location }) => (
-  <S.Wrapper>
-    <S.Avatar src={profileImage} />
-    <S.Location>{location}</S.Location>
-  </S.Wrapper>
-);
+export const Avatar: FC<AvatarProps> = ({ profile_image }) => {
+  const defaultImage =
+    "https://www.1min30.com/wp-content/uploads/2017/07/cetelem.jpg";
+
+  return <S.Avatar src={profile_image ?? defaultImage} />;
+};
