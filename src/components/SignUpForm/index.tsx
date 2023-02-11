@@ -1,12 +1,13 @@
-import { useState, useEffect } from "react";
-import * as S from "../Modal/styles";
-import { Button } from "../Buttons";
-import { ModalFormWordings, ButtonWordings } from "../../wordings";
-import { useForm, SubmitHandler } from "react-hook-form";
-import axios from "../../ClientProvider/axiosConfig";
 import { AxiosError } from "axios";
+import { useEffect, useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { useMutation } from "react-query";
+
+import axios from "../../ClientProvider/axiosConfig";
+import { ButtonWordings, ModalFormWordings } from "../../wordings";
+import { Button } from "../Buttons";
 import { ModalHeader } from "../Modal";
+import * as S from "../Modal/styles";
 
 const MandatoryField: React.FC = () => {
   return <div>Ce champ est obligatoire !</div>;

@@ -1,5 +1,6 @@
-import { FC, useState, ChangeEvent } from "react";
-import { StyledInput, Input } from "./styles";
+import { ChangeEvent, FC, useState } from "react";
+
+import { Input, StyledInput } from "./styles";
 
 export const SearchBar: FC = () => {
   const [text, setText] = useState("");

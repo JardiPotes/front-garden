@@ -1,4 +1,5 @@
 import { QueryClient } from "react-query";
+
 import axios from "./axiosConfig";
 
 const queryClient = new QueryClient();
