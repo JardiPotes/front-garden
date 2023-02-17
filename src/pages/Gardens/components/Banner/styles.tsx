@@ -8,7 +8,8 @@ export const Banner = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  color: white;
+  color: #fcf9f9;
+  text-shadow: 1px 1px 2px black;
 
   @media only screen and (max-width: 600px) {
     height: 50px;

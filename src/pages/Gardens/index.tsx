@@ -3,6 +3,7 @@ import { AxiosError, AxiosResponse } from "axios";
 import { useQuery } from "react-query";
 import { useState } from "react";
 import { GardenBanner } from "./components/Banner";
+import { GardenThumb } from "./components/Thumb";
 
 type Garden = {
   address: string;
@@ -50,10 +51,10 @@ export const GardenPage: React.FC = () => {
   if (error) return <div>{error.message}</div>;
   return (
     <>
-    <GardenBanner/>
+      <GardenBanner />
       <div>
         {data?.results.map((result) => (
-          <div key={`garden_${result.id}`}>{result.title}</div>
+          <GardenThumb key={result.id} garden={result} />
         ))}
       </div>
       {data?.next && !isPreviousData && (
