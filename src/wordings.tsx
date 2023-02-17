@@ -6,6 +6,10 @@ export const HomePageWordings = {
   last_gardens: "Les 10 derniers jardins",
 };
 
+export const GardenPageWordings = {
+  title: "Trouve le jardin de tes rêves !",
+};
+
 export const ButtonWordings = {
   join: "REJOINS-NOUS",
   continue: "CONTINUE",

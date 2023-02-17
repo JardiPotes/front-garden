@@ -2,6 +2,7 @@ import axios from "../../ClientProvider/axiosConfig";
 import { AxiosError, AxiosResponse } from "axios";
 import { useQuery } from "react-query";
 import { useState } from "react";
+import { GardenBanner } from "./components/Banner";
 
 type Garden = {
   address: string;
@@ -49,6 +50,7 @@ export const GardenPage: React.FC = () => {
   if (error) return <div>{error.message}</div>;
   return (
     <>
+    <GardenBanner/>
       <div>
         {data?.results.map((result) => (
           <div key={`garden_${result.id}`}>{result.title}</div>
