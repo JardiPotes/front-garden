@@ -4,14 +4,17 @@ import { useQuery } from "react-query";
 import { useState } from "react";
 import { GardenBanner } from "./components/Banner";
 import { GardenThumb } from "./components/Thumb";
+import { PageButton } from "./styles";
 
-type Garden = {
-  address: string;
-  description: string;
+export type Garden = {
   id: number;
-  title: string;
   user_id: number;
-  zipcode: string;
+  title: string;
+  description?: string;
+  address: string;
+  zipcode: number;
+  image?: string;
+  user_image?: string;
 };
 
 type GardenData = {
@@ -45,8 +48,6 @@ export const GardenPage: React.FC = () => {
     keepPreviousData: true,
   });
 
-  console.log(data);
-  // TO-DO : UI & pagination
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error.message}</div>;
   return (
@@ -58,10 +59,14 @@ export const GardenPage: React.FC = () => {
         ))}
       </div>
       {data?.next && !isPreviousData && (
-        <button onClick={(): void => setOffset(offset + 2)}>next</button>
+        <PageButton onClick={(): void => setOffset(offset + 2)}>
+          Page suivante
+        </PageButton>
       )}
       {data?.previous && (
-        <button onClick={(): void => setOffset(offset - 2)}>previous</button>
+        <PageButton onClick={(): void => setOffset(offset - 2)}>
+          Page précédente
+        </PageButton>
       )}
     </>
   );
