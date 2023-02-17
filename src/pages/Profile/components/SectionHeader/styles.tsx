@@ -7,7 +7,7 @@ const Colors = {
 export const SectionHeader = styled.h2`
   padding: 50px;
   font-size: xx-large;
-  background-color: ${Colors.background};
+  background: ${Colors.background};
   width: 100%;
   text-align: center;
 `;

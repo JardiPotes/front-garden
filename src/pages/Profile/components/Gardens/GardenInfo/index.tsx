@@ -15,7 +15,7 @@ export const GardenInfo: FC<GardenInfoProps> = ({
         {title} - {zipcode}
       </S.Title>
       <S.Description>{description}</S.Description>
-      <img src={photos[0].image} />
+      <S.Image src={photos[0].image} />
     </>
   );
 };

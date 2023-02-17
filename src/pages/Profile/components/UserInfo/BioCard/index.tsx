@@ -3,6 +3,7 @@ import { faSeedling } from "@fortawesome/free-solid-svg-icons";
 import { FC } from "react";
 import { UserProfileWordings } from "../../../../../wordings";
 import * as S from "./styles";
+import { Card } from "../../../../../components/Card";
 
 interface BioCardProps {
   nickname: string;
@@ -11,7 +12,7 @@ interface BioCardProps {
 }
 
 export const BioCard: FC<BioCardProps> = ({ nickname, bio, experience }) => (
-  <S.Wrapper>
+  <Card>
     <S.Title>{nickname}</S.Title>
     <S.Experience>
       {UserProfileWordings.experience}{" "}
@@ -25,5 +26,5 @@ export const BioCard: FC<BioCardProps> = ({ nickname, bio, experience }) => (
       ))}
     </S.Experience>
     <S.Bio>{bio}</S.Bio>
-  </S.Wrapper>
+  </Card>
 );

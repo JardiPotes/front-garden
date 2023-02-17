@@ -2,6 +2,9 @@ import { FC } from "react";
 import { SectionHeader } from "../SectionHeader";
 import { GardenInfo } from "./GardenInfo";
 
+import Logo from "../../../../assets/jardi-logo-trans.png";
+import * as S from "./styles";
+
 export interface Garden {
   id: number;
   title: string;
@@ -21,8 +24,11 @@ export const Gardens: FC<GardensProps> = ({ gardens }) => {
   return (
     <>
       <SectionHeader>{sectionTitle}</SectionHeader>
-      {gardens.map((garden) => (
-        <GardenInfo key={`garden-${garden.id}`} garden={garden} />
+      {gardens.map((garden, index) => (
+        <>
+          {index ? <S.SeparationIcon src={Logo} /> : null}
+          <GardenInfo garden={garden} />
+        </>
       ))}
     </>
   );

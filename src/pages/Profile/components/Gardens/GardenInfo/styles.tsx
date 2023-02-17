@@ -12,3 +12,7 @@ export const Description = styled.p`
   text-align: justify;
   width: clamp(100px, 90%, 800px);
 `;
+
+export const Image = styled.img`
+  max-width: min(1000px, 100vw);
+`;
