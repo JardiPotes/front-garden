@@ -34,7 +34,7 @@ export const ChickenIcon = styled.div`
 
   & > img {
     max-width: 10%;
-    max-heigth: 10%;
+    max-height: 10%;
     object-fit: contain;
   }
 `;
@@ -47,7 +47,7 @@ export const FlowersIcon = styled.div`
 
   & > img {
     max-width: 8%;
-    max-heigth: 8%;
+    max-height: 8%;
     object-fit: contain;
   }
 `;
