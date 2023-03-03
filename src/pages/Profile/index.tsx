@@ -1,16 +1,19 @@
 import { FC } from "react";
+import { useQuery } from "react-query";
+import { useParams } from "react-router-dom";
+import { axios } from "../../ClientProvider";
 import { CommentSection } from "./components/CommentSection";
-import { Gardens } from "./components/Gardens";
+import { Garden, Gardens } from "./components/Gardens";
 
 import { UserInfo } from "./components/UserInfo";
 import * as S from "./styles";
 
-const { gardens, ...user } = {
+const { gardens: gardensStub, ...userStub }: UserWithGardens = {
   id: 3,
   //"email": "6a57cbe9-05ef-4576-b4cd-2b5d90eac6d7@test.com",
   nickname: "Mylène Farmer",
   bio: "J’ai un grand jardin en plein 20ème arrondissement. Face au réchauffement climatique, je propose mon jardin à des gens désenchantés qui ont la main verte, afin de sauver la planète !",
-  has_garden: true,
+  //has_garden: true,
   gardens: [
     {
       id: 1,
@@ -59,14 +62,14 @@ const comments = [
       experience: 3,
     },
     content:
-      "J’ai passé un sacré bon moment avec Mylène dans son petit jardin. Je me vois revenir la prochaine fois avec Emily car sa robe avec la Tour Eiffel était juste magnifico. ",
+      "J'ai passé un sacré bon moment avec Mylène dans son petit jardin. Je me vois revenir la prochaine fois avec Emily car sa robe avec la Tour Eiffel était juste magnifico. ",
   },
   {
     id: 36,
     author: {
       nickname: "Nathalie Artaud",
       profile_image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTna2CPv8qHQBhMDLHGfquI4xoeTFTOA3Az0g&usqp=CAU",
+        "https://img.lemde.fr/2017/04/02/0/0/3441/2291/664/0/75/0/77cecfd_5959026-01-06.jpg",
       experience: 5,
     },
     content:
@@ -77,7 +80,7 @@ const comments = [
     author: {
       nickname: "Beyoncé",
       profile_image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTna2CPv8qHQBhMDLHGfquI4xoeTFTOA3Az0g&usqp=CAU",
+        "https://m.media-amazon.com/images/I/71c2gA2r6kL._CR0,0,500,500_UX256.jpg",
       experience: 4,
     },
     content:
@@ -88,7 +91,7 @@ const comments = [
     author: {
       nickname: "Eddy de Pretto",
       profile_image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTna2CPv8qHQBhMDLHGfquI4xoeTFTOA3Az0g&usqp=CAU",
+        "https://cdn-elle.ladmedia.fr/var/plain_site/storage/images/loisirs/musique/news/eddy-de-pretto-on-est-tous-le-bizarre-de-quelqu-un-3921495/94717477-2-fre-FR/Eddy-de-Pretto-On-est-tous-le-bizarre-de-quelqu-un.jpg",
       experience: 2,
     },
     content:
@@ -99,7 +102,7 @@ const comments = [
     author: {
       nickname: "Prince",
       profile_image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTna2CPv8qHQBhMDLHGfquI4xoeTFTOA3Az0g&usqp=CAU",
+        "https://media.gettyimages.com/id/75688835/fr/photo/prince-performs-at-half-time-during-super-bowl-xli-between-the-indianapolis-colts-and-chicago.jpg?s=612x612&w=gi&k=20&c=uF_mqy8FPvVhcw2QSYUft0zFBWl5H27UbDHW1u08yGM=",
       experience: 3,
     },
     content:
@@ -110,7 +113,7 @@ const comments = [
     author: {
       nickname: "Britney Spears",
       profile_image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTna2CPv8qHQBhMDLHGfquI4xoeTFTOA3Az0g&usqp=CAU",
+        "http://media.nrj.fr/raw/2019/12/britney-spears-ces-chansons-d-autres-artistes-qu-elle-aurait-d-1576253411.jpg",
       experience: 2,
     },
     content: `In his garden, where the roses bloom so red,
@@ -133,10 +136,34 @@ And in the garden, silence reigns profound.`,
   },
 ];
 
-export const Profile: FC = () => (
-  <S.Layout>
-    <UserInfo user={user} />
-    <Gardens gardens={gardens} />
-    <CommentSection comments={comments} />
-  </S.Layout>
-);
+export interface UserWithGardens {
+  id: number;
+  profile_image: string;
+  nickname: string;
+  experience: number;
+  bio: string;
+  gardens: Garden[];
+}
+
+export const Profile: FC = () => {
+  /* const { id } = useParams();
+
+  const { data: { data } = {} } = useQuery(
+    ["user", id],
+    async () => axios.get<UserWithGardens>(`users/${id}`),
+    {
+      keepPreviousData: true,
+    }
+  );
+
+  if (!data) return null;
+  const { gardens, ...user } = data; */
+
+  return (
+    <S.Layout>
+      <UserInfo user={userStub} />
+      <Gardens gardens={gardensStub} />
+      <CommentSection comments={comments} />
+    </S.Layout>
+  );
+};

@@ -12,7 +12,7 @@ interface BioCardProps {
 }
 
 export const BioCard: FC<BioCardProps> = ({ nickname, bio, experience }) => (
-  <Card>
+  <Card style={{ width: "100%" }}>
     <S.Title>{nickname}</S.Title>
     <S.Experience>
       {UserProfileWordings.experience}{" "}

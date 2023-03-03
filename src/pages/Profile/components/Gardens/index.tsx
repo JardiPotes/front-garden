@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, Fragment } from "react";
 import { SectionHeader } from "../SectionHeader";
 import { GardenInfo } from "./GardenInfo";
 
@@ -25,10 +25,10 @@ export const Gardens: FC<GardensProps> = ({ gardens }) => {
     <>
       <SectionHeader>{sectionTitle}</SectionHeader>
       {gardens.map((garden, index) => (
-        <>
-          {index ? <S.SeparationIcon src={Logo} /> : null}
+        <Fragment key={garden.id}>
+          {!!index && <S.SeparationIcon src={Logo} />}
           <GardenInfo garden={garden} />
-        </>
+        </Fragment>
       ))}
     </>
   );

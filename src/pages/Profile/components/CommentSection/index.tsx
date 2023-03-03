@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, Fragment } from "react";
 import { SectionHeader } from "../SectionHeader";
 import { Comment } from "./Comment";
 
@@ -26,7 +26,7 @@ export const CommentSection: FC<CommentSectionProps> = ({ comments }) => {
     <>
       <SectionHeader>Et les graines que j&apos;ai semées...</SectionHeader>
       {comments.map((comment, index) => (
-        <>
+        <Fragment key={comment.id}>
           {!!index && (
             <FontAwesomeIcon
               icon={faBug}
@@ -35,7 +35,7 @@ export const CommentSection: FC<CommentSectionProps> = ({ comments }) => {
             />
           )}
           <Comment comment={comment} />
-        </>
+        </Fragment>
       ))}
     </>
   );
