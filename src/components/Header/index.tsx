@@ -25,7 +25,7 @@ export const Header: FC = () => {
       </S.LogoTitleWrapper>
       <nav>
         <S.LinkWrapper>
-          <S.StyledLink to="home">Jardins</S.StyledLink>
+          <S.StyledLink to="gardens">Jardins</S.StyledLink>
           <S.StyledLink to="rules">FAQ</S.StyledLink>
         </S.LinkWrapper>
       </nav>

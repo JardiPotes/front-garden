@@ -8,6 +8,7 @@ import { queryClient } from "./ClientProvider";
 
 import { Layout } from "./Layout";
 import { GlobalStyle } from "./GlobalStyles";
+import { GardenPage } from "./pages/Gardens";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <HomePage />,
+      },
+      {
+        path: "gardens",
+        element: <GardenPage />,
       },
     ],
   },
