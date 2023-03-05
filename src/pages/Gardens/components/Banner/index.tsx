@@ -1,5 +1,5 @@
-import { Banner } from "./styles";
 import { GardenPageWordings } from "../../../../wordings";
+import { Banner } from "./styles";
 
 export const GardenBanner: React.FC = () => {
   return (

@@ -5,8 +5,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import { queryClient } from "./ClientProvider";
 import { GlobalStyle } from "./GlobalStyles";
-import { GardenPage } from "./pages/Gardens";
 import { Layout } from "./Layout";
+import { GardenPage } from "./pages/Gardens";
 import HomePage from "./pages/HomePage";
 
 const router = createBrowserRouter([

@@ -1,6 +1,7 @@
-import { Wrapper, SearchInput, Search } from "./styles";
+import { SubmitHandler, useForm } from "react-hook-form";
+
 import { Button } from "../../../../components/Buttons";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { Search, SearchInput, Wrapper } from "./styles";
 
 type SearchBarProps = {
   setSearch: React.Dispatch<
