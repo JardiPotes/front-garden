@@ -1,14 +1,15 @@
-import * as S from "./styles";
 import { useState } from "react";
+import { FC } from "react";
+
 import Logo from "../../assets/jardi-logo-trans.png";
 import Login from "../../assets/login.png";
-import { SearchBar } from "../SearchBar";
-import { FC } from "react";
+import useToken from "../../utils/useToken";
+import { ButtonWordings } from "../../wordings";
+import { Button } from "../Buttons";
 import { LoginModal } from "../LoginForm";
 import { LogOutButton } from "../LogOut";
-import { Button } from "../Buttons";
-import { ButtonWordings } from "../../wordings";
-import useToken from "../../utils/useToken";
+import { SearchBar } from "../SearchBar";
+import * as S from "./styles";
 
 export const Header: FC = () => {
   const [isLoginOpen, setIsLoginOpen] = useState<boolean>(false);

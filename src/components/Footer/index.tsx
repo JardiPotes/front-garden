@@ -1,6 +1,7 @@
-import * as S from "./styles";
-import { FooterWordings } from "../../wordings";
 import { FC } from "react";
+
+import { FooterWordings } from "../../wordings";
+import * as S from "./styles";
 
 export const Footer: FC = () => (
   <S.Wrapper>

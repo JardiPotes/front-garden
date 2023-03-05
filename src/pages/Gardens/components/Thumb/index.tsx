@@ -1,5 +1,5 @@
-import * as S from "./styles";
 import { Garden } from "../../index";
+import * as S from "./styles";
 
 type GardenThumb = {
   garden: Garden;

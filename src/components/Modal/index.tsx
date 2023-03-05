@@ -1,7 +1,7 @@
-import * as S from "./styles";
 import CrossIcon from "../../assets/cross-icon.png";
 import Logo from "../../assets/jardi-logo-trans.png";
 import { ModalFormWordings } from "../../wordings";
+import * as S from "./styles";
 
 type ModalHeaderProps = {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;

@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Colors = {
   primary: "#CEA37C",
   hover: "#B5FFAC",
-  textColor: "#fff"
+  textColor: "#fff",
 } as const;
 
 export const ButtonStyle = styled.button`

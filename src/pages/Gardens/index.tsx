@@ -1,11 +1,12 @@
-import axios from "../../ClientProvider/axiosConfig";
 import { AxiosError, AxiosResponse } from "axios";
+import { useEffect, useMemo, useState } from "react";
 import { useQuery } from "react-query";
-import { useMemo, useState, useEffect } from "react";
+
+import axios from "../../ClientProvider/axiosConfig";
 import { GardenBanner } from "./components/Banner";
+import { SearchBar } from "./components/Search";
 import { GardenThumb } from "./components/Thumb";
 import { PageButton } from "./styles";
-import { SearchBar } from "./components/Search";
 
 export type Garden = {
   id: number;
@@ -63,7 +64,7 @@ export const GardenPage: React.FC = () => {
           .catch((err: AxiosError) => console.log(err));
         return data;
       },
-      keepPreviousData: true
+      keepPreviousData: true,
     });
 
   useEffect(() => {

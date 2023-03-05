@@ -1,12 +1,13 @@
-import { FC, useState, Dispatch, SetStateAction, useEffect } from "react";
-import * as S from "../Modal/styles";
-import { Button } from "../Buttons";
-import { ModalFormWordings, ButtonWordings } from "../../wordings";
-import { useForm, SubmitHandler } from "react-hook-form";
-import axios from "../../ClientProvider/axiosConfig";
 import { AxiosError, AxiosResponse } from "axios";
+import { Dispatch, FC, SetStateAction, useEffect, useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { useMutation } from "react-query";
+
+import axios from "../../ClientProvider/axiosConfig";
+import { ButtonWordings, ModalFormWordings } from "../../wordings";
+import { Button } from "../Buttons";
 import { ModalHeader } from "../Modal";
+import * as S from "../Modal/styles";
 
 type ModalProps = {
   setIsOpen: Dispatch<SetStateAction<boolean>>;

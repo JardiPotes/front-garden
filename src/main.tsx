@@ -1,14 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import HomePage from "./pages/HomePage";
+import { QueryClientProvider } from "react-query";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import { QueryClientProvider } from "react-query";
 import { queryClient } from "./ClientProvider";
-
-import { Layout } from "./Layout";
 import { GlobalStyle } from "./GlobalStyles";
+import { Layout } from "./Layout";
 import { GardenPage } from "./pages/Gardens";
+import HomePage from "./pages/HomePage";
 
 const router = createBrowserRouter([
   {

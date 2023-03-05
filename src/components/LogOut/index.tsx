@@ -1,9 +1,10 @@
-import { FC } from "react";
-import { Button } from "../Buttons";
-import { ButtonWordings } from "../../wordings";
-import axios from "../../ClientProvider/axiosConfig";
 import { AxiosError } from "axios";
+import { FC } from "react";
 import { useMutation } from "react-query";
+
+import axios from "../../ClientProvider/axiosConfig";
+import { ButtonWordings } from "../../wordings";
+import { Button } from "../Buttons";
 
 type LogOutButtonProps = {
   removeToken: () => void;
