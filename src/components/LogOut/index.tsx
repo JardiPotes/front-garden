@@ -8,12 +8,14 @@ import { Button } from "../Buttons";
 
 type LogOutButtonProps = {
   removeToken: () => void;
+  token: string
 };
 
-export const LogOutButton: FC<LogOutButtonProps> = ({ removeToken }) => {
+export const LogOutButton: FC<LogOutButtonProps> = ({ removeToken, token }) => {
+  console.log(token)
   const { mutate: logOut } = useMutation(
     async () => {
-      return await axios.post(`auth/logout`);
+      return await axios.post(`auth/logout`, {headers: {"Authorization": `token ${token}`}});
     },
     {
       onSuccess: () => {

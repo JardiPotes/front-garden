@@ -8,6 +8,8 @@ import { ButtonWordings, ModalFormWordings } from "../../wordings";
 import { Button } from "../Buttons";
 import { ModalHeader } from "../Modal";
 import * as S from "../Modal/styles";
+import { Uploader } from "../Uploader";
+import { CenterElement } from "./styles";
 
 const MandatoryField: React.FC = () => {
   return <div>Ce champ est obligatoire !</div>;
@@ -21,7 +23,7 @@ type UserData = {
   email: string;
   password: string;
   nickname: string;
-  profileImage: File;
+  profile_image?: File | FileList;
   bio?: string;
   hasGarden: boolean;
   experience?: number;
@@ -54,7 +56,10 @@ export const SignUpModal: React.FC<SignUpModalProps> = ({ setIsOpen }) => {
 
   const { isLoading: isCreatingUser, mutate: createUser } = useMutation(
     async (data: UserData) => {
-      return await axios.post(`auth/register`, data);
+      if (data.profile_image) {
+        data.profile_image = data.profile_image[0]
+      }
+      return await axios.post(`auth/register`, data, {headers: {"Content-Type": "multipart/form-data"}});
     },
     {
       onSuccess: () => {
@@ -84,6 +89,7 @@ export const SignUpModal: React.FC<SignUpModalProps> = ({ setIsOpen }) => {
     <S.Modal>
       <ModalHeader setIsOpen={setIsOpen} />
       <S.ModalBodyWrapper>
+        <form>
         <S.labelInputWrapper>
           <S.inputLabel>{ModalFormWordings.email}</S.inputLabel>
           <S.ModalBodyInputBody
@@ -153,9 +159,13 @@ export const SignUpModal: React.FC<SignUpModalProps> = ({ setIsOpen }) => {
           </S.radioInputWrapper>
         </S.radioWrapper>
         {errors.hasGarden && <MandatoryField />}
+        <Uploader register={register}/>
+        <CenterElement>
         {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
         <Button onClick={handleSubmit(postData)}>{ButtonWordings.join}</Button>
         {createUserResult.status && createUserResult.message}
+        </CenterElement>
+        </form>
       </S.ModalBodyWrapper>
     </S.Modal>
   );

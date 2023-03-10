@@ -33,7 +33,7 @@ export const Header: FC = () => {
       <SearchBar />
       <S.StyledLogin>
         {isLoggedIn ? (
-          <LogOutButton removeToken={removeToken} />
+          <LogOutButton removeToken={removeToken} token={token}/>
         ) : (
           <>
             <Button onClick={(): void => setIsLoginOpen(true)}>

@@ -5,18 +5,18 @@ import { Search, SearchInput, Wrapper } from "./styles";
 
 type SearchBarProps = {
   setSearch: React.Dispatch<
-    React.SetStateAction<Record<string, string> | null>
+    React.SetStateAction<Record<string, string | null> | null>
   >;
 };
 
-type SearchDate = {
-  zipcode: string;
+type SearchData = {
+  zipcode: string | null;
 };
 
 export const SearchBar: React.FC<SearchBarProps> = ({ setSearch }) => {
-  const { register, handleSubmit, setValue } = useForm();
+  const { register, handleSubmit, setValue } = useForm<SearchData>();
 
-  const onSearch: SubmitHandler<SearchDate> = (data) => {
+  const onSearch: SubmitHandler<SearchData> = (data) => {
     setSearch(data);
   };
 
