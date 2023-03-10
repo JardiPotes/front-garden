@@ -5,6 +5,7 @@ import { useMutation } from "react-query";
 import axios from "../../ClientProvider/axiosConfig";
 import { ButtonWordings } from "../../wordings";
 import { Button } from "../Buttons";
+import { removeUser } from "../../utils/user";
 
 type LogOutButtonProps = {
   removeToken: () => void;
@@ -20,6 +21,7 @@ export const LogOutButton: FC<LogOutButtonProps> = ({ removeToken, token }) => {
     {
       onSuccess: () => {
         removeToken();
+        removeUser()
       },
       onError: (err: AxiosError) => {
         // eslint-disable-next-line no-console

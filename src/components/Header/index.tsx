@@ -15,6 +15,7 @@ export const Header: FC = () => {
   const [isLoginOpen, setIsLoginOpen] = useState<boolean>(false);
   const { token, setToken, removeToken } = useToken();
   const isLoggedIn = Boolean(token);
+  const image = token ? "" : Login
 
   return (
     <S.Wrapper>
@@ -39,9 +40,9 @@ export const Header: FC = () => {
             <Button onClick={(): void => setIsLoginOpen(true)}>
               {ButtonWordings.connection}
             </Button>
-            <img src={Login} />
           </>
-        )}
+        )} 
+        <img src={Login} />
       </S.StyledLogin>
       {isLoginOpen && (
         <LoginModal setIsOpen={setIsLoginOpen} setToken={setToken} />

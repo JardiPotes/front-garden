@@ -8,6 +8,7 @@ import { ButtonWordings, ModalFormWordings } from "../../wordings";
 import { Button } from "../Buttons";
 import { ModalHeader } from "../Modal";
 import * as S from "../Modal/styles";
+import { saveUser } from "../../utils/user";
 
 type ModalProps = {
   setIsOpen: Dispatch<SetStateAction<boolean>>;
@@ -68,6 +69,8 @@ export const LoginModal: FC<ModalProps> = ({ setIsOpen, setToken }) => {
         });
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         setToken(res.data.auth_token);
+        console.log(res)
+        saveUser(res.data)
       },
       onError: (err: AxiosError) => {
         // eslint-disable-next-line no-console
