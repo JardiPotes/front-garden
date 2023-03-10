@@ -1,22 +1,13 @@
+import { faBug } from "@fortawesome/free-solid-svg-icons/faBug";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FC, Fragment } from "react";
+
+import { Comment as IComment } from "../..";
 import { SectionHeader } from "../SectionHeader";
 import { Comment } from "./Comment";
 
-import { faBug } from "@fortawesome/free-solid-svg-icons/faBug";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-interface Comment {
-  id: number;
-  author: {
-    nickname: string;
-    profile_image: string;
-    experience: number;
-  };
-  content: string;
-}
-
-interface CommentSectionProps {
-  comments: Comment[];
+export interface CommentSectionProps {
+  comments: IComment[];
 }
 
 export const CommentSection: FC<CommentSectionProps> = ({ comments }) => {

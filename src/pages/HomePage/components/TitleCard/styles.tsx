@@ -19,8 +19,7 @@ export const TitleCardStyle = styled.div`
 
 export const TitleCardText = styled.h1`
   font-size: 2.3em;
-  font-family: "Amiko";
-  align-text: center;
+  text-align: center;
   align-items: center;
   margin: 1em;
   color: ${Colors.textColor};

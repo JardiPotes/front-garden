@@ -1,15 +1,15 @@
 import { FC } from "react";
+
+import { UserWithGardens } from "../..";
 import { Avatar } from "./Avatar";
 import { BioCard } from "./BioCard";
 import * as S from "./styles";
 
-interface UserInfoProps {
-  user: {
-    profile_image: string | null;
-    nickname: string;
-    experience: number;
-    bio: string;
-  };
+export interface UserInfoProps {
+  user: Pick<
+    UserWithGardens,
+    "profile_image" | "nickname" | "experience" | "bio"
+  >;
 }
 
 export const UserInfo: FC<UserInfoProps> = ({

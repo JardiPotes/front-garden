@@ -1,15 +1,16 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSeedling } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FC } from "react";
-import { UserProfileWordings } from "../../../../../wordings";
-import * as S from "./styles";
-import { Card } from "../../../../../components/Card";
 
-interface BioCardProps {
-  nickname: string;
-  experience: number;
-  bio: string;
-}
+import { Card } from "../../../../../components/Card";
+import { UserProfileWordings } from "../../../../../wordings";
+import { UserInfoProps } from "..";
+import * as S from "./styles";
+
+type BioCardProps = Pick<
+  UserInfoProps["user"],
+  "nickname" | "bio" | "experience"
+>;
 
 export const BioCard: FC<BioCardProps> = ({ nickname, bio, experience }) => (
   <Card style={{ width: "100%" }}>

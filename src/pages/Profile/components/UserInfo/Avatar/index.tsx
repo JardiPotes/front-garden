@@ -1,13 +1,10 @@
 import { FC } from "react";
+
+import { UserInfoProps } from "..";
 import * as S from "./styles";
 
-interface AvatarProps {
-  profile_image: string | null;
-}
+type AvatarProps = Pick<UserInfoProps["user"], "profile_image">;
 
-export const Avatar: FC<AvatarProps> = ({ profile_image }) => {
-  const defaultImage =
-    "https://www.1min30.com/wp-content/uploads/2017/07/cetelem.jpg";
-
-  return <S.Avatar src={profile_image ?? defaultImage} />;
-};
+export const Avatar: FC<AvatarProps> = ({ profile_image }) => (
+  <S.Avatar src={profile_image} />
+);

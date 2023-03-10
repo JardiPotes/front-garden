@@ -1,9 +1,10 @@
 import { FC } from "react";
-import { Garden } from "..";
+
+import { GardensProps } from "..";
 import * as S from "./styles";
 
 interface GardenInfoProps {
-  garden: Garden;
+  garden: GardensProps["gardens"][number];
 }
 
 export const GardenInfo: FC<GardenInfoProps> = ({

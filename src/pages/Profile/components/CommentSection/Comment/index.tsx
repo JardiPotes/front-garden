@@ -1,25 +1,20 @@
 import { faSeedling } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FC } from "react";
-import { Card } from "../../../../../components/Card";
+import { CommentSectionProps } from "..";
 
+import { Card } from "../../../../../components/Card";
 import * as S from "./styles";
 
-interface Comment {
-  id: number;
-  author: {
-    nickname: string;
-    profile_image: string;
-    experience: number;
-  };
-  content: string;
-}
-
 interface CommentProps {
-  comment: Comment;
+  comment: CommentSectionProps["comments"][number];
 }
 
-const AuthorInfo: FC<Pick<Comment, "author">> = ({
+interface AuthorInfoProps {
+  author: CommentProps["comment"]["author"];
+}
+
+const AuthorInfo: FC<AuthorInfoProps> = ({
   author: { profile_image, experience },
 }) => {
   return (
