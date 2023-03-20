@@ -1,6 +1,7 @@
 import { FC, Fragment } from "react";
 
 import Logo from "../../../../assets/jardi-logo-trans.png";
+import { UserProfileWordings } from "../../../../wordings";
 import { UserWithGardens } from "../..";
 import { SectionHeader } from "../SectionHeader";
 import { GardenInfo } from "./GardenInfo";
@@ -10,7 +11,10 @@ export type GardensProps = Pick<UserWithGardens, "gardens">;
 
 export const Gardens: FC<GardensProps> = ({ gardens }) => {
   if (!gardens || !gardens.length) return null;
-  const sectionTitle = gardens.length > 1 ? "Mes jardins" : "Mon jardin";
+  const sectionTitle =
+    gardens.length > 1
+      ? UserProfileWordings.gardenSectionHeader.plural
+      : UserProfileWordings.gardenSectionHeader.singular;
 
   return (
     <>

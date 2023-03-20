@@ -2,8 +2,9 @@ export const HomePageWordings = {
   title: "La Première Communauté pour Jardiner Ensemble !",
   description:
     "Envie de te mettre à jardiner ou de partager ta passion pour les plantes ? Avec ou sans jardin, rejoins la première communauté pour jardiner ensemble !",
-  connected_description: "Ravie de te revoir ! Prêt.e pour de nouvelles aventures jardinières ?",
-  connected_cta: "EXPLORE LES JARDINS", 
+  connected_description:
+    "Ravie de te revoir ! Prêt.e pour de nouvelles aventures jardinières ?",
+  connected_cta: "EXPLORE LES JARDINS",
   cta: "REJOINS-NOUS",
   last_gardens: "Les 10 derniers jardins",
 } as const;
@@ -49,4 +50,9 @@ export const ModalFormWordings = {
 
 export const UserProfileWordings = {
   experience: "Expérience",
+  gardenSectionHeader: {
+    plural: "Mes jardins",
+    singular: "Mon jardin",
+  },
+  commentSectionHeader: "Commentaires",
 } as const;

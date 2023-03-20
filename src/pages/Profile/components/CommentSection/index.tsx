@@ -2,6 +2,7 @@ import { faBug } from "@fortawesome/free-solid-svg-icons/faBug";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FC, Fragment } from "react";
 
+import { UserProfileWordings } from "../../../../wordings";
 import { Comment as IComment } from "../..";
 import { SectionHeader } from "../SectionHeader";
 import { Comment } from "./Comment";
@@ -15,7 +16,7 @@ export const CommentSection: FC<CommentSectionProps> = ({ comments }) => {
 
   return (
     <>
-      <SectionHeader>Et les graines que j&apos;ai semées...</SectionHeader>
+      <SectionHeader>{UserProfileWordings.commentSectionHeader}</SectionHeader>
       {comments.map((comment, index) => (
         <Fragment key={comment.id}>
           {!!index && (

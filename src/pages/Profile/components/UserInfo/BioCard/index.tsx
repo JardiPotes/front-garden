@@ -1,11 +1,10 @@
-import { faSeedling } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FC } from "react";
 
 import { Card } from "../../../../../components/Card";
-import { UserProfileWordings } from "../../../../../wordings";
+import { Experience } from "../../../../../components/Experience";
 import { UserInfoProps } from "..";
 import * as S from "./styles";
+import { UserProfileWordings } from "../../../../../wordings";
 
 type BioCardProps = Pick<
   UserInfoProps["user"],
@@ -15,17 +14,10 @@ type BioCardProps = Pick<
 export const BioCard: FC<BioCardProps> = ({ nickname, bio, experience }) => (
   <Card style={{ width: "100%" }}>
     <S.Title>{nickname}</S.Title>
-    <S.Experience>
-      {UserProfileWordings.experience}{" "}
-      {Array.from({ length: experience }).map((_, i) => (
-        <FontAwesomeIcon
-          key={`experience-${i}`}
-          icon={faSeedling}
-          bounce
-          style={{ padding: "0.2ch", animationIterationCount: 1 }}
-        />
-      ))}
-    </S.Experience>
+    <Experience
+      experience={experience}
+      wording={UserProfileWordings.experience}
+    />
     <S.Bio>{bio}</S.Bio>
   </Card>
 );

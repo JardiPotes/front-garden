@@ -1,9 +1,8 @@
-import { faSeedling } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FC } from "react";
-import { CommentSectionProps } from "..";
 
 import { Card } from "../../../../../components/Card";
+import { Experience } from "../../../../../components/Experience";
+import { CommentSectionProps } from "..";
 import * as S from "./styles";
 
 interface CommentProps {
@@ -20,16 +19,7 @@ const AuthorInfo: FC<AuthorInfoProps> = ({
   return (
     <S.Stack>
       <S.Avatar src={profile_image} />
-      <span>
-        {Array.from({ length: experience }).map((_, i) => (
-          <FontAwesomeIcon
-            key={`experience-${i}`}
-            icon={faSeedling}
-            bounce
-            style={{ padding: "0.2ch", animationIterationCount: 1 }}
-          />
-        ))}
-      </span>
+      <Experience experience={experience} />
     </S.Stack>
   );
 };
