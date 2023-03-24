@@ -62,7 +62,7 @@ export const LinkWrapper = styled.div`
 `;
 
 export const RoundImage = styled.img`
-  width: 6.5em;
-  height: 6.5em;
+  width: 5em;
+  height: 5em;
   border-radius: 50px;
 `;

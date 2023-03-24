@@ -4,11 +4,11 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { useMutation } from "react-query";
 
 import axios from "../../ClientProvider/axiosConfig";
+import { saveUser, User } from "../../utils/user";
 import { ButtonWordings, ModalFormWordings } from "../../wordings";
 import { Button } from "../Buttons";
 import { ModalHeader } from "../Modal";
 import * as S from "../Modal/styles";
-import { saveUser } from "../../utils/user";
 
 type ModalProps = {
   setIsOpen: Dispatch<SetStateAction<boolean>>;
@@ -27,7 +27,9 @@ type LoginStatus = {
 
 type UserData = {
   data: {
+    id: number;
     auth_token: string;
+    user: User;
   };
 };
 
@@ -69,7 +71,6 @@ export const LoginModal: FC<ModalProps> = ({ setIsOpen, setToken }) => {
         });
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         setToken(res.data.auth_token);
-        console.log(res);
         saveUser(res.data.user);
       },
       onError: (err: AxiosError) => {

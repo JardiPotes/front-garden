@@ -1,10 +1,18 @@
-export const getUser = (): Record<string, unknown> | null => {
-  const user: string | null = sessionStorage.getItem("user");
-  return user ? (JSON.parse(user) as Record<string, unknown>) : null;
+export type User = {
+  id: number;
+  nickname: string;
+  bio: string | null;
+  gardens: Record<string, unknown>[];
+  profile_image: string;
+  experience: number;
 };
 
-export const saveUser = (user: Record<string, unknown>): void => {
-  console.log(user);
+export const getUser = (): User | null => {
+  const user: string | null = sessionStorage.getItem("user");
+  return user ? (JSON.parse(user) as User) : null;
+};
+
+export const saveUser = (user: User): void => {
   sessionStorage.setItem("user", JSON.stringify(user));
 };
 
