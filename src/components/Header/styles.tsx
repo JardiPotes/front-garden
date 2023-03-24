@@ -60,3 +60,9 @@ export const LinkWrapper = styled.div`
   align-items: center;
   align-self: flex-end;
 `;
+
+export const RoundImage = styled.img`
+  width: 6.5em;
+  height: 6.5em;
+  border-radius: 50px;
+`;
