@@ -4,6 +4,7 @@ import { TitleCard } from "./components/TitleCard";
 import * as S from "./styles";
 
 export default function HomePage(): JSX.Element {
+
   return (
     <S.Wrapper>
       <S.HeroWrapper>

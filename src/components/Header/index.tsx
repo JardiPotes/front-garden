@@ -3,6 +3,7 @@ import { FC } from "react";
 
 import Logo from "../../assets/jardi-logo-trans.png";
 import Login from "../../assets/login.png";
+import { getUser } from "../../utils/user";
 import useToken from "../../utils/useToken";
 import { ButtonWordings } from "../../wordings";
 import { Button } from "../Buttons";
@@ -14,7 +15,9 @@ import * as S from "./styles";
 export const Header: FC = () => {
   const [isLoginOpen, setIsLoginOpen] = useState<boolean>(false);
   const { token, setToken, removeToken } = useToken();
-  const isLoggedIn = Boolean(token);
+  const user = getUser();
+  const isLoggedIn = Boolean(token && user);
+  const image = isLoggedIn ? user?.profile_image : Login;
 
   return (
     <S.Wrapper>
@@ -33,15 +36,15 @@ export const Header: FC = () => {
       <SearchBar />
       <S.StyledLogin>
         {isLoggedIn ? (
-          <LogOutButton removeToken={removeToken} />
+          <LogOutButton removeToken={removeToken} token={token} />
         ) : (
           <>
             <Button onClick={(): void => setIsLoginOpen(true)}>
               {ButtonWordings.connection}
             </Button>
-            <img src={Login} />
           </>
         )}
+        <S.RoundImage src={image} />
       </S.StyledLogin>
       {isLoginOpen && (
         <LoginModal setIsOpen={setIsLoginOpen} setToken={setToken} />

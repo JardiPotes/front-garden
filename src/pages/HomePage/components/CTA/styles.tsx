@@ -1,4 +1,7 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+import { ButtonStyle } from "../../../../components/Buttons/styles";
+
 
 export const Wrapper = styled.div`
   display: flex;
@@ -24,4 +27,9 @@ export const ButtonDogIconWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+
+export const ButtonLink = styled(Link)`
+  text-decoration: none;
+  color: white;
 `;
