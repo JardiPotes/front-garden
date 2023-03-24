@@ -14,7 +14,7 @@ export const ImageBox = styled.div`
 
   img {
     position: absolute;
-    margin: auto;
+    margin: 0 auto;
     top: 0;
     right: 0;
     bottom: 0;
