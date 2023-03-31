@@ -14,6 +14,11 @@ export const TitleCardStyle = styled.div`
   justify-content: center;
   position: relative;
   border-radius: 40px;
+
+  @media (max-width: 480px) {
+    max-width: 80%;
+    flex-direction: row;
+  }
 `;
 
 export const TitleCardText = styled.h1`
@@ -56,6 +61,7 @@ export const FlowersIcon = styled.div`
   }
 
   @media (max-width: 480px) {
-    padding-top: 1em;
+    padding: 1em;
+    padding-right: 0;
   }
 `;

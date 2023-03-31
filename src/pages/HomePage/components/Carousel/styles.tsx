@@ -1,26 +1,15 @@
 import styled, { css, FlattenSimpleInterpolation } from "styled-components";
 
-export const SlideWrapper = styled.div`
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-`;
-
 export const ImageBox = styled.div`
   position: relative;
   background-color: #faf0e6;
-  width: 100%;
-  height: 85%;
 
   img {
-    position: absolute;
-    margin: 0 auto;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    max-width: 100%;
-    max-height: 100%;
+    position: relative;
+    max-height: 70vh;
+    max-width: 100vw;
+    aspect-ratio: 16/9;
+    object-fit: cover;
   }
 `;
 

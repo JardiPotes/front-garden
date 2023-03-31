@@ -6,11 +6,17 @@ export const Wrapper = styled.div`
   flex-direction: column;
   max-width: 30%;
   justify-content: center;
+
+  @media (max-width: 480px) {
+    max-width: 100%;
+    margin: 1rem;
+  }
 `;
 
 export const Description = styled.p`
   font-size: 1.5em;
   text-align: left;
+  margin: 0.5rem;
 `;
 
 export const DogIcon = styled.div`
