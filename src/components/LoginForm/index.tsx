@@ -7,7 +7,7 @@ import axios from "../../ClientProvider/axiosConfig";
 import { saveUser, User } from "../../utils/user";
 import { ButtonWordings, ModalFormWordings } from "../../wordings";
 import { Button } from "../Buttons";
-import { ModalHeader } from "../Modal";
+import { Modal } from "../Modal";
 import * as S from "../Modal/styles";
 
 type ModalProps = {
@@ -90,9 +90,8 @@ export const LoginModal: FC<ModalProps> = ({ setIsOpen, setToken }) => {
   }, [logInStatus]);
 
   return (
-    <S.Modal>
-      <ModalHeader setIsOpen={setIsOpen} />
-      <S.ModalBodyWrapper>
+    <Modal setIsOpen={setIsOpen}>
+      <form>
         <S.labelInputWrapper>
           <S.inputLabel>{ModalFormWordings.email}</S.inputLabel>
           <S.ModalBodyInputBody {...register("email", { required: true })} />
@@ -111,7 +110,7 @@ export const LoginModal: FC<ModalProps> = ({ setIsOpen, setToken }) => {
           {ButtonWordings.connection}
         </Button>
         {logInStatus?.status && logInStatus?.message}
-      </S.ModalBodyWrapper>
-    </S.Modal>
+      </form>
+    </Modal>
   );
 };

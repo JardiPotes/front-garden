@@ -16,4 +16,6 @@ export const Wrapper = styled.div`
   display: flex;
   margin-top: 2em;
   gap: 1em;
+  justify-content: flex-start;
+  width: 100%;
 `;

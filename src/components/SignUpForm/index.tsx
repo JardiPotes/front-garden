@@ -6,7 +6,7 @@ import { useMutation } from "react-query";
 import axios from "../../ClientProvider/axiosConfig";
 import { ButtonWordings, ModalFormWordings } from "../../wordings";
 import { Button } from "../Buttons";
-import { ModalHeader } from "../Modal";
+import { Modal } from "../Modal";
 import * as S from "../Modal/styles";
 import { Uploader } from "../Uploader";
 import { CenterElement } from "./styles";
@@ -33,7 +33,7 @@ export const SignUpModal: React.FC<SignUpModalProps> = ({ setIsOpen }) => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors }
   } = useForm<UserData>();
 
   const expOptions = [1, 2, 3, 4, 5];
@@ -60,14 +60,14 @@ export const SignUpModal: React.FC<SignUpModalProps> = ({ setIsOpen }) => {
         data.profile_image = data.profile_image[0];
       }
       return await axios.post(`auth/register`, data, {
-        headers: { "Content-Type": "multipart/form-data" },
+        headers: { "Content-Type": "multipart/form-data" }
       });
     },
     {
       onSuccess: () => {
         setCreateUserResult({
           status: "success",
-          message: "votre compte est bien créé !",
+          message: "votre compte est bien créé !"
         });
       },
       onError: (err: AxiosError) => {
@@ -76,9 +76,9 @@ export const SignUpModal: React.FC<SignUpModalProps> = ({ setIsOpen }) => {
         const errMessage = formatResponse(err?.response?.data);
         setCreateUserResult({
           status: "error",
-          message: `Oups, il y a un problème : ${errMessage}`,
+          message: `Oups, il y a un problème : ${errMessage}`
         });
-      },
+      }
     }
   );
 
@@ -88,10 +88,9 @@ export const SignUpModal: React.FC<SignUpModalProps> = ({ setIsOpen }) => {
   }, [isCreatingUser]);
 
   return (
-    <S.Modal>
-      <ModalHeader setIsOpen={setIsOpen} />
-      <S.ModalBodyWrapper>
-        <form>
+    <Modal setIsOpen={setIsOpen}>
+      <form>
+        <S.FormWrapper>
           <S.labelInputWrapper>
             <S.inputLabel>{ModalFormWordings.email}</S.inputLabel>
             <S.ModalBodyInputBody
@@ -169,8 +168,8 @@ export const SignUpModal: React.FC<SignUpModalProps> = ({ setIsOpen }) => {
             </Button>
             {createUserResult.status && createUserResult.message}
           </CenterElement>
-        </form>
-      </S.ModalBodyWrapper>
-    </S.Modal>
+        </S.FormWrapper>
+      </form>
+    </Modal>
   );
 };
