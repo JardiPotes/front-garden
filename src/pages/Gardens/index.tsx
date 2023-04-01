@@ -66,7 +66,7 @@ export const GardenPage: React.FC = () => {
           .catch((err: AxiosError) => console.log(err));
         return data;
       },
-      keepPreviousData: true
+      keepPreviousData: true,
     });
 
   useEffect(() => {

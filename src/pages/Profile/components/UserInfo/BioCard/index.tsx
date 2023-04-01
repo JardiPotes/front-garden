@@ -2,9 +2,9 @@ import { FC } from "react";
 
 import { Card } from "../../../../../components/Card";
 import { Experience } from "../../../../../components/Experience";
+import { UserProfileWordings } from "../../../../../wordings";
 import { UserInfoProps } from "..";
 import * as S from "./styles";
-import { UserProfileWordings } from "../../../../../wordings";
 
 type BioCardProps = Pick<
   UserInfoProps["user"],
