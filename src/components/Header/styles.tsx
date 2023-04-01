@@ -27,7 +27,7 @@ export const StyledLogin = styled.div`
   align-items: center;
   & > img {
     max-width: 100%;
-    max-heigth: 100%;
+    max-height: 100%;
     object-fit: contain;
     margin-right: 2em;
   }
@@ -38,7 +38,7 @@ export const Logo = styled.div`
 
   & > img {
     max-width: 100%;
-    max-heigth: 100%;
+    max-height: 100%;
     object-fit: contain;
   }
 `;

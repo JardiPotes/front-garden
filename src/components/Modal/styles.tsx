@@ -52,7 +52,7 @@ export const Logo = styled.div`
 
   & > img {
     max-width: 100%;
-    max-heigth: 100%;
+    max-height: 100%;
     object-fit: contain;
   }
 `;
@@ -85,7 +85,7 @@ export const Cross = styled.button`
   border-radius: 50px;
   & > img {
     max-width: 30%;
-    max-heigth: 30%;
+    max-height: 30%;
     object-fit: contain;
   }
 `;
@@ -144,7 +144,7 @@ export const UploadImage = styled.button`
 
   & > img {
     max-width: 30%;
-    max-heigth: 30%;
+    max-height: 30%;
     object-fit: contain;
   }
 `;

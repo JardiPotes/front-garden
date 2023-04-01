@@ -19,12 +19,12 @@ export const TitleCardStyle = styled.div`
 
 export const TitleCardText = styled.h1`
   font-size: 2.3em;
-  font-family: "Amiko";
-  align-text: center;
+  text-align: center;
   align-items: center;
   margin: 1em;
   color: ${Colors.textColor};
 `;
+
 export const ChickenIcon = styled.div`
   padding-bottom: 6.5em;
   padding-left: 3em;
@@ -33,7 +33,7 @@ export const ChickenIcon = styled.div`
 
   & > img {
     max-width: 10%;
-    max-heigth: 10%;
+    max-height: 10%;
     object-fit: contain;
   }
 `;
@@ -46,7 +46,7 @@ export const FlowersIcon = styled.div`
 
   & > img {
     max-width: 8%;
-    max-heigth: 8%;
+    max-height: 8%;
     object-fit: contain;
   }
 `;

@@ -7,7 +7,7 @@ export const UploadButton = styled.button`
 
   & > img {
     max-width: 30%;
-    max-heigth: 30%;
+    max-height: 30%;
     object-fit: contain;
   }
 `;
