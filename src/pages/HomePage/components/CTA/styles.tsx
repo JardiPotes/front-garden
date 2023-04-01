@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import { ButtonStyle } from "../../../../components/Buttons/styles";
-
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;

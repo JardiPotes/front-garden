@@ -19,7 +19,7 @@ type SignUpModalProps = {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-type UserData = {
+export type UserData = {
   email: string;
   password: string;
   nickname: string;
@@ -56,7 +56,7 @@ export const SignUpModal: React.FC<SignUpModalProps> = ({ setIsOpen }) => {
 
   const { isLoading: isCreatingUser, mutate: createUser } = useMutation(
     async (data: UserData) => {
-      if (data.profile_image) {
+      if (data.profile_image instanceof FileList) {
         data.profile_image = data.profile_image[0];
       }
       return await axios.post(`auth/register`, data, {

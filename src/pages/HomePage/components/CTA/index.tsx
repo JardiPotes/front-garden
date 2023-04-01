@@ -1,9 +1,7 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 
 import DocImg from "../../../../assets/dog-icon.png";
 import { Button } from "../../../../components/Buttons";
-import { StyledLink } from "../../../../components/Header/styles";
 import { SignUpModal } from "../../../../components/SignUpForm";
 import useToken from "../../../../utils/useToken";
 import { ButtonWordings, HomePageWordings } from "../../../../wordings";
