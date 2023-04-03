@@ -12,8 +12,8 @@ export const UploadButton = styled.button`
   }
 `;
 
-export const Wrapper= styled.div`
+export const Wrapper = styled.div`
   display: flex;
   margin-top: 2em;
   gap: 1em;
-`
+`;

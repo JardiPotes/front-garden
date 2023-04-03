@@ -1,14 +1,18 @@
-import { FC, useState } from "react";
+import { FC } from "react";
+import { UseFormRegister } from "react-hook-form";
 
-import UploadIcon from "../../assets/upload-icon.png";
+import { UserData } from "../SignUpForm";
 import * as S from "./styles";
 
-export const Uploader: FC = ({register}) => {
+interface UploaderProps {
+  register: UseFormRegister<UserData>;
+}
 
+export const Uploader: FC<UploaderProps> = ({ register }) => {
   return (
     <S.Wrapper>
       <label htmlFor="profile_image">Image de profil :</label>
-      <input name="profile_image" type="file"  {...register("profile_image")}/>
+      <input type="file" accept="image/*" {...register("profile_image")} />
     </S.Wrapper>
   );
 };

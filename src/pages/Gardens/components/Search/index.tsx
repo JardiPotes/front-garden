@@ -1,6 +1,7 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 
 import { Button } from "../../../../components/Buttons";
+import { intentionallyFloatingPromiseReturn } from "../../../../utils/intentionallyFloatingPromiseReturn";
 import { Search, SearchInput, Wrapper } from "./styles";
 
 type SearchBarProps = {
@@ -24,7 +25,11 @@ export const SearchBar: React.FC<SearchBarProps> = ({ setSearch }) => {
     <Wrapper>
       <Search>
         <SearchInput {...register("zipcode")} placeholder="search by zipcode" />
-        <Button onClick={handleSubmit(onSearch)}>Filtrer</Button>
+        <Button
+          onClick={intentionallyFloatingPromiseReturn(handleSubmit(onSearch))}
+        >
+          Filtrer
+        </Button>
         <Button
           onClick={(): void => {
             setSearch(null);

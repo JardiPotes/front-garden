@@ -19,7 +19,7 @@ type SignUpModalProps = {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-type UserData = {
+export type UserData = {
   email: string;
   password: string;
   nickname: string;
@@ -56,10 +56,12 @@ export const SignUpModal: React.FC<SignUpModalProps> = ({ setIsOpen }) => {
 
   const { isLoading: isCreatingUser, mutate: createUser } = useMutation(
     async (data: UserData) => {
-      if (data.profile_image) {
-        data.profile_image = data.profile_image[0]
+      if (data.profile_image instanceof FileList) {
+        data.profile_image = data.profile_image[0];
       }
-      return await axios.post(`auth/register`, data, {headers: {"Content-Type": "multipart/form-data"}});
+      return await axios.post(`auth/register`, data, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
     },
     {
       onSuccess: () => {
@@ -90,81 +92,83 @@ export const SignUpModal: React.FC<SignUpModalProps> = ({ setIsOpen }) => {
       <ModalHeader setIsOpen={setIsOpen} />
       <S.ModalBodyWrapper>
         <form>
-        <S.labelInputWrapper>
-          <S.inputLabel>{ModalFormWordings.email}</S.inputLabel>
-          <S.ModalBodyInputBody
-            placeholder="ilovecss@sarcasm.fr"
-            {...register("email", { required: true })}
-          />
-          {errors.email && <MandatoryField />}
-        </S.labelInputWrapper>
-        <S.labelInputWrapper>
-          <S.inputLabel>{ModalFormWordings.password}</S.inputLabel>
-          <S.ModalBodyInputBody
-            type="password"
-            placeholder="********"
-            {...register("password", { required: true })}
-          />
-          {errors.password && <MandatoryField />}
-        </S.labelInputWrapper>
-        <S.labelInputWrapper>
-          <S.inputLabel>{ModalFormWordings.pseudo}</S.inputLabel>
-          <S.ModalBodyInputBody
-            placeholder="Huguette-JMiche"
-            {...register("nickname", { required: true })}
-          />
-          {errors.nickname && <MandatoryField />}
-        </S.labelInputWrapper>
-        <S.labelInputWrapper>
-          <S.inputLabel>{ModalFormWordings.bio}</S.inputLabel>
-          <S.ModalBodyTextAreaBody
-            placeholder="J'aimerais bien vous inviter à faire une raclette dans mon jardin situé Paris 16ème arrondissement quand il fait 50 degrés."
-            {...register("bio")}
-          />
-        </S.labelInputWrapper>
-        <S.radioWrapper>
-          <S.inputLabel>{ModalFormWordings.experience}</S.inputLabel>
-          {expOptions.map((option) => (
-            <S.radioInputWrapper key={option.toString()}>
-              <S.inputLabel>{option}</S.inputLabel>
+          <S.labelInputWrapper>
+            <S.inputLabel>{ModalFormWordings.email}</S.inputLabel>
+            <S.ModalBodyInputBody
+              placeholder="ilovecss@sarcasm.fr"
+              {...register("email", { required: true })}
+            />
+            {errors.email && <MandatoryField />}
+          </S.labelInputWrapper>
+          <S.labelInputWrapper>
+            <S.inputLabel>{ModalFormWordings.password}</S.inputLabel>
+            <S.ModalBodyInputBody
+              type="password"
+              placeholder="********"
+              {...register("password", { required: true })}
+            />
+            {errors.password && <MandatoryField />}
+          </S.labelInputWrapper>
+          <S.labelInputWrapper>
+            <S.inputLabel>{ModalFormWordings.pseudo}</S.inputLabel>
+            <S.ModalBodyInputBody
+              placeholder="Huguette-JMiche"
+              {...register("nickname", { required: true })}
+            />
+            {errors.nickname && <MandatoryField />}
+          </S.labelInputWrapper>
+          <S.labelInputWrapper>
+            <S.inputLabel>{ModalFormWordings.bio}</S.inputLabel>
+            <S.ModalBodyTextAreaBody
+              placeholder="J'aimerais bien vous inviter à faire une raclette dans mon jardin situé Paris 16ème arrondissement quand il fait 50 degrés."
+              {...register("bio")}
+            />
+          </S.labelInputWrapper>
+          <S.radioWrapper>
+            <S.inputLabel>{ModalFormWordings.experience}</S.inputLabel>
+            {expOptions.map((option) => (
+              <S.radioInputWrapper key={option.toString()}>
+                <S.inputLabel>{option}</S.inputLabel>
+                <S.radioInput
+                  type="radio"
+                  id={option.toString()}
+                  {...register("experience")}
+                  value={option}
+                />
+              </S.radioInputWrapper>
+            ))}
+          </S.radioWrapper>
+          <S.Tip>{ModalFormWordings.experienceTip}</S.Tip>
+          <S.radioWrapper>
+            <S.inputLabel>{ModalFormWordings.haveGarden}</S.inputLabel>
+            <S.radioInputWrapper>
+              <S.inputLabel>oui</S.inputLabel>
               <S.radioInput
                 type="radio"
-                id={option.toString()}
-                {...register("experience")}
-                value={option}
+                id="oui"
+                {...register("hasGarden", { required: true })}
+                value="true"
               />
             </S.radioInputWrapper>
-          ))}
-        </S.radioWrapper>
-        <S.Tip>{ModalFormWordings.experienceTip}</S.Tip>
-        <S.radioWrapper>
-          <S.inputLabel>{ModalFormWordings.haveGarden}</S.inputLabel>
-          <S.radioInputWrapper>
-            <S.inputLabel>oui</S.inputLabel>
-            <S.radioInput
-              type="radio"
-              id="oui"
-              {...register("hasGarden", { required: true })}
-              value="true"
-            />
-          </S.radioInputWrapper>
-          <S.radioInputWrapper>
-            <S.inputLabel>non</S.inputLabel>
-            <S.radioInput
-              type="radio"
-              id="non"
-              {...register("hasGarden", { required: true })}
-              value="false"
-            />
-          </S.radioInputWrapper>
-        </S.radioWrapper>
-        {errors.hasGarden && <MandatoryField />}
-        <Uploader register={register}/>
-        <CenterElement>
-        {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
-        <Button onClick={handleSubmit(postData)}>{ButtonWordings.join}</Button>
-        {createUserResult.status && createUserResult.message}
-        </CenterElement>
+            <S.radioInputWrapper>
+              <S.inputLabel>non</S.inputLabel>
+              <S.radioInput
+                type="radio"
+                id="non"
+                {...register("hasGarden", { required: true })}
+                value="false"
+              />
+            </S.radioInputWrapper>
+          </S.radioWrapper>
+          {errors.hasGarden && <MandatoryField />}
+          <Uploader register={register} />
+          <CenterElement>
+            {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
+            <Button onClick={handleSubmit(postData)}>
+              {ButtonWordings.join}
+            </Button>
+            {createUserResult.status && createUserResult.message}
+          </CenterElement>
         </form>
       </S.ModalBodyWrapper>
     </S.Modal>
