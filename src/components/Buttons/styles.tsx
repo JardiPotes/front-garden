@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Colors = {
   primary: "#CEA37C",
   hover: "#B5FFAC",
-  textColor: "#fff",
+  textColor: "#fff"
 } as const;
 
 export const ButtonStyle = styled.button`
@@ -12,7 +12,8 @@ export const ButtonStyle = styled.button`
   justify-content: center;
   background-color: ${Colors.primary};
   height: 3em;
-  min-width: 15em;
+  min-width: ${(props: { small?: boolean }): string =>
+    props.small ? "5em" : "15em"};
   border-radius: 30px;
   border: 1px transparent solid;
   margin: 1em;
@@ -21,6 +22,11 @@ export const ButtonStyle = styled.button`
     border-color: ${Colors.hover};
     box-shadow: 0 0 15px 0 ${Colors.hover};
     outline: 0;
+  }
+
+  img {
+    max-height: 2em;
+    max-width: 100%;
   }
 `;
 
