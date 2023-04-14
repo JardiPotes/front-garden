@@ -10,6 +10,7 @@ export const ImageBox = styled.div`
     max-width: 100vw;
     aspect-ratio: 16/9;
     object-fit: cover;
+    width: 100%;
   }
 `;
 
