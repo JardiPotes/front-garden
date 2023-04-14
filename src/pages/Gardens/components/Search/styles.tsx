@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
 export const Search = styled.div`
   display: flex;
   width: 80%;
-  justify-content: flex-end;
+  justify-content: center;
 `;
 
 export const SearchInput = styled.input`

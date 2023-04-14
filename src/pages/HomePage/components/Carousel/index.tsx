@@ -1,6 +1,6 @@
 import {
   faChevronLeft,
-  faChevronRight,
+  faChevronRight
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FC, useState } from "react";
@@ -24,16 +24,16 @@ interface SlideData {
 const data = [
   {
     imageSrc: "/images/garden1.jpg",
-    imageAlt: "Garden1",
+    imageAlt: "Garden1"
   },
   {
     imageSrc: "/images/garden2.jpg",
-    imageAlt: "A rock formation",
+    imageAlt: "A rock formation"
   },
   {
     imageSrc: "/images/garden3.jpg",
-    imageAlt: "Some flowers",
-  },
+    imageAlt: "Some flowers"
+  }
 ];
 
 export const SlideView: FC = () => <Slideshow items={data} />;
@@ -41,7 +41,7 @@ export const SlideView: FC = () => <Slideshow items={data} />;
 const Slideshow: FC<SlideshowProps> = (props) => {
   const [{ items, activeIndex }, setState] = useState<SlideData>({
     items: props.items,
-    activeIndex: 0,
+    activeIndex: 0
   });
 
   const moveTo = (newIndex: number) => () => {
@@ -58,7 +58,7 @@ const Slideshow: FC<SlideshowProps> = (props) => {
   };
 
   return (
-    <S.SlideWrapper>
+    <>
       <S.ImageBox>
         <img
           alt={items[activeIndex].imageAlt}
@@ -71,6 +71,6 @@ const Slideshow: FC<SlideshowProps> = (props) => {
           <FontAwesomeIcon icon={faChevronRight} />
         </S.NavButton>
       </S.ImageBox>
-    </S.SlideWrapper>
+    </>
   );
 };

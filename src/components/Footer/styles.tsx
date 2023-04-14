@@ -6,8 +6,7 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  width: 100%;
-  height: auto;
+  padding: 4px;
 `;
 
 export const TitleWrapper = styled.div`
@@ -17,6 +16,10 @@ export const TitleWrapper = styled.div`
 export const Title = styled.h1`
   font-weight: bold;
   text-align: center;
+
+  @media (max-width: 480px) {
+    display: none;
+  }
 `;
 
 export const SectionWrapper = styled.div`
@@ -33,6 +36,10 @@ export const SubSectionWrapper = styled.div`
 
 export const SubTitle = styled.h3`
   text-transform: capitalize;
+
+  @media (max-width: 480px) {
+    font-size: 1em;
+  }
 `;
 
 export const StyledLink = styled(Link)`

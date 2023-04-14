@@ -8,11 +8,11 @@ export const Input = styled.input`
   border-radius: 4px;
   margin: 8px 0;
   outline: none;
-  padding: 8px;
+  padding: 0px 25px;
   box-sizing: border-box;
   transition: 0.3s;
-  padding-left: 50px;
   cursor: pointer;
+  text-overflow: ellipsis;
 
   &:focus {
     border-color: dodgerBlue;

@@ -5,7 +5,7 @@ const Colors = {
   line: "#86E7B8",
   inputArea: "#FCF9F9",
   textInput: "#9A9595",
-  cross: "#000000",
+  cross: "#000000"
 } as const;
 
 export const BackgroundOverlay = styled.div`
@@ -24,8 +24,6 @@ export const BackgroundOverlay = styled.div`
 export const Modal = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 100vw;
-  max-height: 100vw;
   height: 95%;
   border-radius: 50px;
   background-color: ${Colors.bg};
@@ -34,11 +32,9 @@ export const Modal = styled.div`
   top: 50%;
   transform: translate(-50%, -50%);
   z-index: 3;
-  overflow: scroll;
 
-  ::-webkit-scrollbar {
-    height: 100%;
-    width: 0;
+  @media (max-width: 480px) {
+    width: 95%;
   }
 `;
 
@@ -77,6 +73,10 @@ export const HeaderUnderLine = styled.div`
   margin: 1px;
   background-color: ${Colors.line};
   border-radius: 50px;
+
+  @media (max-width: 480px) {
+    width: 100%;
+  }
 `;
 
 export const Cross = styled.button`
@@ -90,14 +90,22 @@ export const Cross = styled.button`
   }
 `;
 
-export const ModalBodyWrapper = styled.form`
-  width: 80%;
+export const ModalBodyWrapper = styled.div`
+  width: 100%;
   height: 60%;
   display: flex;
   flex-direction: column;
   margin: auto;
   margin-top: 2px;
   align-items: center;
+  overflow: auto;
+`;
+
+export const FormWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 1rem;
 `;
 
 export const ModalBodyInputBody = styled.input`
@@ -117,6 +125,11 @@ export const ModalBodyInputBody = styled.input`
     box-shadow: 0 0 15px 0 ${Colors.line};
     outline: 0;
   }
+
+  @media (max-width: 480px) {
+    width: 20em;
+    height: 4em;
+  }
 `;
 
 export const ModalBodyTextAreaBody = styled.textarea`
@@ -124,16 +137,22 @@ export const ModalBodyTextAreaBody = styled.textarea`
   color: ${Colors.textInput};
   margin-top: 1em;
   width: 35em;
-  height: 5em;
+  height: 5.5em;
   background-color: ${Colors.inputArea};
-  border-radius: 50em;
+  border-radius: 50px;
   align-items: center;
   border: none;
+  overflow: hidden;
+  padding: 5px 10px;
 
   &:focus {
     border-color: ${Colors.line};
     box-shadow: 0 0 15px 0 ${Colors.line};
     outline: 0;
+  }
+
+  @media (max-width: 480px) {
+    width: 20em;
   }
 `;
 
@@ -168,10 +187,11 @@ export const labelInputWrapper = styled.div`
 
 export const radioWrapper = styled.div`
   display: flex;
-  width: 105%;
+  width: 100%;
   justify-content: flex-start;
   margin-top: 2em;
   align-items: center;
+  flex-wrap: wrap;
 `;
 
 export const radioInputWrapper = styled.div`
@@ -179,7 +199,7 @@ export const radioInputWrapper = styled.div`
 `;
 
 export const Tip = styled.div`
-  width: 105%;
   font-size: 0.8em;
   text-align: left;
+  width: 100%;
 `;

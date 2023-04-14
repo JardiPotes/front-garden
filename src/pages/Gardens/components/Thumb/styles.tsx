@@ -11,6 +11,10 @@ export const Wrapper = styled.div`
   gap: 20px;
   max-width: 80%;
   border-radius: 20px;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+  }
 `;
 
 export const InfoWrapper = styled.div`

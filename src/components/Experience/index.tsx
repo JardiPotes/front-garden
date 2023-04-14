@@ -22,4 +22,8 @@ const ExperienceBase: FC<{
 
 export const Experience = styled(ExperienceBase)`
   margin: 0;
+
+  @media (max-width: 480px) {
+    max-width: 80%;
+  }
 `;

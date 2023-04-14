@@ -5,7 +5,7 @@ import * as S from "./styles";
 
 export default function HomePage(): JSX.Element {
   return (
-    <S.Wrapper>
+    <div>
       <S.HeroWrapper>
         <TitleCard />
         <CTA />
@@ -13,6 +13,6 @@ export default function HomePage(): JSX.Element {
       <S.CarouselWrapper>
         <SlideView />
       </S.CarouselWrapper>
-    </S.Wrapper>
+    </div>
   );
 }

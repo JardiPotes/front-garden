@@ -7,8 +7,9 @@ import axios from "../../ClientProvider/axiosConfig";
 import { saveUser, User } from "../../utils/user";
 import { ButtonWordings, ModalFormWordings } from "../../wordings";
 import { Button } from "../Buttons";
-import { ModalHeader } from "../Modal";
+import { Modal } from "../Modal";
 import * as S from "../Modal/styles";
+import { CenterElement } from "../SignUpForm/styles";
 
 type ModalProps = {
   setIsOpen: Dispatch<SetStateAction<boolean>>;
@@ -43,7 +44,7 @@ export const LoginModal: FC<ModalProps> = ({ setIsOpen, setToken }) => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors }
   } = useForm<LoginData>();
 
   const formatResponse = (res: unknown): string => {
@@ -52,7 +53,7 @@ export const LoginModal: FC<ModalProps> = ({ setIsOpen, setToken }) => {
 
   const [logInStatus, setlogInStatus] = useState<LoginStatus>({
     status: null,
-    message: "",
+    message: ""
   });
 
   const onSubmit: SubmitHandler<LoginData> = (data) => {
@@ -67,7 +68,7 @@ export const LoginModal: FC<ModalProps> = ({ setIsOpen, setToken }) => {
       onSuccess: (res: UserResult) => {
         setlogInStatus({
           status: "success",
-          message: "connecté !",
+          message: "connecté !"
         });
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         setToken(res.data.auth_token);
@@ -79,9 +80,9 @@ export const LoginModal: FC<ModalProps> = ({ setIsOpen, setToken }) => {
         const errMessage = formatResponse(err?.response?.data);
         setlogInStatus({
           status: "error",
-          message: `Oups, il y a un problème : ${errMessage}`,
+          message: `Oups, il y a un problème : ${errMessage}`
         });
-      },
+      }
     }
   );
 
@@ -90,9 +91,8 @@ export const LoginModal: FC<ModalProps> = ({ setIsOpen, setToken }) => {
   }, [logInStatus]);
 
   return (
-    <S.Modal>
-      <ModalHeader setIsOpen={setIsOpen} />
-      <S.ModalBodyWrapper>
+    <Modal setIsOpen={setIsOpen}>
+      <form>
         <S.labelInputWrapper>
           <S.inputLabel>{ModalFormWordings.email}</S.inputLabel>
           <S.ModalBodyInputBody {...register("email", { required: true })} />
@@ -106,12 +106,14 @@ export const LoginModal: FC<ModalProps> = ({ setIsOpen, setToken }) => {
           />
           {errors.password && <MandatoryField />}
         </S.labelInputWrapper>
-        {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
-        <Button onClick={handleSubmit(onSubmit)}>
-          {ButtonWordings.connection}
-        </Button>
-        {logInStatus?.status && logInStatus?.message}
-      </S.ModalBodyWrapper>
-    </S.Modal>
+        <CenterElement>
+          {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
+          <Button onClick={handleSubmit(onSubmit)}>
+            {ButtonWordings.connection}
+          </Button>
+          {logInStatus?.status && logInStatus?.message}
+        </CenterElement>
+      </form>
+    </Modal>
   );
 };

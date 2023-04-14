@@ -1,8 +1,14 @@
+import { faRotateRight } from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { SubmitHandler, useForm } from "react-hook-form";
+import useBreakpoint from "use-breakpoint";
 
 import { Button } from "../../../../components/Buttons";
 import { intentionallyFloatingPromiseReturn } from "../../../../utils/intentionallyFloatingPromiseReturn";
 import { Search, SearchInput, Wrapper } from "./styles";
+
+const BREAKPOINTS = { mobile: 0, tablet: 768, desktop: 1280 };
 
 type SearchBarProps = {
   setSearch: React.Dispatch<
@@ -16,7 +22,9 @@ type SearchData = {
 
 export const SearchBar: React.FC<SearchBarProps> = ({ setSearch }) => {
   const { register, handleSubmit, setValue } = useForm<SearchData>();
+  const { breakpoint } = useBreakpoint(BREAKPOINTS);
 
+  const isMobile = breakpoint === "mobile";
   const onSearch: SubmitHandler<SearchData> = (data) => {
     setSearch(data);
   };
@@ -27,16 +35,22 @@ export const SearchBar: React.FC<SearchBarProps> = ({ setSearch }) => {
         <SearchInput {...register("zipcode")} placeholder="search by zipcode" />
         <Button
           onClick={intentionallyFloatingPromiseReturn(handleSubmit(onSearch))}
+          small={isMobile && true}
         >
-          Filtrer
+          {isMobile ? <FontAwesomeIcon icon={faMagnifyingGlass} /> : "Filtrer"}
         </Button>
         <Button
           onClick={(): void => {
             setSearch(null);
             setValue("zipcode", null);
           }}
+          small={isMobile && true}
         >
-          Clear Filters
+          {isMobile ? (
+            <FontAwesomeIcon icon={faRotateRight} />
+          ) : (
+            "Réinitialiser"
+          )}
         </Button>
       </Search>
     </Wrapper>

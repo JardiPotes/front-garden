@@ -4,14 +4,21 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
   background-color: #b5ffac;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
-  border-radius: 2px;
   position: sticky;
   top: 0px;
   width: 100%;
   height: 7em;
   z-index: 3;
+
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+    height: auto;
+    justify-content: center;
+    padding-top: 1em;
+    column-gap: 1em;
+  }
 `;
 
 export const StyledTitleLink = styled(Link)`
@@ -26,10 +33,8 @@ export const StyledLogin = styled.div`
   display: flex;
   align-items: center;
   & > img {
-    max-width: 100%;
-    max-height: 100%;
+    max-width: 70px;
     object-fit: contain;
-    margin-right: 2em;
   }
 `;
 
@@ -37,9 +42,12 @@ export const Logo = styled.div`
   max-width: 80px;
 
   & > img {
-    max-width: 100%;
-    max-height: 100%;
+    max-width: 70px;
     object-fit: contain;
+
+    @media (max-width: 480px) {
+      max-width: 50px;
+    }
   }
 `;
 
@@ -53,8 +61,8 @@ export const StyledLink = styled(Link)`
 export const LogoTitleWrapper = styled.div`
   display: flex;
   align-items: center;
-  margin-left: 2em;
 `;
+
 export const LinkWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -62,7 +70,5 @@ export const LinkWrapper = styled.div`
 `;
 
 export const RoundImage = styled.img`
-  width: 5em;
-  height: 5em;
   border-radius: 50px;
 `;
