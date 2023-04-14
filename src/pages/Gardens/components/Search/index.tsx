@@ -34,7 +34,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ setSearch }) => {
           onClick={intentionallyFloatingPromiseReturn(handleSubmit(onSearch))}
           small={isMobile && true}
         >
-          {isMobile ? <img src="public/images/search.png" /> : "Filter"}
+          {isMobile ? <img src="public/images/search.png" /> : "Filtrer"}
         </Button>
         <Button
           onClick={(): void => {
@@ -43,7 +43,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ setSearch }) => {
           }}
           small={isMobile && true}
         >
-          {isMobile ? <img src="public/images/refresh.png" /> : "Clear Filters"}
+          {isMobile ? <img src="public/images/refresh.png" /> : "Réinitialiser"}
         </Button>
       </Search>
     </Wrapper>
