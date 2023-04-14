@@ -1,3 +1,6 @@
+import { faRotateRight } from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { SubmitHandler, useForm } from "react-hook-form";
 import useBreakpoint from "use-breakpoint";
 
@@ -34,7 +37,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ setSearch }) => {
           onClick={intentionallyFloatingPromiseReturn(handleSubmit(onSearch))}
           small={isMobile && true}
         >
-          {isMobile ? <img src="public/images/search.png" /> : "Filtrer"}
+          {isMobile ? <FontAwesomeIcon icon={faMagnifyingGlass} /> : "Filtrer"}
         </Button>
         <Button
           onClick={(): void => {
@@ -43,7 +46,11 @@ export const SearchBar: React.FC<SearchBarProps> = ({ setSearch }) => {
           }}
           small={isMobile && true}
         >
-          {isMobile ? <img src="public/images/refresh.png" /> : "Réinitialiser"}
+          {isMobile ? (
+            <FontAwesomeIcon icon={faRotateRight} />
+          ) : (
+            "Réinitialiser"
+          )}
         </Button>
       </Search>
     </Wrapper>
