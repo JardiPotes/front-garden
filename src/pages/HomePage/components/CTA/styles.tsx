@@ -21,8 +21,7 @@ export const Description = styled.p`
 
 export const DogIcon = styled.div`
   & > img {
-    max-width: 80%;
-    max-height: 80%;
+    max-height: 2.5rem;
     object-fit: contain;
   }
 `;
