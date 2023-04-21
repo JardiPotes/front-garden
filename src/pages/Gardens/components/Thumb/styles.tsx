@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Wrapper = styled.div`
   background-color: #fcf9f9;
@@ -35,6 +36,11 @@ export const TitleWrapper = styled.div`
   justify-content: space-between;
   gap: 4px;
   margin-bottom: 10px;
+`;
+
+export const RouterLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
 `;
 
 export const Image = styled.img`

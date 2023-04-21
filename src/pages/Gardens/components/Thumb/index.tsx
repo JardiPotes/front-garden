@@ -16,23 +16,29 @@ export const GardenThumb: React.FC<GardenThumb> = ({ garden }) => {
     zipcode,
     image = defaultImage,
     user_image = defaultUserImage,
+    user_id
   } = garden;
-  const adressLink = `https://maps.google.com/maps?q=${address}+${zipcode}`;
+  const adressLink =
+    address && `https://maps.google.com/maps?q=${address}+${zipcode}`;
 
   return (
     <S.Wrapper>
       <S.Image src={image} />
       <S.InfoWrapper>
-        <div>
+        <S.RouterLink to={`../profile/${user_id}`}>
           <S.TitleWrapper>
             <S.Icon src={user_image} /> <div>{title}</div>
           </S.TitleWrapper>
           <div>{description}</div>
-        </div>
-        <S.Address>
-          <S.Pin src={pin} />
-          <a href={adressLink}>{address}</a>
-        </S.Address>
+        </S.RouterLink>
+        {adressLink && (
+          <S.Address>
+            <a href={adressLink}>
+              <S.Pin src={pin} />
+              {address}
+            </a>
+          </S.Address>
+        )}
       </S.InfoWrapper>
     </S.Wrapper>
   );
