@@ -2,34 +2,31 @@ import UnstyledReactPaginate from "react-paginate";
 import styled from "styled-components";
 
 export const ReactPaginate = styled(UnstyledReactPaginate)`
-  margin-bottom: 2rem;
+  margin-block: 2rem;
   display: flex;
   flex-direction: row;
+  gap: 0.5rem;
   justify-content: space-between;
   list-style-type: none;
-  padding: 0 5rem;
+  padding: 0;
 
   & li a {
-    border-radius: 7px;
-    padding: 0.1rem 1rem;
-    border: gray 1px solid;
+    display: inline-block;
+    text-align: center;
+    border-radius: 50px;
+    padding: 0.4rem;
     cursor: pointer;
+    min-width: fit-content;
+    width: 20px;
   }
-  & li.previous a,
-  li.next a,
-  li.break a {
-    border-color: transparent;
-  }
-  & li.selected a {
-    background-color: #0366d6;
-    border-color: transparent;
-    color: white;
-    min-width: 32px;
+
+  & li.active a {
+    background-color: #e6b873;
   }
   & li.disabled a {
     color: grey;
   }
-  & li.disable,
+  & li.disabled,
   li.disabled a {
     cursor: default;
   }
