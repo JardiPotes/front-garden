@@ -85,12 +85,12 @@ export const GardenPage: React.FC = () => {
         ))}
       </div>
       {data?.next && !isPreviousData && (
-        <PageButton onClick={(): void => setOffset(offset + 2)}>
+        <PageButton onClick={(): void => setOffset(offset + 10)}>
           Page suivante
         </PageButton>
       )}
       {data?.previous && (
-        <PageButton onClick={(): void => setOffset(offset - 2)}>
+        <PageButton onClick={(): void => setOffset(offset - 10)}>
           Page précédente
         </PageButton>
       )}
