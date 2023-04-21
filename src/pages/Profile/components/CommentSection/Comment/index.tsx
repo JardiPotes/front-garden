@@ -2,11 +2,11 @@ import { FC } from "react";
 
 import { Card } from "../../../../../components/Card";
 import { Experience } from "../../../../../components/Experience";
-import { CommentSectionProps } from "..";
+import { Comment as IComment } from "../../..";
 import * as S from "./styles";
 
 interface CommentProps {
-  comment: CommentSectionProps["comments"][number];
+  comment: IComment;
 }
 
 interface AuthorInfoProps {

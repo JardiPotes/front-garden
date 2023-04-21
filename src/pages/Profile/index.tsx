@@ -6,7 +6,6 @@ import { axios } from "../../ClientProvider";
 import { CommentSection } from "./components/CommentSection";
 import { Gardens } from "./components/Gardens";
 import { UserInfo } from "./components/UserInfo";
-import { commentsStub } from "./stubs";
 import * as S from "./styles";
 
 export interface UserWithGardens {
@@ -58,7 +57,7 @@ export const Profile: FC = () => {
     <S.Layout>
       <UserInfo user={user} />
       <Gardens gardens={gardens} />
-      <CommentSection comments={commentsStub} />
+      <CommentSection userId={id} />
     </S.Layout>
   );
 };

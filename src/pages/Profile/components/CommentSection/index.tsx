@@ -1,22 +1,55 @@
 import { faBug } from "@fortawesome/free-solid-svg-icons/faBug";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { FC, Fragment } from "react";
+import { FC, Fragment, useState } from "react";
+import { useQuery } from "react-query";
 
+import { axios } from "../../../../ClientProvider";
+import { Pagination } from "../../../../components/Pagination";
 import { UserProfileWordings } from "../../../../wordings";
 import { Comment as IComment } from "../..";
 import { SectionHeader } from "../SectionHeader";
 import { Comment } from "./Comment";
 
 export interface CommentSectionProps {
-  comments: IComment[];
+  userId: string;
 }
 
-export const CommentSection: FC<CommentSectionProps> = ({ comments }) => {
+export const CommentSection: FC<CommentSectionProps> = ({ userId }) => {
+  const [offset, setOffset] = useState(0);
+  const handlePageClick = (event: { selected: number }): void => {
+    const newOffset = (event.selected * 10) % count;
+    setOffset(newOffset);
+  };
+
+  const { data: { data } = {} } = useQuery(
+    ["comments", userId, offset],
+    async () =>
+      axios.get<{
+        results: IComment[];
+        count: number;
+        previous: string | null;
+        next: string | null;
+      }>("comments", {
+        params: { receiver_id: userId, offset },
+      }),
+    {
+      keepPreviousData: true,
+    }
+  );
+
+  if (!data) return null;
+
+  const { results: comments, count } = data;
+
   if (!comments || !comments.length) return null;
 
   return (
     <>
       <SectionHeader>{UserProfileWordings.commentSectionHeader}</SectionHeader>
+      <Pagination
+        pageCount={Math.ceil(count / 10)}
+        onPageChange={handlePageClick}
+      />
       {comments.map((comment, index) => (
         <Fragment key={comment.id}>
           {!!index && (
@@ -29,6 +62,10 @@ export const CommentSection: FC<CommentSectionProps> = ({ comments }) => {
           <Comment comment={comment} />
         </Fragment>
       ))}
+      <Pagination
+        pageCount={Math.ceil(count / 10)}
+        onPageChange={handlePageClick}
+      />
     </>
   );
 };
