@@ -1,7 +1,7 @@
 import { faBug } from "@fortawesome/free-solid-svg-icons/faBug";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FC, Fragment, useState } from "react";
-import { useQuery } from "react-query";
+import { useMutation, useQuery } from "react-query";
 
 import { axios } from "../../../../ClientProvider";
 import { Pagination } from "../../../../components/Pagination";
@@ -9,6 +9,7 @@ import { UserProfileWordings } from "../../../../wordings";
 import { Comment as IComment } from "../..";
 import { SectionHeader } from "../SectionHeader";
 import { Comment } from "./Comment";
+import useToken from "../../../../utils/useToken";
 
 export interface CommentSectionProps {
   userId: string;
@@ -37,6 +38,21 @@ export const CommentSection: FC<CommentSectionProps> = ({ userId }) => {
     }
   );
 
+  const postNewCommentMutation = useMutation(
+    async (newComment: {
+      author_id: string;
+      receiver_id: string;
+      content: string;
+    }) =>
+      axios
+        .post("comments", newComment, {
+          headers: { Authorization: `Token ${token}` },
+        })
+        .then((res) => res.data)
+  );
+
+  const { token } = useToken();
+
   if (!data) return null;
 
   const { results: comments, count } = data;
@@ -62,6 +78,17 @@ export const CommentSection: FC<CommentSectionProps> = ({ userId }) => {
           <Comment comment={comment} />
         </Fragment>
       ))}
+      <button
+        onClick={() => {
+          postNewCommentMutation.mutate({
+            author_id: userId,
+            receiver_id: userId,
+            content: "Blue monkey yellow fire",
+          });
+        }}
+      >
+        click
+      </button>
       <Pagination
         pageCount={Math.ceil(count / 10)}
         onPageChange={handlePageClick}
