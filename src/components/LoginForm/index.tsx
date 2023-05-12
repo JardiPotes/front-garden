@@ -44,7 +44,7 @@ export const LoginModal: FC<ModalProps> = ({ setIsOpen, setToken }) => {
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
   } = useForm<LoginData>();
 
   const formatResponse = (res: unknown): string => {
@@ -53,7 +53,7 @@ export const LoginModal: FC<ModalProps> = ({ setIsOpen, setToken }) => {
 
   const [logInStatus, setlogInStatus] = useState<LoginStatus>({
     status: null,
-    message: ""
+    message: "",
   });
 
   const onSubmit: SubmitHandler<LoginData> = (data) => {
@@ -68,7 +68,7 @@ export const LoginModal: FC<ModalProps> = ({ setIsOpen, setToken }) => {
       onSuccess: (res: UserResult) => {
         setlogInStatus({
           status: "success",
-          message: "connecté !"
+          message: "connecté !",
         });
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         setToken(res.data.auth_token);
@@ -80,9 +80,9 @@ export const LoginModal: FC<ModalProps> = ({ setIsOpen, setToken }) => {
         const errMessage = formatResponse(err?.response?.data);
         setlogInStatus({
           status: "error",
-          message: `Oups, il y a un problème : ${errMessage}`
+          message: `Oups, il y a un problème : ${errMessage}`,
         });
-      }
+      },
     }
   );
 
