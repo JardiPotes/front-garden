@@ -5,7 +5,7 @@ const Colors = {
   line: "#86E7B8",
   inputArea: "#FCF9F9",
   textInput: "#9A9595",
-  cross: "#000000"
+  cross: "#000000",
 } as const;
 
 export const BackgroundOverlay = styled.div`

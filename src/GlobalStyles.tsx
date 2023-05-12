@@ -5,7 +5,7 @@ import Amiko from "./fonts/Amiko-Regular.ttf";
 const Colors = {
   bg: "#FAF0E6",
   txt: "black",
-  TitleCard: "#86E7B8"
+  TitleCard: "#86E7B8",
 } as const;
 
 export const GlobalStyle = createGlobalStyle`

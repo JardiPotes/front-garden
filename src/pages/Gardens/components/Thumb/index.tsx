@@ -16,7 +16,7 @@ export const GardenThumb: React.FC<GardenThumb> = ({ garden }) => {
     zipcode,
     image = defaultImage,
     user_image = defaultUserImage,
-    user_id
+    user_id,
   } = garden;
   const adressLink =
     address && `https://maps.google.com/maps?q=${address}+${zipcode}`;

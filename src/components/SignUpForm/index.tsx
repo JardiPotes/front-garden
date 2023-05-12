@@ -25,7 +25,6 @@ export type UserData = {
   nickname: string;
   profile_image?: File | FileList;
   bio?: string;
-  hasGarden: boolean;
   experience?: number;
 };
 
@@ -33,7 +32,7 @@ export const SignUpModal: React.FC<SignUpModalProps> = ({ setIsOpen }) => {
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
   } = useForm<UserData>();
 
   const expOptions = [1, 2, 3, 4, 5];
@@ -60,14 +59,14 @@ export const SignUpModal: React.FC<SignUpModalProps> = ({ setIsOpen }) => {
         data.profile_image = data.profile_image[0];
       }
       return await axios.post(`auth/register`, data, {
-        headers: { "Content-Type": "multipart/form-data" }
+        headers: { "Content-Type": "multipart/form-data" },
       });
     },
     {
       onSuccess: () => {
         setCreateUserResult({
           status: "success",
-          message: "votre compte est bien créé !"
+          message: "votre compte est bien créé !",
         });
       },
       onError: (err: AxiosError) => {
@@ -76,9 +75,9 @@ export const SignUpModal: React.FC<SignUpModalProps> = ({ setIsOpen }) => {
         const errMessage = formatResponse(err?.response?.data);
         setCreateUserResult({
           status: "error",
-          message: `Oups, il y a un problème : ${errMessage}`
+          message: `Oups, il y a un problème : ${errMessage}`,
         });
-      }
+      },
     }
   );
 
@@ -138,28 +137,6 @@ export const SignUpModal: React.FC<SignUpModalProps> = ({ setIsOpen }) => {
             ))}
           </S.radioWrapper>
           <S.Tip>{ModalFormWordings.experienceTip}</S.Tip>
-          <S.radioWrapper>
-            <S.inputLabel>{ModalFormWordings.haveGarden}</S.inputLabel>
-            <S.radioInputWrapper>
-              <S.inputLabel>oui</S.inputLabel>
-              <S.radioInput
-                type="radio"
-                id="oui"
-                {...register("hasGarden", { required: true })}
-                value="true"
-              />
-            </S.radioInputWrapper>
-            <S.radioInputWrapper>
-              <S.inputLabel>non</S.inputLabel>
-              <S.radioInput
-                type="radio"
-                id="non"
-                {...register("hasGarden", { required: true })}
-                value="false"
-              />
-            </S.radioInputWrapper>
-          </S.radioWrapper>
-          {errors.hasGarden && <MandatoryField />}
           <Uploader register={register} />
           <CenterElement>
             {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
