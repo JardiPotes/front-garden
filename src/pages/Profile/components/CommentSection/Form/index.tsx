@@ -59,10 +59,11 @@ const CommentForm: FC<CommentFormProps> = ({ userId, triggerRefetch }) => {
 
 const Colors = {
   cardBackground: "#FCF9F9",
+  focus: "#CEA37C",
 } as const;
 
 const CommentFormStyleWrapper = styled.div`
-  margin: 0;
+  margin: 1em;
   width: clamp(200px, 100%, 750px);
 
   & form {
@@ -73,6 +74,7 @@ const CommentFormStyleWrapper = styled.div`
 
   & textarea {
     box-sizing: border-box;
+    border: none;
     width: 100%;
     margin: 0;
     background-color: ${Colors.cardBackground};

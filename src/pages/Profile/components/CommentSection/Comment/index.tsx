@@ -24,11 +24,22 @@ const AuthorInfo: FC<AuthorInfoProps> = ({
   );
 };
 
-export const Comment: FC<CommentProps> = ({ comment: { author, content } }) => (
+export const Comment: FC<CommentProps> = ({
+  comment: { author, content, created_at },
+}) => (
   <S.Wrapper>
     <AuthorInfo author={author} />
     <Card style={{ maxWidth: "1000px", width: "100%" }}>
-      <S.Name>{author.nickname}</S.Name>
+      <S.NameDatetimeWrapper>
+        <S.Name>{author.nickname}</S.Name>
+        <S.Datetime dateTime={created_at}>
+          {new Intl.DateTimeFormat("fr-FR", {
+            dateStyle: "long",
+            timeStyle: "short",
+            timeZone: "Europe/Paris",
+          }).format(new Date(created_at))}
+        </S.Datetime>
+      </S.NameDatetimeWrapper>
       <p style={{ whiteSpace: "pre-wrap" }}>{content}</p>
     </Card>
   </S.Wrapper>

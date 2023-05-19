@@ -22,6 +22,18 @@ export const Name = styled.span`
   margin: 0;
 `;
 
+export const Datetime = styled.time`
+  font-size: small;
+  opacity: 75%;
+`;
+
+export const NameDatetimeWrapper = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+`;
+
 export const Stack = styled.div`
   display: flex;
   flex-direction: column;

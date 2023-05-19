@@ -1,4 +1,4 @@
-import { faLeaf } from "@fortawesome/free-solid-svg-icons/faLeaf";
+import { faFrog } from "@fortawesome/free-solid-svg-icons/faFrog";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FC } from "react";
 import { ReactPaginateProps } from "react-paginate";
@@ -11,10 +11,10 @@ export const Pagination: FC<ReactPaginateProps> = (props) => {
   }
   return (
     <S.ReactPaginate
-      nextLabel={<FontAwesomeIcon icon={faLeaf} />}
+      nextLabel={<FontAwesomeIcon icon={faFrog} />}
       pageRangeDisplayed={3}
       marginPagesDisplayed={1}
-      previousLabel={<FontAwesomeIcon icon={faLeaf} flip="horizontal" />}
+      previousLabel={<FontAwesomeIcon icon={faFrog} flip="horizontal" />}
       previousClassName="previous"
       nextClassName="next"
       breakLabel="..."

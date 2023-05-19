@@ -30,4 +30,11 @@ export const ReactPaginate = styled(UnstyledReactPaginate)`
   li.disabled a {
     cursor: default;
   }
+
+  & li:hover a {
+    background-color: #e6b87355; // 55 = transparency in hexadecimal
+  }
+  & li.active:hover a {
+    background-color: #e6b873;
+  }
 `;
