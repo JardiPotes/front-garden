@@ -5,7 +5,7 @@ export default function PreviewSection({
   setSelectedConv
 }): JSX.Element {
   return (
-    <div>
+    <>
       {conversations.map((conversation, index) => (
         <MessagePreview
           key={`conv${index}`}
@@ -13,6 +13,6 @@ export default function PreviewSection({
           setSelectedConv={setSelectedConv}
         />
       ))}
-    </div>
+    </>
   );
 }

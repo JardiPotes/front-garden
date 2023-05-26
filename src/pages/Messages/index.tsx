@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import Conversation from "./components/Conversation";
 import PreviewSection from "./components/PreviewSection";
+import * as S from "./styles";
 
 export default function MessagesPage(): JSX.Element {
   // replace with api call to retrieve conversations
@@ -9,28 +10,32 @@ export default function MessagesPage(): JSX.Element {
     {
       id: 0,
       sender: "bidule",
-      preview: "coucou c'est moi",
+      preview: "coucou c'est moi"
     },
     {
       id: 1,
       sender: "fifou",
-      preview: "yoooooooooo ",
+      preview: "yoooooooooo "
     },
     {
       id: 3,
       sender: "machin",
-      preview: "coucou biduuuule",
-    },
+      preview: "coucou biduuuule"
+    }
   ];
   const [selectedConv, setSelectedConv] = useState(conversations[0].id);
 
   return (
-    <>
-      <PreviewSection
-        conversations={conversations}
-        setSelectedConv={setSelectedConv}
-      />
-      <Conversation conversation={selectedConv} />
-    </>
+    <S.Wrapper>
+      <S.PreviewWrapper>
+        <PreviewSection
+          conversations={conversations}
+          setSelectedConv={setSelectedConv}
+        />
+      </S.PreviewWrapper>
+      <S.ConvWrapper>
+        <Conversation conversation={selectedConv} />
+      </S.ConvWrapper>
+    </S.Wrapper>
   );
 }

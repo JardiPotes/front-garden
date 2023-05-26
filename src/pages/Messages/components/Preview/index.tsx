@@ -1,11 +1,13 @@
+import * as S from "./styles";
+
 export default function MessagePreview({
   message,
   setSelectedConv
 }): JSX.Element {
   return (
-    <div onClick={(): void => setSelectedConv(message.id)}>
-      <div>{message.sender}</div>
-      <div>{message.preview}</div>
-    </div>
+    <S.PrewiewItem onClick={(): void => setSelectedConv(message.id)}>
+      <S.Name>{message.sender}</S.Name>
+      <S.MessagePreview>{message.preview}</S.MessagePreview>
+    </S.PrewiewItem>
   );
 }

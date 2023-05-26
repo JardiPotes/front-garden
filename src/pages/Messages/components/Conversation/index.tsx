@@ -1,7 +1,9 @@
 import { Message } from "../Message";
+import { MessageWapper } from "./styles";
 
 export default function Conversation({ conversation }): JSX.Element {
   // replaces with api call to retrieve conv with id
+  const user = "bidule";
   const mockConv = {
     sender: "fifou",
     messages: [
@@ -17,12 +19,15 @@ export default function Conversation({ conversation }): JSX.Element {
   };
 
   return (
-    <div>
+    <>
       {mockConv.messages.map((message, index) => (
-        <div key={`messages${index}`}>
+        <MessageWapper
+          key={`messages${index}`}
+          $right={message.author === user}
+        >
           <Message message={message} />
-        </div>
+        </MessageWapper>
       ))}
-    </div>
+    </>
   );
 }
