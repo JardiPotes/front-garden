@@ -1,17 +1,11 @@
 import MessagePreview from "../Preview";
 
-export default function PreviewSection({
-  conversations,
-  setSelectedConv
-}): JSX.Element {
+export default function PreviewSection({ conversations }): JSX.Element {
+  console.log("conv", conversations);
   return (
     <>
-      {conversations.map((conversation, index) => (
-        <MessagePreview
-          key={`conv${index}`}
-          message={conversation}
-          setSelectedConv={setSelectedConv}
-        />
+      {conversations?.map((conversation, index) => (
+        <MessagePreview key={`conv${index}`} conversation={conversation} />
       ))}
     </>
   );
