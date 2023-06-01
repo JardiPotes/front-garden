@@ -70,5 +70,14 @@ export const LinkWrapper = styled.div`
 `;
 
 export const RoundImage = styled.img`
-  border-radius: 50px;
+  border-radius: 50%;
+  max-width: 200px;
+  height: auto;
+  width: 50%;
+`;
+
+export const ImageStyledLink = styled.a`
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
 `;
