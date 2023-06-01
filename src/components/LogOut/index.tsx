@@ -1,6 +1,7 @@
 import { AxiosError } from "axios";
 import { FC } from "react";
 import { useMutation } from "react-query";
+import { useNavigate } from "react-router-dom";
 
 import axios from "../../ClientProvider/axiosConfig";
 import { removeUser } from "../../utils/user";
@@ -13,6 +14,7 @@ type LogOutButtonProps = {
 };
 
 export const LogOutButton: FC<LogOutButtonProps> = ({ removeToken, token }) => {
+  const navigate = useNavigate();
   if (!token) {
     return null;
   }
@@ -27,6 +29,7 @@ export const LogOutButton: FC<LogOutButtonProps> = ({ removeToken, token }) => {
       onSuccess: () => {
         removeToken();
         removeUser();
+        navigate("/", { replace: true });
       },
       onError: (err: AxiosError) => {
         // eslint-disable-next-line no-console
