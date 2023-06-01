@@ -11,7 +11,7 @@ export const instance = axios.create({
   baseURL,
   headers: {
     "Content-type": "application/json",
-    Authorization: `Token ${token}`
+    Authorization: token && `Token ${token}`
   }
 });
 

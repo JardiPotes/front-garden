@@ -3,7 +3,10 @@ import { axios } from "../../../../ClientProvider";
 import { getUser } from "../../../../utils/user";
 import * as S from "./styles";
 
-export default function MessagePreview({ conversation }): JSX.Element {
+export default function MessagePreview({
+  conversation,
+  setCurrentConv
+}): JSX.Element {
   const user = getUser();
   console.debug(conversation);
   const contactId =
@@ -30,8 +33,12 @@ export default function MessagePreview({ conversation }): JSX.Element {
     keepPreviousData: true
   });
 
+  const handleClick = () => {
+    setCurrentConv(contact);
+  };
+
   return (
-    <S.PrewiewItem to={`/messages/${conversation?.id}`}>
+    <S.PrewiewItem to={`/messages/${conversation?.id}`} onClick={handleClick}>
       <S.Name>{contact?.nickName || "no name"}</S.Name>
       <S.MessagePreview>
         {conversation?.latest_message?.content || "no message yet"}

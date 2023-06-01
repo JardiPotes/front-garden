@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useQuery } from "react-query";
 
 import { axios } from "../../ClientProvider";
@@ -8,6 +9,7 @@ import * as S from "./styles";
 
 export default function MessagesPage(): JSX.Element {
   const user = getUser();
+  const [currentConv, setCurrentConv] = useState();
 
   const { error, isLoading, refetch, data, isPreviousData }: QueryArgs =
     useQuery({
@@ -23,21 +25,25 @@ export default function MessagesPage(): JSX.Element {
       keepPreviousData: true
     });
 
-  console.log(data);
-  // const conversations = data.results;
+  const hasResults = data?.results?.length;
 
   return (
     <S.Wrapper>
-      {!isLoading && (
+      {isLoading && "...Loading"}
+      {!isLoading && hasResults && (
         <>
           <S.PreviewWrapper>
-            <PreviewSection conversations={data?.results} />
+            <PreviewSection
+              conversations={data?.results}
+              setCurrentConv={setCurrentConv}
+            />
           </S.PreviewWrapper>
           <S.ConvWrapper>
-            <Conversation />
+            <Conversation currentConv={currentConv} />
           </S.ConvWrapper>
         </>
       )}
+      {!isLoading && !hasResults && "You don't have any conversation yet"}
     </S.Wrapper>
   );
 }

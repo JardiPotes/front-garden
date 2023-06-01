@@ -9,11 +9,10 @@ import { getUser } from "../../../../utils/user";
 import { Message } from "../Message";
 import { MessageWapper } from "./styles";
 
-export default function Conversation(): JSX.Element {
+export default function Conversation({ currentConv }): JSX.Element {
   // replaces with api call to retrieve conv with id
   const user = getUser();
   const { convId } = useParams();
-  console.log(convId);
   const {
     register,
     handleSubmit,
@@ -48,7 +47,6 @@ export default function Conversation(): JSX.Element {
     },
     {
       onSuccess: (res) => {
-        console.log("ok", res);
         refetch();
       },
       onError: (err) => {
@@ -58,12 +56,8 @@ export default function Conversation(): JSX.Element {
     }
   );
 
-  console.log("1 conv", data);
-  // const realConv = data.results;
-
   const postData = (data) => {
     try {
-      console.log("data", data);
       createMessage(data);
     } catch (err) {
       console.log(err);
@@ -78,7 +72,7 @@ export default function Conversation(): JSX.Element {
               key={`messages${index}`}
               $right={message?.sender_id === user?.id}
             >
-              <Message message={message} />
+              <Message message={message} currentConv={currentConv} />
             </MessageWapper>
           ))
         : "no messages yet"}
