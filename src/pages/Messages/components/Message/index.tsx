@@ -5,7 +5,6 @@ import * as S from "./styles";
 export const Message = ({ message, currentConv }) => {
   const user = getUser();
   const date = new Date(Date.parse(message.sent_at));
-  console.log(date);
   const hours = date.getHours();
   let minutes = date.getMinutes();
   if (minutes < 10) {
@@ -13,7 +12,7 @@ export const Message = ({ message, currentConv }) => {
   }
 
   const isFromUser = message?.sender_id === user?.id;
-  const author = isFromUser ? user?.nickname : currentConv?.nickname;
+  const author = isFromUser ? user?.nickname : currentConv?.nickName;
 
   return (
     <>

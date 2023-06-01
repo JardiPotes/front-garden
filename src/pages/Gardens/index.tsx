@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useQuery } from "react-query";
 
 import axios from "../../ClientProvider/axiosConfig";
+import { CommonQueryArgs } from "../../types";
 import { GardenBanner } from "./components/Banner";
 import { SearchBar } from "./components/Search";
 import { GardenThumb } from "./components/Thumb";
@@ -26,12 +27,8 @@ type GardenData = {
   results: Garden[];
 };
 
-type QueryArgs = {
-  error?: AxiosError | null;
-  isLoading?: boolean;
+type QueryArgs = CommonQueryArgs & {
   data?: void | GardenData | undefined;
-  isPreviousData: boolean;
-  refetch: () => void;
 };
 
 type Result = AxiosResponse<string | unknown> & { data: GardenData };
@@ -66,7 +63,7 @@ export const GardenPage: React.FC = () => {
           .catch((err: AxiosError) => console.log(err));
         return data;
       },
-      keepPreviousData: true,
+      keepPreviousData: true
     });
 
   useEffect(() => {

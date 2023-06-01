@@ -4,7 +4,6 @@ export default function PreviewSection({
   conversations,
   setCurrentConv
 }): JSX.Element {
-  console.log("conv", conversations);
   return (
     <>
       {conversations?.map((conversation, index) => (

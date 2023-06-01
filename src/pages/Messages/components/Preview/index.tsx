@@ -1,4 +1,5 @@
 import { useQuery } from "react-query";
+
 import { axios } from "../../../../ClientProvider";
 import { getUser } from "../../../../utils/user";
 import * as S from "./styles";
@@ -20,7 +21,7 @@ export default function MessagePreview({
     refetch,
     data: contact,
     isPreviousData
-  }: QueryArgs = useQuery({
+  } = useQuery({
     queryKey: ["contact"],
     queryFn: async () => {
       const data = await axios

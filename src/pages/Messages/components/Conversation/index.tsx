@@ -5,11 +5,37 @@ import { useParams } from "react-router-dom";
 
 import { axios } from "../../../../ClientProvider";
 import { Button } from "../../../../components/Buttons";
+import { CommonQueryArgs } from "../../../../types";
 import { getUser } from "../../../../utils/user";
+import { Message as MessageType } from "../..";
 import { Message } from "../Message";
-import { MessageWapper } from "./styles";
+import * as S from "./styles";
+import { AxiosError, AxiosResponse } from "axios";
 
-export default function Conversation({ currentConv }): JSX.Element {
+type ConvResults = {
+  messages: MessageType[];
+};
+
+type QueryArgs = CommonQueryArgs & {
+  data?: void | ConvResults | undefined;
+};
+
+type Result = AxiosResponse<string | unknown> & { data: ConvResults };
+
+type CreateMessageArgs = {
+  message: string;
+};
+
+type ConversationProps = {
+  currentConv: {
+    nickName?: string;
+    avatar?: string;
+  };
+};
+
+export default function Conversation({
+  currentConv
+}: ConversationProps): JSX.Element {
   // replaces with api call to retrieve conv with id
   const user = getUser();
   const { convId } = useParams();
@@ -23,11 +49,11 @@ export default function Conversation({ currentConv }): JSX.Element {
     useQuery({
       queryKey: ["conversation"],
       queryFn: async () => {
-        const data = await axios
+        const data: ConvResults | void = await axios
           .get(`conversations/${convId}?current_user_id=${user.id}`)
-          .then((res) => res.data)
+          .then((res: Result) => res.data)
           // eslint-disable-next-line no-console
-          .catch((err) => console.log(err));
+          .catch((err: AxiosError) => console.log(err));
         return data;
       },
       keepPreviousData: true
@@ -38,25 +64,25 @@ export default function Conversation({ currentConv }): JSX.Element {
   }, [convId]);
 
   const { isLoading: isCreatingMessage, mutate: createMessage } = useMutation(
-    async (data) => {
+    async (data: CreateMessageArgs) => {
       return await axios.post(`messages`, {
         conversation_id: convId,
-        sender_id: user.id,
+        sender_id: user?.id,
         content: data.message
       });
     },
     {
-      onSuccess: (res) => {
+      onSuccess: () => {
         refetch();
       },
-      onError: (err) => {
+      onError: (err: AxiosError) => {
         // eslint-disable-next-line no-console
         console.dir({ err });
       }
     }
   );
 
-  const postData = (data) => {
+  const postData = (data: CreateMessageArgs): void => {
     try {
       createMessage(data);
     } catch (err) {
@@ -66,18 +92,25 @@ export default function Conversation({ currentConv }): JSX.Element {
 
   return (
     <>
-      {!isLoading && data?.messages?.length
-        ? data.messages.map((message, index) => (
-            <MessageWapper
+      <div>
+        Vos échanges avec {currentConv?.nickName || "utilisateur sans nom"}
+      </div>
+      {!isLoading && data?.messages?.length ? (
+        <>
+          {data.messages.map((message, index) => (
+            <S.MessageWrapper
               key={`messages${index}`}
               $right={message?.sender_id === user?.id}
             >
               <Message message={message} currentConv={currentConv} />
-            </MessageWapper>
-          ))
-        : "no messages yet"}
+            </S.MessageWrapper>
+          ))}
+        </>
+      ) : (
+        <div>pas encore de message ici !</div>
+      )}
       <form>
-        <textarea {...register("message", { required: true })} />
+        <S.MessageArea {...register("message", { required: true })} />
         <Button onClick={handleSubmit(postData)}>{"envoyer"}</Button>
       </form>
     </>
