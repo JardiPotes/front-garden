@@ -2,8 +2,11 @@ import { AxiosError } from "axios";
 import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useMutation } from "react-query";
+import { useNavigate } from "react-router-dom";
 
 import axios from "../../ClientProvider/axiosConfig";
+import { saveUser } from "../../utils/user";
+import useToken from "../../utils/useToken";
 import { ButtonWordings, ModalFormWordings } from "../../wordings";
 import { Button } from "../Buttons";
 import { Modal } from "../Modal";
@@ -41,6 +44,8 @@ export const SignUpModal: React.FC<SignUpModalProps> = ({ setIsOpen }) => {
     Record<string, string | null>
   >({ status: null, message: "" });
 
+  const navigate = useNavigate();
+  const { setToken } = useToken();
   const formatResponse = (res: unknown): string => {
     return JSON.stringify(res, null, 2);
   };
@@ -63,11 +68,28 @@ export const SignUpModal: React.FC<SignUpModalProps> = ({ setIsOpen }) => {
       });
     },
     {
-      onSuccess: () => {
+      onSuccess: async (res, data) => {
+        const userId = res?.data?.id;
         setCreateUserResult({
           status: "success",
           message: "votre compte est bien créé !",
         });
+        try {
+          const loginResponse = await axios.post("auth/login", {
+            email: data.email,
+            password: data.password,
+          });
+          console.log("loginres", loginResponse);
+          const authToken = loginResponse?.data?.auth_token;
+          console.log("token", authToken);
+          if (userId && authToken) {
+            setToken(authToken);
+            saveUser(loginResponse.data.user);
+            navigate(`/profile/${userId}`);
+          }
+        } catch (error) {
+          console.error("Login error", error);
+        }
       },
       onError: (err: AxiosError) => {
         // eslint-disable-next-line no-console

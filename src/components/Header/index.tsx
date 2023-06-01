@@ -19,26 +19,30 @@ interface UserProfileLinkProps {
   image: string;
 }
 
-export const Header: FC = () => {
+export const Header: FC = ({ token }) => {
   const [isLoginOpen, setIsLoginOpen] = useState<boolean>(false);
-  const { token, setToken, removeToken } = useToken();
+  const { setToken, removeToken } = useToken();
   const user = getUser();
-  const isLoggedIn = Boolean(token && user);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(Boolean(token && user));
   const image = isLoggedIn ? user?.profile_image : Login;
+
+  useEffect(() => {
+    setIsLoggedIn(Boolean(token && user));
+  }, [token, user]);
+
   const UserProfileLink: React.FC<UserProfileLinkProps> = ({
     isLoggedIn,
     userId,
     image,
   }) => {
     const navigate = useNavigate();
-    const userProfileLink = `/profile/${userId}`;
-
+    const userProfileLink = userId ? `/profile/${userId}` : "/";
     useEffect(() => {
       if (!isLoginOpen && isLoggedIn) {
         navigate(userProfileLink);
       }
     }, [isLoginOpen, isLoggedIn, navigate, userProfileLink]);
-    return isLoggedIn ? (
+    return isLoggedIn && userId ? (
       <S.ImageStyledLink href={userProfileLink}>
         <S.RoundImage src={image} />
       </S.ImageStyledLink>
@@ -67,7 +71,7 @@ export const Header: FC = () => {
             <LogOutButton removeToken={removeToken} token={token} />
             <UserProfileLink
               isLoggedIn={isLoggedIn}
-              userId={user.id}
+              userId={user?.id || ""}
               image={user?.profile_image || Login}
             />
           </>
