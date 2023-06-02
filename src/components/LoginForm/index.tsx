@@ -49,7 +49,7 @@ export const LoginModal: FC<ModalProps> = ({
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
   } = useForm<LoginData>();
 
   const formatResponse = (res: unknown): string => {
@@ -58,14 +58,14 @@ export const LoginModal: FC<ModalProps> = ({
 
   const [logInStatus, setlogInStatus] = useState<LoginStatus>({
     status: null,
-    message: ""
+    message: "",
   });
 
   const onSubmit: SubmitHandler<LoginData> = (data) => {
     loginUser(data);
   };
 
-  const { isLoading: isLoading, mutate: loginUser } = useMutation(
+  const { isLoading, mutate: loginUser } = useMutation(
     async (data: LoginData) => {
       return await axios.post(`auth/login`, data);
     },
@@ -73,7 +73,7 @@ export const LoginModal: FC<ModalProps> = ({
       onSuccess: (res: UserResult) => {
         setlogInStatus({
           status: "success",
-          message: "connecté !"
+          message: "connecté !",
         });
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         setToken(res.data.auth_token);
@@ -87,9 +87,9 @@ export const LoginModal: FC<ModalProps> = ({
         const errMessage = formatResponse(err?.response?.data);
         setlogInStatus({
           status: "error",
-          message: `Oups, il y a un problème : ${errMessage}`
+          message: `Oups, il y a un problème : ${errMessage}`,
         });
-      }
+      },
     }
   );
 

@@ -9,6 +9,7 @@ import { UserProfileWordings } from "../../../../wordings";
 import { Comment as IComment } from "../..";
 import { SectionHeader } from "../SectionHeader";
 import { Comment } from "./Comment";
+import { StyledCommentForm } from "./Form";
 
 export interface CommentSectionProps {
   userId: string;
@@ -21,7 +22,7 @@ export const CommentSection: FC<CommentSectionProps> = ({ userId }) => {
     setOffset(newOffset);
   };
 
-  const { data: { data } = {} } = useQuery(
+  const { data: { data } = {}, refetch } = useQuery(
     ["comments", userId, offset],
     async () =>
       axios.get<{
@@ -41,30 +42,36 @@ export const CommentSection: FC<CommentSectionProps> = ({ userId }) => {
 
   const { results: comments, count } = data;
 
-  if (!comments || !comments.length) return null;
-
   return (
     <>
       <SectionHeader>{UserProfileWordings.commentSectionHeader}</SectionHeader>
-      <Pagination
-        pageCount={Math.ceil(count / 10)}
-        onPageChange={handlePageClick}
-      />
-      {comments.map((comment, index) => (
-        <Fragment key={comment.id}>
-          {!!index && (
-            <FontAwesomeIcon
-              icon={faBug}
-              style={{ padding: "1em" }}
-              opacity=".3"
-            />
-          )}
-          <Comment comment={comment} />
-        </Fragment>
-      ))}
-      <Pagination
-        pageCount={Math.ceil(count / 10)}
-        onPageChange={handlePageClick}
+      {!!comments.length && (
+        <>
+          <Pagination
+            pageCount={Math.ceil(count / 10)}
+            onPageChange={handlePageClick}
+          />
+          {comments.map((comment, index) => (
+            <Fragment key={comment.id}>
+              {!!index && (
+                <FontAwesomeIcon
+                  icon={faBug}
+                  style={{ padding: "1em" }}
+                  opacity=".3"
+                />
+              )}
+              <Comment comment={comment} />
+            </Fragment>
+          ))}
+          <Pagination
+            pageCount={Math.ceil(count / 10)}
+            onPageChange={handlePageClick}
+          />
+        </>
+      )}
+      <StyledCommentForm // eslint-disable-next-line @typescript-eslint/no-misused-promises
+        triggerRefetch={refetch}
+        userId={userId}
       />
     </>
   );

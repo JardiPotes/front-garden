@@ -34,6 +34,7 @@ export interface Comment {
     experience: 1 | 2 | 3 | 4 | 5;
   };
   content: string;
+  created_at: string;
 }
 
 export const Profile: FC = () => {
