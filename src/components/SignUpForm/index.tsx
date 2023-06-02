@@ -79,9 +79,7 @@ export const SignUpModal: React.FC<SignUpModalProps> = ({ setIsOpen }) => {
             email: data.email,
             password: data.password,
           });
-          console.log("loginres", loginResponse);
           const authToken = loginResponse?.data?.auth_token;
-          console.log("token", authToken);
           if (userId && authToken) {
             setToken(authToken);
             saveUser(loginResponse.data.user);

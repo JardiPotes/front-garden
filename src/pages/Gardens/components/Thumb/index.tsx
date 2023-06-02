@@ -14,7 +14,7 @@ export const GardenThumb: React.FC<GardenThumb> = ({ garden }) => {
     description,
     address,
     zipcode,
-    image = defaultImage,
+    image,
     user_image = defaultUserImage,
     user_id,
   } = garden;
@@ -23,7 +23,7 @@ export const GardenThumb: React.FC<GardenThumb> = ({ garden }) => {
 
   return (
     <S.Wrapper>
-      <S.Image src={image} />
+      <S.Image src={image ? image : defaultImage} />
       <S.InfoWrapper>
         <S.RouterLink to={`../profile/${user_id}`}>
           <S.TitleWrapper>
