@@ -14,6 +14,7 @@ import { CenterElement } from "../SignUpForm/styles";
 type ModalProps = {
   setIsOpen: Dispatch<SetStateAction<boolean>>;
   setToken: (userToken: string) => void;
+  setShouldRedirect: Dispatch<SetStateAction<boolean>>;
 };
 
 type LoginData = {
@@ -40,7 +41,11 @@ const MandatoryField: React.FC = () => {
   return <div>Ce champ est obligatoire !</div>;
 };
 
-export const LoginModal: FC<ModalProps> = ({ setIsOpen, setToken }) => {
+export const LoginModal: FC<ModalProps> = ({
+  setIsOpen,
+  setToken,
+  setShouldRedirect
+}) => {
   const {
     register,
     handleSubmit,
@@ -74,6 +79,7 @@ export const LoginModal: FC<ModalProps> = ({ setIsOpen, setToken }) => {
         setToken(res.data.auth_token);
         saveUser(res.data.user);
         setIsOpen(false);
+        setShouldRedirect(true);
       },
       onError: (err: AxiosError) => {
         // eslint-disable-next-line no-console

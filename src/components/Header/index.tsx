@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Logo from "../../assets/jardi-logo-trans.png";
@@ -16,6 +16,8 @@ interface UserProfileLinkProps {
   isLoggedIn: boolean;
   userId: string;
   image: string;
+  shouldRedirect: boolean;
+  setShouldRedirect: Dispatch<SetStateAction<boolean>>;
 }
 
 interface HeaderProps {
@@ -25,17 +27,18 @@ interface HeaderProps {
 const UserProfileLink: React.FC<UserProfileLinkProps> = ({
   isLoggedIn,
   userId,
-  image
+  image,
+  shouldRedirect,
+  setShouldRedirect
 }) => {
-  const [hasRedirected, setHasRedirected] = useState<boolean>(false);
   const navigate = useNavigate();
   const userProfileLink = userId ? `/profile/${userId}` : "/";
   useEffect(() => {
-    if (isLoggedIn && !hasRedirected) {
-      setHasRedirected(true);
+    if (isLoggedIn && shouldRedirect) {
+      setShouldRedirect(false);
       navigate(userProfileLink);
     }
-  }, [isLoggedIn, navigate, userProfileLink]);
+  }, [isLoggedIn, shouldRedirect]);
   return isLoggedIn && userId ? (
     <S.ImageStyledLink href={userProfileLink}>
       <S.RoundImage src={image} />
@@ -46,6 +49,7 @@ const UserProfileLink: React.FC<UserProfileLinkProps> = ({
 };
 
 export const Header: React.FC<HeaderProps> = ({ token }) => {
+  const [shouldRedirect, setShouldRedirect] = useState<boolean>(false);
   const [isLoginOpen, setIsLoginOpen] = useState<boolean>(false);
   const { setToken, removeToken } = useToken();
   const user = getUser();
@@ -80,6 +84,8 @@ export const Header: React.FC<HeaderProps> = ({ token }) => {
               isLoggedIn={isLoggedIn}
               userId={user?.id || ""}
               image={user?.profile_image || Login}
+              shouldRedirect={shouldRedirect}
+              setShouldRedirect={setShouldRedirect}
             />
           </>
         ) : (
@@ -92,7 +98,11 @@ export const Header: React.FC<HeaderProps> = ({ token }) => {
         )}
       </S.StyledLogin>
       {isLoginOpen && (
-        <LoginModal setIsOpen={setIsLoginOpen} setToken={setToken} />
+        <LoginModal
+          setIsOpen={setIsLoginOpen}
+          setToken={setToken}
+          setShouldRedirect={setShouldRedirect}
+        />
       )}
     </S.Wrapper>
   );
