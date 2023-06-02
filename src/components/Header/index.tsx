@@ -29,7 +29,7 @@ const UserProfileLink: React.FC<UserProfileLinkProps> = ({
   userId,
   image,
   shouldRedirect,
-  setShouldRedirect
+  setShouldRedirect,
 }) => {
   const navigate = useNavigate();
   const userProfileLink = userId ? `/profile/${userId}` : "/";

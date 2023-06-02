@@ -18,6 +18,7 @@ export const ButtonWordings = {
   continue: "CONTINUE",
   connection: "CONNEXION",
   logout: "DÉCONNEXION",
+  createGarden: "PUBLIE TON JARDIN",
 } as const;
 
 export const FooterWordings = {
@@ -46,6 +47,9 @@ export const ModalFormWordings = {
   haveGarden: "As-tu un jardin ?",
   experience: "Ton expérience en jardinage :",
   experienceTip: "De 1: 'je n'y connais rien' à 5: 'expert des plantes'",
+  title: "Le nom de ton jardin",
+  description: "Description de ton jardin",
+  zipcode: "Code postal",
 } as const;
 
 export const UserProfileWordings = {
