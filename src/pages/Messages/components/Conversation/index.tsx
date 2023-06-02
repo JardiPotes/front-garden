@@ -34,11 +34,11 @@ type ConversationProps = {
 };
 
 export default function Conversation({
-  currentConv
+  currentConv,
+  convId
 }: ConversationProps): JSX.Element {
   // replaces with api call to retrieve conv with id
   const user = getUser();
-  const { convId } = useParams();
   const {
     register,
     handleSubmit,
@@ -61,7 +61,7 @@ export default function Conversation({
 
   useEffect(() => {
     refetch();
-  }, [convId]);
+  }, [convId, currentConv]);
 
   const { isLoading: isCreatingMessage, mutate: createMessage } = useMutation(
     async (data: CreateMessageArgs) => {
@@ -95,7 +95,7 @@ export default function Conversation({
       <div>
         Vos échanges avec {currentConv?.nickName || "utilisateur sans nom"}
       </div>
-      {!isLoading && data?.messages?.length ? (
+      {data?.messages?.length ? (
         <>
           {data.messages.map((message, index) => (
             <S.MessageWrapper

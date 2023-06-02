@@ -35,7 +35,7 @@ export const SignUpModal: React.FC<SignUpModalProps> = ({ setIsOpen }) => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors }
   } = useForm<UserData>();
 
   const expOptions = [1, 2, 3, 4, 5];
@@ -64,7 +64,7 @@ export const SignUpModal: React.FC<SignUpModalProps> = ({ setIsOpen }) => {
         data.profile_image = data.profile_image[0];
       }
       return await axios.post(`auth/register`, data, {
-        headers: { "Content-Type": "multipart/form-data" },
+        headers: { "Content-Type": "multipart/form-data" }
       });
     },
     {
@@ -72,12 +72,12 @@ export const SignUpModal: React.FC<SignUpModalProps> = ({ setIsOpen }) => {
         const userId = res?.data?.id;
         setCreateUserResult({
           status: "success",
-          message: "votre compte est bien créé !",
+          message: "votre compte est bien créé !"
         });
         try {
           const loginResponse = await axios.post("auth/login", {
             email: data.email,
-            password: data.password,
+            password: data.password
           });
           const authToken = loginResponse?.data?.auth_token;
           if (userId && authToken) {
@@ -95,9 +95,9 @@ export const SignUpModal: React.FC<SignUpModalProps> = ({ setIsOpen }) => {
         const errMessage = formatResponse(err?.response?.data);
         setCreateUserResult({
           status: "error",
-          message: `Oups, il y a un problème : ${errMessage}`,
+          message: `Oups, il y a un problème : ${errMessage}`
         });
-      },
+      }
     }
   );
 

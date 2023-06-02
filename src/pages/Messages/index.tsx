@@ -1,6 +1,7 @@
 import { AxiosResponse } from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { axios } from "../../ClientProvider";
 import { CommonQueryArgs } from "../../types";
@@ -40,6 +41,8 @@ type Result = AxiosResponse<string | unknown> & { data: ConvResults };
 
 export default function MessagesPage(): JSX.Element {
   const user = getUser();
+  const { convId } = useParams();
+  const navigate = useNavigate();
 
   // To-do replace with proper component and connection button
   if (!user) {
@@ -63,6 +66,13 @@ export default function MessagesPage(): JSX.Element {
     });
 
   const hasResults = data?.results?.length;
+  const firstConv = data?.results[0]?.id;
+
+  useEffect(() => {
+    if (convId === "0" && firstConv) {
+      navigate(`../messages/${firstConv}`);
+    }
+  }, [convId, firstConv]);
 
   return (
     <S.Wrapper>
@@ -76,7 +86,7 @@ export default function MessagesPage(): JSX.Element {
             />
           </S.PreviewWrapper>
           <S.ConvWrapper>
-            <Conversation currentConv={currentConv} />
+            <Conversation currentConv={currentConv} convId={convId} />
           </S.ConvWrapper>
         </>
       )}

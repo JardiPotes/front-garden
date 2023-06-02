@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useQuery } from "react-query";
 
 import { axios } from "../../../../ClientProvider";
@@ -37,6 +38,10 @@ export default function MessagePreview({
   const handleClick = () => {
     setCurrentConv(contact);
   };
+
+  useEffect(() => {
+    setCurrentConv(contact);
+  }, [contact]);
 
   return (
     <S.PrewiewItem to={`/messages/${conversation?.id}`} onClick={handleClick}>

@@ -1,5 +1,7 @@
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import Logo from "../../assets/jardi-logo-trans.png";
 import Login from "../../assets/login.png";
@@ -27,31 +29,33 @@ interface HeaderProps {
 const UserProfileLink: React.FC<UserProfileLinkProps> = ({
   isLoggedIn,
   userId,
-  image,
-  shouldRedirect,
-  setShouldRedirect,
+  image
 }) => {
-  const navigate = useNavigate();
   const userProfileLink = userId ? `/profile/${userId}` : "/";
-  useEffect(() => {
-    if (isLoggedIn && shouldRedirect) {
-      setShouldRedirect(false);
-      navigate(userProfileLink);
-    }
-  }, [isLoggedIn, shouldRedirect]);
+
   return isLoggedIn && userId ? (
-    <S.ImageStyledLink href={userProfileLink}>
-      <S.RoundImage src={image} />
-    </S.ImageStyledLink>
+    <>
+      <S.ImageStyledLink href={userProfileLink}>
+        <S.RoundImage src={image} />
+      </S.ImageStyledLink>
+      <S.StyledLink to={"/messages/0"}>
+        <FontAwesomeIcon
+          icon={faEnvelope}
+          style={{ color: "#CEA37C", paddingRight: "2px" }}
+          size="lg"
+        />
+        Messages
+      </S.StyledLink>
+    </>
   ) : (
     <S.RoundImage src={image} />
   );
 };
 
-export const Header: React.FC<HeaderProps> = ({ token }) => {
+export const Header: React.FC<HeaderProps> = () => {
   const [shouldRedirect, setShouldRedirect] = useState<boolean>(false);
   const [isLoginOpen, setIsLoginOpen] = useState<boolean>(false);
-  const { setToken, removeToken } = useToken();
+  const { setToken, removeToken, token } = useToken();
   const user = getUser();
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(Boolean(token && user));
 
@@ -59,7 +63,7 @@ export const Header: React.FC<HeaderProps> = ({ token }) => {
 
   useEffect(() => {
     setIsLoggedIn(Boolean(token && user));
-  }, [token, user]);
+  }, [shouldRedirect, token, user]);
 
   return (
     <S.Wrapper>

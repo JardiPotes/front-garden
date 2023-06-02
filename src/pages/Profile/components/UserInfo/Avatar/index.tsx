@@ -5,12 +5,12 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import { axios } from "../../../../../ClientProvider";
 import { Button } from "../../../../../components/Buttons";
+import { LoginModal } from "../../../../../components/LoginForm";
 import { CenterElement } from "../../../../../components/SignUpForm/styles";
 import { getUser } from "../../../../../utils/user";
+import useToken from "../../../../../utils/useToken";
 import { UserInfoProps } from "..";
 import * as S from "./styles";
-import useToken from "../../../../../utils/useToken";
-import { LoginModal } from "../../../../../components/LoginForm";
 
 type AvatarProps = Pick<UserInfoProps["user"], "profile_image">;
 
