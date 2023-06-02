@@ -5,6 +5,7 @@ import { useMutation } from "react-query";
 
 import axios from "../../ClientProvider/axiosConfig";
 import { saveUser, User } from "../../utils/user";
+import useToken from "../../utils/useToken";
 import { ButtonWordings, ModalFormWordings } from "../../wordings";
 import { Button } from "../Buttons";
 import { Modal } from "../Modal";
@@ -13,7 +14,6 @@ import { CenterElement } from "../SignUpForm/styles";
 
 type ModalProps = {
   setIsOpen: Dispatch<SetStateAction<boolean>>;
-  setToken: (userToken: string) => void;
   setShouldRedirect: Dispatch<SetStateAction<boolean>>;
 };
 
@@ -43,7 +43,6 @@ const MandatoryField: React.FC = () => {
 
 export const LoginModal: FC<ModalProps> = ({
   setIsOpen,
-  setToken,
   setShouldRedirect
 }) => {
   const {
@@ -51,6 +50,7 @@ export const LoginModal: FC<ModalProps> = ({
     handleSubmit,
     formState: { errors },
   } = useForm<LoginData>();
+  const { setToken } = useToken();
 
   const formatResponse = (res: unknown): string => {
     return JSON.stringify(res, null, 2);
