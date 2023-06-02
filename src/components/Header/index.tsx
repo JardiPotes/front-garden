@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Logo from "../../assets/jardi-logo-trans.png";
@@ -19,37 +18,45 @@ interface UserProfileLinkProps {
   image: string;
 }
 
-export const Header: FC = ({ token }) => {
+interface HeaderProps {
+  token: string;
+}
+
+const UserProfileLink: React.FC<UserProfileLinkProps> = ({
+  isLoggedIn,
+  userId,
+  image
+}) => {
+  const [hasRedirected, setHasRedirected] = useState<boolean>(false);
+  const navigate = useNavigate();
+  const userProfileLink = userId ? `/profile/${userId}` : "/";
+  useEffect(() => {
+    if (isLoggedIn && !hasRedirected) {
+      setHasRedirected(true);
+      navigate(userProfileLink);
+    }
+  }, [isLoggedIn, navigate, userProfileLink]);
+  return isLoggedIn && userId ? (
+    <S.ImageStyledLink href={userProfileLink}>
+      <S.RoundImage src={image} />
+    </S.ImageStyledLink>
+  ) : (
+    <S.RoundImage src={image} />
+  );
+};
+
+export const Header: React.FC<HeaderProps> = ({ token }) => {
   const [isLoginOpen, setIsLoginOpen] = useState<boolean>(false);
   const { setToken, removeToken } = useToken();
   const user = getUser();
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(Boolean(token && user));
+
   const image = isLoggedIn ? user?.profile_image : Login;
 
   useEffect(() => {
     setIsLoggedIn(Boolean(token && user));
   }, [token, user]);
 
-  const UserProfileLink: React.FC<UserProfileLinkProps> = ({
-    isLoggedIn,
-    userId,
-    image,
-  }) => {
-    const navigate = useNavigate();
-    const userProfileLink = userId ? `/profile/${userId}` : "/";
-    useEffect(() => {
-      if (!isLoginOpen && isLoggedIn) {
-        navigate(userProfileLink);
-      }
-    }, [isLoginOpen, isLoggedIn, navigate, userProfileLink]);
-    return isLoggedIn && userId ? (
-      <S.ImageStyledLink href={userProfileLink}>
-        <S.RoundImage src={image} />
-      </S.ImageStyledLink>
-    ) : (
-      <S.RoundImage src={image} />
-    );
-  };
   return (
     <S.Wrapper>
       <S.LogoTitleWrapper>
