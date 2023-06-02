@@ -8,6 +8,7 @@ import { GlobalStyle } from "./GlobalStyles";
 import { Layout } from "./Layout";
 import { GardenPage } from "./pages/Gardens";
 import HomePage from "./pages/HomePage";
+import MessagesPage from "./pages/Messages";
 import { Profile } from "./pages/Profile";
 
 const router = createBrowserRouter([
@@ -17,18 +18,22 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <HomePage />,
+        element: <HomePage />
       },
       {
         path: "gardens",
-        element: <GardenPage />,
+        element: <GardenPage />
       },
       {
         path: "profile/:id",
-        element: <Profile />,
+        element: <Profile />
       },
-    ],
-  },
+      {
+        path: "messages/:convId",
+        element: <MessagesPage />
+      }
+    ]
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(

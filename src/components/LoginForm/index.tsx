@@ -2,6 +2,7 @@ import { AxiosError, AxiosResponse } from "axios";
 import { Dispatch, FC, SetStateAction, useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useMutation } from "react-query";
+import { useNavigate } from "react-router-dom";
 
 import axios from "../../ClientProvider/axiosConfig";
 import { saveUser, User } from "../../utils/user";
@@ -13,8 +14,8 @@ import { CenterElement } from "../SignUpForm/styles";
 
 type ModalProps = {
   setIsOpen: Dispatch<SetStateAction<boolean>>;
-  setToken: (userToken: string) => void;
   setShouldRedirect: Dispatch<SetStateAction<boolean>>;
+  setToken: Dispatch<SetStateAction<string>>;
 };
 
 type LoginData = {
@@ -52,6 +53,8 @@ export const LoginModal: FC<ModalProps> = ({
     formState: { errors },
   } = useForm<LoginData>();
 
+  const navigate = useNavigate();
+
   const formatResponse = (res: unknown): string => {
     return JSON.stringify(res, null, 2);
   };
@@ -79,7 +82,7 @@ export const LoginModal: FC<ModalProps> = ({
         setToken(res.data.auth_token);
         saveUser(res.data.user);
         setIsOpen(false);
-        setShouldRedirect(true);
+        setShouldRedirect(true), navigate(`/profile/${res.data.user.id}`);
       },
       onError: (err: AxiosError) => {
         // eslint-disable-next-line no-console

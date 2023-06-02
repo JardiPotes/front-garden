@@ -13,17 +13,12 @@ type LogOutButtonProps = {
   token: string | null;
 };
 
-export const LogOutButton: FC<LogOutButtonProps> = ({ removeToken, token }) => {
+export const LogOutButton: FC<LogOutButtonProps> = ({ removeToken }) => {
   const navigate = useNavigate();
-  if (!token) {
-    return null;
-  }
 
   const { mutate: logOut } = useMutation(
     async () => {
-      return await axios.post(`auth/logout`, {
-        headers: { Authorization: `token ${token}` },
-      });
+      return await axios.post(`auth/logout`);
     },
     {
       onSuccess: () => {
@@ -34,7 +29,7 @@ export const LogOutButton: FC<LogOutButtonProps> = ({ removeToken, token }) => {
       onError: (err: AxiosError) => {
         // eslint-disable-next-line no-console
         console.dir({ err });
-      },
+      }
     }
   );
 
