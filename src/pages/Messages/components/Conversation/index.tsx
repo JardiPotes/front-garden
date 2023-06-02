@@ -1,7 +1,7 @@
+import { AxiosError, AxiosResponse } from "axios";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
-import { useParams } from "react-router-dom";
 
 import { axios } from "../../../../ClientProvider";
 import { Button } from "../../../../components/Buttons";
@@ -10,7 +10,6 @@ import { getUser } from "../../../../utils/user";
 import { Message as MessageType } from "../..";
 import { Message } from "../Message";
 import * as S from "./styles";
-import { AxiosError, AxiosResponse } from "axios";
 
 type ConvResults = {
   messages: MessageType[];
@@ -31,6 +30,7 @@ type ConversationProps = {
     nickName?: string;
     avatar?: string;
   };
+  convId: string;
 };
 
 export default function Conversation({
@@ -56,7 +56,8 @@ export default function Conversation({
           .catch((err: AxiosError) => console.log(err));
         return data;
       },
-      keepPreviousData: true
+      keepPreviousData: true,
+      refetchInterval: 30000
     });
 
   useEffect(() => {

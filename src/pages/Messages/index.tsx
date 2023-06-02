@@ -62,7 +62,8 @@ export default function MessagesPage(): JSX.Element {
           .catch((err) => console.log(err));
         return data;
       },
-      keepPreviousData: true
+      keepPreviousData: true,
+      refetchInterval: 30000
     });
 
   const hasResults = data?.results?.length;
