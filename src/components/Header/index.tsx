@@ -94,7 +94,10 @@ export const Header: React.FC<HeaderProps> = () => {
           </>
         ) : (
           <>
-            <Button onClick={(): void => setIsLoginOpen(true)}>
+            <Button
+              onClick={(): void => setIsLoginOpen(true)}
+              data-test-id="connexion_button"
+            >
               {ButtonWordings.connection}
             </Button>
             <S.RoundImage src={image} />

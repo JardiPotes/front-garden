@@ -93,7 +93,7 @@ export const LoginModal: FC<ModalProps> = ({
         const errMessage = formatResponse(err?.response?.data);
         setlogInStatus({
           status: "error",
-          message: `Oups, il y a un problème : ${errMessage}`
+          message: `Oups : ${errMessage}`
         });
       }
     }
@@ -121,10 +121,15 @@ export const LoginModal: FC<ModalProps> = ({
             {errors.password && <MandatoryField />}
           </S.labelInputWrapper>
           {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
-          <Button onClick={handleSubmit(onSubmit)}>
+          <Button
+            onClick={handleSubmit(onSubmit)}
+            data-test-id="connexion_submit"
+          >
             {ButtonWordings.connection}
           </Button>
-          {logInStatus?.status && logInStatus?.message}
+          <div data-test-id="connexion_error">
+            {logInStatus?.status && logInStatus?.message}
+          </div>
         </CenterElement>
       </form>
     </Modal>
