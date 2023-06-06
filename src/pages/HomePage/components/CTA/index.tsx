@@ -26,7 +26,10 @@ export const CTA: React.FC = () => {
             </S.ButtonLink>
           </Button>
         ) : (
-          <Button onClick={(): void => setIsOpen(true)}>
+          <Button
+            onClick={(): void => setIsOpen(true)}
+            data-test-id="register_button"
+          >
             {ButtonWordings.join}
           </Button>
         )}

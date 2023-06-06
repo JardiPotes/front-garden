@@ -34,6 +34,8 @@ export const LogOutButton: FC<LogOutButtonProps> = ({ removeToken }) => {
   );
 
   return (
-    <Button onClick={(): void => logOut()}>{ButtonWordings.logout}</Button>
+    <Button onClick={(): void => logOut()} data-test-id="logout_button">
+      {ButtonWordings.logout}
+    </Button>
   );
 };

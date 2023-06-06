@@ -115,6 +115,7 @@ export const SignUpModal: React.FC<SignUpModalProps> = ({ setIsOpen }) => {
             <S.ModalBodyInputBody
               placeholder="ilovecss@sarcasm.fr"
               {...register("email", { required: true })}
+              data-test-id="register_email"
             />
             {errors.email && <MandatoryField />}
           </S.labelInputWrapper>
@@ -124,6 +125,7 @@ export const SignUpModal: React.FC<SignUpModalProps> = ({ setIsOpen }) => {
               type="password"
               placeholder="********"
               {...register("password", { required: true })}
+              data-test-id="register_password"
             />
             {errors.password && <MandatoryField />}
           </S.labelInputWrapper>
@@ -132,6 +134,7 @@ export const SignUpModal: React.FC<SignUpModalProps> = ({ setIsOpen }) => {
             <S.ModalBodyInputBody
               placeholder="Huguette-JMiche"
               {...register("nickname", { required: true })}
+              data-test-id="register_nickname"
             />
             {errors.nickname && <MandatoryField />}
           </S.labelInputWrapper>
@@ -152,6 +155,7 @@ export const SignUpModal: React.FC<SignUpModalProps> = ({ setIsOpen }) => {
                   id={option.toString()}
                   {...register("experience")}
                   value={option}
+                  data-test-id="register_experience"
                 />
               </S.radioInputWrapper>
             ))}
@@ -160,7 +164,10 @@ export const SignUpModal: React.FC<SignUpModalProps> = ({ setIsOpen }) => {
           <Uploader register={register} />
           <CenterElement>
             {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
-            <Button onClick={handleSubmit(postData)}>
+            <Button
+              onClick={handleSubmit(postData)}
+              data-test-id="register_submit"
+            >
               {ButtonWordings.join}
             </Button>
             {createUserResult.status && createUserResult.message}
