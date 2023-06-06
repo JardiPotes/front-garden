@@ -13,7 +13,7 @@ describe("Jardipotes home page", () => {
     cy.get('[data-test-id="connexion_error"]').should("contain.text", "Oups");
   });
   it("allows user to connect and redirects to profile page", () => {
-    cy.login("vic@test.com", "Test300591");
+    cy.login(Cypress.env("login_id"), Cypress.env("password"));
     cy.url().should("eq", "http://localhost:5173/profile/17");
   });
 });

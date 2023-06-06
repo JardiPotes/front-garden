@@ -4,7 +4,12 @@
 - clone repo 
 - `yarn` 
 - `yarn dev` and go to http://127.0.0.1:5173/ to see your changes
-- don't forget to create a branch for each feature and make pull-request, never push directly to master :) 
+- don't forget to create a branch for each feature and make pull-request, never push directly to master :)
+
+### Local e2e test with cypress : 
+- create a `cypress.env.json` file (see cypress.env.exemple) 
+- run your projet (front-end and back-end) localy 
+- `yarn cypress open`
 
 ### See storybook doc : 
 - `yarn storybook`
