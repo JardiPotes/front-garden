@@ -32,10 +32,15 @@ export const SearchBar: React.FC<SearchBarProps> = ({ setSearch }) => {
   return (
     <Wrapper>
       <Search>
-        <SearchInput {...register("zipcode")} placeholder="search by zipcode" />
+        <SearchInput
+          {...register("zipcode")}
+          placeholder="search by zipcode"
+          data-test-id="zipcode"
+        />
         <Button
           onClick={intentionallyFloatingPromiseReturn(handleSubmit(onSearch))}
           small={isMobile && true}
+          data-test-id="search_submit"
         >
           {isMobile ? <FontAwesomeIcon icon={faMagnifyingGlass} /> : "Filtrer"}
         </Button>

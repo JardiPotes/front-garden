@@ -92,7 +92,9 @@ export const Avatar: FC<AvatarProps> = ({
           </Button>
         )}
         {!isConnectedUser && isConnected && (
-          <Button onClick={postData}>Message me</Button>
+          <Button onClick={postData} data-test-id="message_me">
+            Envoyer un message
+          </Button>
         )}
       </CenterElement>
       {isOpen && <LoginModal setIsOpen={setIsOpen} setToken={setToken} />}

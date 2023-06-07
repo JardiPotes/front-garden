@@ -1,7 +1,6 @@
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 
 import Logo from "../../assets/jardi-logo-trans.png";
 import Login from "../../assets/login.png";
@@ -38,7 +37,7 @@ const UserProfileLink: React.FC<UserProfileLinkProps> = ({
       <S.ImageStyledLink href={userProfileLink}>
         <S.RoundImage src={image} />
       </S.ImageStyledLink>
-      <S.StyledLink to={"/messages/0"}>
+      <S.StyledLink to={"/messages/0"} data-test-id="messages">
         <FontAwesomeIcon
           icon={faEnvelope}
           style={{ color: "#CEA37C", paddingRight: "2px" }}
@@ -75,7 +74,9 @@ export const Header: React.FC<HeaderProps> = () => {
       </S.LogoTitleWrapper>
       <nav>
         <S.LinkWrapper>
-          <S.StyledLink to="gardens">Jardins</S.StyledLink>
+          <S.StyledLink to="gardens" data-test-id="garden_link">
+            Jardins
+          </S.StyledLink>
           <S.StyledLink to="rules">FAQ</S.StyledLink>
         </S.LinkWrapper>
       </nav>

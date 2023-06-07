@@ -38,6 +38,7 @@ describe("Jardipotes home page", () => {
     cy.intercept("POST", "http://127.0.0.1:8000/api/gardens").as("garden");
     cy.login(Cypress.env("login_id"), Cypress.env("password"));
     cy.wait("@login");
+    cy.reload();
     cy.get('[data-test-id="create_garden"]').click();
     cy.get('[data-test-id="create_garden_title"]').type("test");
     cy.get('[data-test-id="create_garden_description"]').type(
@@ -45,9 +46,9 @@ describe("Jardipotes home page", () => {
     );
     cy.get('[data-test-id="create_garden_zipcode"]').type("00000");
     cy.get('[data-test-id="create_garden_submit"]').click();
-    // cy.wait("@garden").its("response.statusCode").should("eq", 201);
     cy.wait("@garden").then(({ response }) => {
       cy.log(response);
+      //   expect(response?.statusCode).to.equal(201);
       cy.request({
         url: `http://127.0.0.1:8000/api/gardens/${response.body.id}`,
         method: "DELETE",
@@ -57,7 +58,6 @@ describe("Jardipotes home page", () => {
         }
       });
     });
-    cy.wait("@delete");
   });
   it("allows user to logout", () => {
     cy.intercept("http://127.0.0.1:8000/api/auth/login").as("login");
@@ -70,6 +70,32 @@ describe("Jardipotes home page", () => {
       "contain.text",
       "CONNEXION"
     );
+  });
+  it("allows user to look for a garden and contact user", () => {
+    cy.intercept("http://127.0.0.1:8000/api/auth/login").as("login");
+    cy.intercept("http://127.0.0.1:8000/api/**").as("api");
+    cy.intercept(
+      `http://127.0.0.1:8000/api/gardens?offset=0&zipcode=${Cypress.env(
+        "test_zipcode"
+      )}&`
+    ).as("search");
+    cy.intercept(
+      "POST",
+      "http://127.0.0.1:8000/api/conversations?current_user_id=*"
+    ).as("conv");
+    cy.login(Cypress.env("login_id"), Cypress.env("password"));
+    cy.wait("@login");
+    cy.wait("@api");
+    cy.get('[data-test-id="garden_link"]').click();
+    cy.url().should("eq", "http://localhost:5173/gardens");
+    cy.get('[data-test-id="zipcode"]').type(Cypress.env("test_zipcode"));
+    cy.get('[data-test-id="search_submit"]').click();
+    cy.wait("@search").its("response.statusCode").should("eq", 200);
+    cy.get('[data-test-id="garden_thumb"]').first().click();
+    cy.url().should("match", /^http:\/\/localhost:5173\/profile/);
+    cy.get('[data-test-id="message_me"]').click();
+    cy.wait("@conv").its("response.statusCode").should("eq", 201);
+    cy.get('[data-test-id="messages"]').click();
   });
 });
 //   TO-DO :

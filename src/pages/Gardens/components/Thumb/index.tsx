@@ -20,7 +20,7 @@ export const GardenThumb: React.FC<GardenThumbProps> = ({ garden }) => {
     <S.Wrapper>
       <S.Image src={image ? image : defaultImage} />
       <S.InfoWrapper>
-        <S.RouterLink to={`../profile/${user_id}`}>
+        <S.RouterLink to={`../profile/${user_id}`} data-test-id="garden_thumb">
           <S.TitleWrapper>
             <S.Icon
               src={user?.profile_image ? user.profile_image : defaultUserImage}
