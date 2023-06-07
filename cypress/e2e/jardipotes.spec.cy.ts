@@ -9,6 +9,9 @@ describe("Jardipotes home page", () => {
   it("allows user to register", () => {
     cy.intercept("http://127.0.0.1:8000/api/auth/register").as("register");
     cy.intercept("http://127.0.0.1:8000/api/auth/login").as("login");
+    cy.intercept(
+      "http://127.0.0.1:8000/admin/login/?next=/admin/accounts/user/**"
+    ).as("delete");
     cy.visit("/");
     cy.get('[data-test-id="register_button"]').click();
     cy.get('[data-test-id="register_email"]').type("test@test.fr");
@@ -17,7 +20,6 @@ describe("Jardipotes home page", () => {
     cy.get('[data-test-id="register_experience"]').first().check();
     cy.get('[data-test-id="register_submit"]').click();
     cy.wait("@register").its("response.statusCode").should("eq", 201);
-    cy.wait("@login");
   });
   it("shows error message when logins are wrong", () => {
     cy.intercept("http://127.0.0.1:8000/api/auth/login").as("login");
@@ -28,8 +30,34 @@ describe("Jardipotes home page", () => {
   it("allows user to connect and redirects to profile page", () => {
     cy.intercept("http://127.0.0.1:8000/api/auth/login").as("login");
     cy.login(Cypress.env("login_id"), Cypress.env("password"));
-    cy.wait("@login");
+    cy.wait("@login").its("response.statusCode").should("eq", 200);
     cy.url().should("eq", "http://localhost:5173/profile/17");
+  });
+  it("allows user to create garden", () => {
+    cy.intercept("http://127.0.0.1:8000/api/auth/login").as("login");
+    cy.intercept("POST", "http://127.0.0.1:8000/api/gardens").as("garden");
+    cy.login(Cypress.env("login_id"), Cypress.env("password"));
+    cy.wait("@login");
+    cy.get('[data-test-id="create_garden"]').click();
+    cy.get('[data-test-id="create_garden_title"]').type("test");
+    cy.get('[data-test-id="create_garden_description"]').type(
+      "test description"
+    );
+    cy.get('[data-test-id="create_garden_zipcode"]').type("00000");
+    cy.get('[data-test-id="create_garden_submit"]').click();
+    // cy.wait("@garden").its("response.statusCode").should("eq", 201);
+    cy.wait("@garden").then(({ response }) => {
+      cy.log(response);
+      cy.request({
+        url: `http://127.0.0.1:8000/api/gardens/${response.body.id}`,
+        method: "DELETE",
+        auth: {
+          user: Cypress.env("login_id"),
+          pass: Cypress.env("password")
+        }
+      });
+    });
+    cy.wait("@delete");
   });
   it("allows user to logout", () => {
     cy.intercept("http://127.0.0.1:8000/api/auth/login").as("login");
@@ -46,8 +74,7 @@ describe("Jardipotes home page", () => {
 });
 //   TO-DO :
 //   check auth token cookie
-//   log out
-//   create garden
 //   garden page + search
 //   send message
 //   create github ci script
+//   see how to add photos
