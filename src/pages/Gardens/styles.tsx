@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { ButtonStyle } from "../../components/Buttons/styles";
+import { ButtonStyle } from "../../components/Button/styles";
 
 export const PageButton = styled(ButtonStyle)`
   background-color: #e5b873;

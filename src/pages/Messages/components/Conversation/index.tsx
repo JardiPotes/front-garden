@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
 
 import { axios } from "../../../../ClientProvider";
-import { Button } from "../../../../components/Buttons";
+import { Button } from "../../../../components/Button";
 import { CommonQueryArgs } from "../../../../types";
 import { getUser } from "../../../../utils/user";
 import { Message as MessageType } from "../..";

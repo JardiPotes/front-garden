@@ -1,15 +1,15 @@
 import { FC, useState } from "react";
+import { useParams } from "react-router-dom";
 
-import { Button } from "../../../../components/Buttons";
-import { ButtonWordings } from "../../../../wordings";
+import { ButtonWordings } from "../../../../assets/wordings";
+import { Button } from "../../../../Components/Button";
+import useToken from "../../../../hooks/useToken";
+import { getUser } from "../../../../utils/user";
 import { UserWithGardens } from "../..";
 import { CreateGardenForm } from "../Gardens/CreateForm";
 import { Avatar } from "./Avatar";
 import { BioCard } from "./BioCard";
 import * as S from "./styles";
-import { getUser } from "../../../../utils/user";
-import useToken from "../../../../utils/useToken";
-import { useParams } from "react-router-dom";
 
 export interface UserInfoProps {
   user: Pick<

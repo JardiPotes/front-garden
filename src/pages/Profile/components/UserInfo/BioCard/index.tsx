@@ -1,8 +1,8 @@
 import { FC } from "react";
 
-import { Card } from "../../../../../components/Card";
-import { Experience } from "../../../../../components/Experience";
-import { UserProfileWordings } from "../../../../../wordings";
+import { UserProfileWordings } from "../../../../../assets/wordings";
+import { Card } from "../../../../../Components/Card";
+import { Experience } from "../../Experience";
 import { UserInfoProps } from "..";
 import * as S from "./styles";
 

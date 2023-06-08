@@ -1,15 +1,18 @@
-import { AxiosError } from "axios";
+import { AxiosError, AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useMutation } from "react-query";
 
+import {
+  ButtonWordings,
+  ModalFormWordings
+} from "../../../../../assets/wordings";
 import axios from "../../../../../ClientProvider/axiosConfig";
-import { Button } from "../../../../../components/Buttons";
-import { Modal } from "../../../../../components/Modal";
-import * as S from "../../../../../components/Modal/styles";
+import { Button } from "../../../../../Components/Button";
+import { Modal } from "../../../../../Components/Modal";
+import * as S from "../../../../../Components/Modal/styles";
+import useToken from "../../../../../hooks/useToken";
 import { getUser } from "../../../../../utils/user";
-import useToken from "../../../../../utils/useToken";
-import { ButtonWordings, ModalFormWordings } from "../../../../../wordings";
 import { CenterElement } from "./styles";
 import { Uploader } from "./uploader";
 
@@ -19,6 +22,10 @@ const MandatoryField: React.FC = () => {
 
 type CreateFormProps = {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+type Res = {
+  id: string;
 };
 
 export type GardenData = {
@@ -77,7 +84,7 @@ export const CreateGardenForm: React.FC<CreateFormProps> = ({ setIsOpen }) => {
           }
         })
         // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access
-        .then((res) => res.data.id);
+        .then((res: AxiosResponse<Res>) => res?.data?.id);
     },
     {
       onError: (err: AxiosError) => {
@@ -96,7 +103,7 @@ export const CreateGardenForm: React.FC<CreateFormProps> = ({ setIsOpen }) => {
     async (data: PhotosData) => {
       return await axios.post(
         `/photos`,
-        { garden_id: data.gardenId, image: data.photos[0] },
+        { garden_id: data?.gardenId, image: data?.photos[0] },
         {
           headers: {
             "Content-Type": "multipart/form-data",
@@ -121,7 +128,7 @@ export const CreateGardenForm: React.FC<CreateFormProps> = ({ setIsOpen }) => {
 
   useEffect(() => {
     const photos = getValues("garden_image");
-    if (photos !== undefined && photos?.length > 0) {
+    if (photos !== undefined && photos?.length > 0 && gardenId !== undefined) {
       uploadPhoto({ gardenId, photos });
     } else if (gardenId) {
       setIsOpen(false);

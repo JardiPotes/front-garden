@@ -1,7 +1,7 @@
 import { FC } from "react";
 
-import { Card } from "../../../../../components/Card";
-import { Experience } from "../../../../../components/Experience";
+import { Card } from "../../../../../Components/Card";
+import { Experience } from "../../Experience";
 import { Comment as IComment } from "../../..";
 import * as S from "./styles";
 
@@ -14,7 +14,7 @@ interface AuthorInfoProps {
 }
 
 const AuthorInfo: FC<AuthorInfoProps> = ({
-  author: { profile_image, experience },
+  author: { profile_image, experience }
 }) => {
   return (
     <S.Stack>
@@ -25,7 +25,7 @@ const AuthorInfo: FC<AuthorInfoProps> = ({
 };
 
 export const Comment: FC<CommentProps> = ({
-  comment: { author, content, created_at },
+  comment: { author, content, created_at }
 }) => (
   <S.Wrapper>
     <AuthorInfo author={author} />
@@ -36,7 +36,7 @@ export const Comment: FC<CommentProps> = ({
           {new Intl.DateTimeFormat("fr-FR", {
             dateStyle: "long",
             timeStyle: "short",
-            timeZone: "Europe/Paris",
+            timeZone: "Europe/Paris"
           }).format(new Date(created_at))}
         </S.Datetime>
       </S.NameDatetimeWrapper>

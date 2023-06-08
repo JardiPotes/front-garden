@@ -1,11 +1,9 @@
 import { FC } from "react";
 
-//import Chicken from "../../../../assets/chicken-icon.png";
 import WhiteChicken from "../../../../assets/white-chicken.png";
 import WhiteFlower from "../../../../assets/white-flower.png";
-import { HomePageWordings } from "../../../../wordings";
+import { HomePageWordings } from "../../../../assets/wordings";
 import * as S from "./styles";
-//import Flowers from "../../../../assets/flowers-icon.png";
 
 export const TitleCard: FC = () => {
   return (

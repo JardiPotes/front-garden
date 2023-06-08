@@ -6,9 +6,9 @@ import { useNavigate } from "react-router-dom";
 
 import axios from "../../ClientProvider/axiosConfig";
 import { saveUser } from "../../utils/user";
-import useToken from "../../utils/useToken";
-import { ButtonWordings, ModalFormWordings } from "../../wordings";
-import { Button } from "../Buttons";
+import useToken from "../../hooks/useToken";
+import { ButtonWordings, ModalFormWordings } from "../../assets/wordings";
+import { Button } from "../Button";
 import { Modal } from "../Modal";
 import * as S from "../Modal/styles";
 import { Uploader } from "../Uploader";
