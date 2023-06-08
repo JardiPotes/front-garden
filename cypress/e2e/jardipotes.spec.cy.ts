@@ -20,6 +20,13 @@ describe("Jardipotes home page", () => {
     cy.get('[data-test-id="register_experience"]').first().check();
     cy.get('[data-test-id="register_submit"]').click();
     cy.wait("@register").its("response.statusCode").should("eq", 201);
+    cy.wait("@login");
+    // .then(({ response }) => {
+    //   cy.request(
+    //     "DELETE",
+    //     `http://127.0.0.1:8000/api/users/${response?.body.user.id}`
+    //   );
+    // });
   });
   it("shows error message when logins are wrong", () => {
     cy.intercept("http://127.0.0.1:8000/api/auth/login").as("login");
@@ -31,7 +38,7 @@ describe("Jardipotes home page", () => {
     cy.intercept("http://127.0.0.1:8000/api/auth/login").as("login");
     cy.login(Cypress.env("login_id"), Cypress.env("password"));
     cy.wait("@login").its("response.statusCode").should("eq", 200);
-    cy.url().should("eq", "http://localhost:5173/profile/17");
+    cy.url().should("eq", "http://localhost:5173/profile/*");
   });
   it("allows user to create garden", () => {
     cy.intercept("http://127.0.0.1:8000/api/auth/login").as("login");
@@ -74,11 +81,9 @@ describe("Jardipotes home page", () => {
   it("allows user to look for a garden and contact user", () => {
     cy.intercept("http://127.0.0.1:8000/api/auth/login").as("login");
     cy.intercept("http://127.0.0.1:8000/api/**").as("api");
-    cy.intercept(
-      `http://127.0.0.1:8000/api/gardens?offset=0&zipcode=${Cypress.env(
-        "test_zipcode"
-      )}&`
-    ).as("search");
+    cy.intercept(`http://127.0.0.1:8000/api/gardens?offset=0&zipcode=*`).as(
+      "search"
+    );
     cy.intercept(
       "POST",
       "http://127.0.0.1:8000/api/conversations?current_user_id=*"
