@@ -23,8 +23,8 @@ export type Garden = {
 type User = {
   id: number;
   experience: number;
-  profile_image: string;
   nickname: string;
+  profile_image: string;
 };
 
 type GardenData = {

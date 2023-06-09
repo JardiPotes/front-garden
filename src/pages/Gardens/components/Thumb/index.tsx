@@ -1,11 +1,11 @@
 import { Garden } from "../../index";
 import * as S from "./styles";
 
-type GardenThumb = {
+type GardenThumbProps = {
   garden: Garden;
 };
 
-export const GardenThumb: React.FC<GardenThumb> = ({ garden }) => {
+export const GardenThumb: React.FC<GardenThumbProps> = ({ garden }) => {
   const defaultImage = "public/images/garden2.jpg";
   const defaultUserImage = "public/images/jardinier.jpg";
   const pin = "public/images/pin.png";
