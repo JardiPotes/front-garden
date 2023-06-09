@@ -2,17 +2,31 @@ import { getUser } from "../../../../utils/user";
 import { Name } from "../Preview/styles";
 import * as S from "./styles";
 
-export const Message = ({ message, currentConv }) => {
+type MessageProps = {
+  message: {
+    id: number;
+    sender_id: string;
+    content: string;
+    sent_at: string;
+  };
+  currentConv: {
+    nickname: string;
+    avatar?: string;
+  };
+};
+
+export const Message: React.FC<MessageProps> = ({ message, currentConv }) => {
   const user = getUser();
   const date = new Date(Date.parse(message.sent_at));
   const hours = date.getHours();
-  let minutes = date.getMinutes();
+  const minutes = date.getMinutes();
+  let minutesStr = minutes.toString();
   if (minutes < 10) {
-    minutes = "0" + minutes;
+    minutesStr = "0" + minutesStr;
   }
 
   const isFromUser = message?.sender_id === user?.id;
-  const author = isFromUser ? user?.nickname : currentConv?.nickName;
+  const author = isFromUser ? user?.nickname : currentConv?.nickname;
 
   return (
     <>
@@ -20,7 +34,7 @@ export const Message = ({ message, currentConv }) => {
         <S.Content>{message.content}</S.Content>
         <S.Date>{`${date.toLocaleDateString(
           "fr"
-        )} à ${hours}h:${minutes}`}</S.Date>
+        )} à ${hours}h:${minutesStr}`}</S.Date>
       </S.Bubble>
       <Name>{author}</Name>
     </>

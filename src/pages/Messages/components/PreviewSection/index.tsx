@@ -1,4 +1,4 @@
-import MessagePreview from "../Preview";
+import { MessagePreview } from "../Preview";
 
 export default function PreviewSection({
   conversations,
