@@ -20,30 +20,30 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <HomePage />
+        element: <HomePage />,
       },
       {
         path: "gardens",
-        element: <GardenPage />
+        element: <GardenPage />,
       },
       {
         path: "profile/:id",
-        element: <Profile />
+        element: <Profile />,
       },
       {
         path: "messages/:convId",
-        element: <MessagesPage />
+        element: <MessagesPage />,
       },
       {
         path: "intro",
-        element: <Intro />
+        element: <Intro />,
       },
       {
         path: "wip",
-        element: <Wip />
-      }
-    ]
-  }
+        element: <Wip />,
+      },
+    ],
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
