@@ -45,7 +45,7 @@ export default function MessagePreview({
 
   return (
     <S.PrewiewItem to={`/messages/${conversation?.id}`} onClick={handleClick}>
-      <S.Name>{contact?.nickName || "no name"}</S.Name>
+      <S.Name>{contact?.nickname || "no name"}</S.Name>
       <S.MessagePreview>
         {conversation?.latest_message?.content || "no message yet"}
       </S.MessagePreview>
