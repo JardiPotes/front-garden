@@ -43,7 +43,13 @@ export const Avatar: FC<AvatarProps> = ({ profile_image }) => {
     async (data: CreateConvArgs) => {
       return await axios.post(
         `conversations?current_user_id=${user?.id}`,
-        data
+        data,
+        {
+          headers: {
+            "Content-type": "application/json",
+            Authorization: `Token ${token}`
+          }
+        }
       );
     },
     {
