@@ -6,5 +6,7 @@
   },
   "setupFilesAfterEnv": ["@testing-library/jest-dom/extend-expect"],
   "preset": "ts-jest",
-  "transformIgnorePatterns": ["/node_modules/use-breakpoint/"]
+  "transformIgnorePatterns": [
+    "node_modules/(?!(use-breakpoint)|use-breakpoint|@use-breakpoint)"
+  ]
 }

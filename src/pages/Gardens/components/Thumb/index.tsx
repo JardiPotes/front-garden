@@ -23,7 +23,7 @@ export const GardenThumb: React.FC<GardenThumbProps> = ({ garden }) => {
         <S.RouterLink to={`../profile/${user_id}`}>
           <S.TitleWrapper>
             <S.Icon
-              src={user.profile_image ? user.profile_image : defaultUserImage}
+              src={user?.profile_image ? user.profile_image : defaultUserImage}
             />
             <div>{title}</div>
           </S.TitleWrapper>

@@ -1,24 +1,23 @@
 import { render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 
-import { GardenPage } from "./index";
+import { userStub } from "../../stubs";
+import { UserInfo } from "./index";
 
-const mockedUseQuery = jest.fn();
+const mockedUseMutation = jest.fn();
 
 jest.mock("react-query", () => ({
   ...jest.requireActual("react-query"),
-  useQuery: () => mockedUseQuery
+  useMutation: () => mockedUseMutation
 }));
 
-describe.skip("render", () => {
+describe("render", () => {
   it("should render without crash", () => {
     render(
       <BrowserRouter>
-        <GardenPage />
+        <UserInfo user={userStub} />
       </BrowserRouter>
     );
-    expect(
-      screen.getByText("Trouve le jardin de tes rêves !")
-    ).toBeInTheDocument();
+    expect(screen.getByText("Mylène Farmer")).toBeInTheDocument();
   });
 });

@@ -21,9 +21,7 @@ export interface Garden {
   title: string;
   description: string;
   zipcode: string;
-  photos: {
-    image: string;
-  }[];
+  image: string;
 }
 
 export interface Comment {
@@ -46,7 +44,7 @@ export const Profile: FC = () => {
     ["user", id],
     async () => axios.get<UserWithGardens>(`users/${id}`),
     {
-      keepPreviousData: true,
+      keepPreviousData: true
     }
   );
 

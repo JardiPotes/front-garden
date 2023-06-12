@@ -19,9 +19,17 @@ type CreateConvArgs = {
   chat_receiver_id: number | string | undefined;
 };
 
+type ErrorData = {
+  conversation_id: string;
+};
+
+type ResData = {
+  id: string;
+};
+
 export const Avatar: FC<AvatarProps> = ({ profile_image }) => {
   const user = getUser();
-  const { token } = useToken();
+  const { token, setToken } = useToken();
   const { id } = useParams();
   const navigate = useNavigate();
   const isConnected = user && token;
@@ -35,6 +43,7 @@ export const Avatar: FC<AvatarProps> = ({ profile_image }) => {
         chat_receiver_id: id
       });
     } catch (err) {
+      // eslint-disable-next-line no-console
       console.log(err);
     }
   };
@@ -42,6 +51,7 @@ export const Avatar: FC<AvatarProps> = ({ profile_image }) => {
   const { mutate: createConversation } = useMutation(
     async (data: CreateConvArgs) => {
       return await axios.post(
+        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
         `conversations?current_user_id=${user?.id}`,
         data,
         {
@@ -53,13 +63,13 @@ export const Avatar: FC<AvatarProps> = ({ profile_image }) => {
       );
     },
     {
-      onSuccess: (res: AxiosResponse) => {
-        navigate(`/messages/${res.data.id}`);
+      onSuccess: (res: AxiosResponse<ResData>) => {
+        navigate(`/messages/${res?.data?.id}`);
       },
-      onError: (err: AxiosError) => {
+      onError: (err: AxiosError<ErrorData>) => {
         // eslint-disable-next-line no-console
         console.dir({ err });
-        if (err.response.data.conversation_id) {
+        if (err?.response?.data?.conversation_id) {
           navigate(`/messages/${err.response.data.conversation_id}`);
         }
       }
@@ -79,7 +89,7 @@ export const Avatar: FC<AvatarProps> = ({ profile_image }) => {
           <Button onClick={postData}>Message me</Button>
         )}
       </CenterElement>
-      {isOpen && <LoginModal setIsOpen={setIsOpen} />}
+      {isOpen && <LoginModal setIsOpen={setIsOpen} setToken={setToken} />}
     </>
   );
 };

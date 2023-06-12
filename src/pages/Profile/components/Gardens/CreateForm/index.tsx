@@ -7,11 +7,11 @@ import axios from "../../../../../ClientProvider/axiosConfig";
 import { Button } from "../../../../../components/Buttons";
 import { Modal } from "../../../../../components/Modal";
 import * as S from "../../../../../components/Modal/styles";
-import { Uploader } from "../../../../../components/Uploader";
 import { getUser } from "../../../../../utils/user";
 import useToken from "../../../../../utils/useToken";
 import { ButtonWordings, ModalFormWordings } from "../../../../../wordings";
-import { CenterElement } from "./styles.tsx";
+import { CenterElement } from "./styles";
+import { Uploader } from "./uploader";
 const MandatoryField: React.FC = () => {
   return <div>Ce champ est obligatoire !</div>;
 };
@@ -20,12 +20,17 @@ type CreateFormProps = {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export type UserData = {
+export type GardenData = {
   user_id: string;
   title: string;
   description?: string;
   zipcode: string;
-  image?: File | FileList;
+  garden_image?: File[] | FileList;
+};
+
+type PhotosData = {
+  gardenId: string;
+  photos: File[] | FileList;
 };
 
 export const CreateGardenForm: React.FC<CreateFormProps> = ({ setIsOpen }) => {
@@ -34,7 +39,7 @@ export const CreateGardenForm: React.FC<CreateFormProps> = ({ setIsOpen }) => {
     handleSubmit,
     getValues,
     formState: { errors },
-  } = useForm<UserData>();
+  } = useForm<GardenData>();
 
   const [createGardenResult, setCreateGardenResult] = useState<
     Record<string, string | null>
@@ -44,7 +49,7 @@ export const CreateGardenForm: React.FC<CreateFormProps> = ({ setIsOpen }) => {
     return JSON.stringify(res, null, 2);
   };
   const { token } = useToken();
-  const postData: SubmitHandler<UserData> = (data) => {
+  const postData: SubmitHandler<GardenData> = (data) => {
     try {
       createGarden(data);
     } catch (err) {
@@ -53,24 +58,29 @@ export const CreateGardenForm: React.FC<CreateFormProps> = ({ setIsOpen }) => {
   };
 
   const {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     data: gardenId,
     isLoading: isCreatingGarden,
     mutate: createGarden,
   } = useMutation(
-    async (data: UserData) => {
+    async (data: GardenData) => {
       const user = getUser();
-
-      user ? (data.user_id = user.id) : console.err("No User");
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, no-console
+      user ? (data.user_id = user.id) : console.log("No User");
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
       return await axios
         .post(`/gardens`, data, {
           headers: {
+            // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
             Authorization: `Token ${token}`,
           },
         })
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access
         .then((res) => res.data.id);
     },
     {
       onError: (err: AxiosError) => {
+        // eslint-disable-next-line no-console
         console.dir({ err });
         const errMessage = formatResponse(err?.response?.data);
         setCreateGardenResult({
@@ -89,6 +99,7 @@ export const CreateGardenForm: React.FC<CreateFormProps> = ({ setIsOpen }) => {
         {
           headers: {
             "Content-Type": "multipart/form-data",
+            // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
             Authorization: `Token ${token}`,
           },
         }
@@ -107,8 +118,11 @@ export const CreateGardenForm: React.FC<CreateFormProps> = ({ setIsOpen }) => {
   }, [isCreatingGarden]);
 
   useEffect(() => {
-    const photos = getValues("profile_image");
-    uploadPhoto({ gardenId, photos });
+    const photos = getValues("garden_image");
+    if (photos?.length) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      uploadPhoto({ gardenId, photos });
+    }
   }, [gardenId]);
 
   return (

@@ -11,7 +11,13 @@ const MOCK_GARDEN = {
   address: "coin perdu",
   zipcode: 11111,
   image: "",
-  profile_image: ""
+  profile_image: "",
+  user: {
+    id: 1,
+    nickname: "Plouf",
+    experience: 1,
+    profile_image: ""
+  }
 };
 
 describe("render", () => {
