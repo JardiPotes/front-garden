@@ -106,20 +106,20 @@ export const LoginModal: FC<ModalProps> = ({
   return (
     <Modal setIsOpen={setIsOpen}>
       <form>
-        <S.labelInputWrapper>
-          <S.inputLabel>{ModalFormWordings.email}</S.inputLabel>
-          <S.ModalBodyInputBody {...register("email", { required: true })} />
-          {errors.email && <MandatoryField />}
-        </S.labelInputWrapper>
-        <S.labelInputWrapper>
-          <S.inputLabel>{ModalFormWordings.password}</S.inputLabel>
-          <S.ModalBodyInputBody
-            type="password"
-            {...register("password", { required: true })}
-          />
-          {errors.password && <MandatoryField />}
-        </S.labelInputWrapper>
         <CenterElement>
+          <S.labelInputWrapper>
+            <S.inputLabel>{ModalFormWordings.email}</S.inputLabel>
+            <S.ModalBodyInputBody {...register("email", { required: true })} />
+            {errors.email && <MandatoryField />}
+          </S.labelInputWrapper>
+          <S.labelInputWrapper>
+            <S.inputLabel>{ModalFormWordings.password}</S.inputLabel>
+            <S.ModalBodyInputBody
+              type="password"
+              {...register("password", { required: true })}
+            />
+            {errors.password && <MandatoryField />}
+          </S.labelInputWrapper>
           {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
           <Button onClick={handleSubmit(onSubmit)}>
             {ButtonWordings.connection}
