@@ -17,7 +17,14 @@ export type Garden = {
   address: string;
   zipcode: number;
   image?: string;
-  user_image?: string;
+  user: User;
+};
+
+type User = {
+  id: number;
+  experience: number;
+  profile_image: string;
+  nickname: string;
 };
 
 type GardenData = {
