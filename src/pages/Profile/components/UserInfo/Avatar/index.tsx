@@ -12,7 +12,11 @@ import useToken from "../../../../../utils/useToken";
 import { UserInfoProps } from "..";
 import * as S from "./styles";
 
-type AvatarProps = Pick<UserInfoProps["user"], "profile_image">;
+type AvatarProps = Pick<UserInfoProps["user"], "profile_image"> & {
+  isConnected: boolean;
+  isConnectedUser: boolean;
+  id: string;
+};
 
 type CreateConvArgs = {
   chat_sender_id: number | string | undefined;
@@ -27,13 +31,15 @@ type ResData = {
   id: string;
 };
 
-export const Avatar: FC<AvatarProps> = ({ profile_image }) => {
+export const Avatar: FC<AvatarProps> = ({
+  profile_image,
+  isConnected,
+  isConnectedUser,
+  id
+}) => {
   const user = getUser();
   const { token, setToken } = useToken();
-  const { id } = useParams();
   const navigate = useNavigate();
-  const isConnected = user && token;
-  const isConnectedUser = id && user?.id.toString() === id;
   const [isOpen, setIsOpen] = useState(false);
 
   const postData = (): void => {
