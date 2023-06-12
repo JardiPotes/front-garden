@@ -15,7 +15,7 @@ import * as S from "./styles";
 type AvatarProps = Pick<UserInfoProps["user"], "profile_image"> & {
   isConnected: boolean;
   isConnectedUser: boolean;
-  id: string;
+  id: string | undefined;
 };
 
 type CreateConvArgs = {
@@ -63,7 +63,7 @@ export const Avatar: FC<AvatarProps> = ({
         {
           headers: {
             "Content-type": "application/json",
-            Authorization: `Token ${token}`
+            Authorization: token && `Token ${token}`
           }
         }
       );

@@ -33,7 +33,6 @@ export const TitleWrapper = styled.div`
   flex-direction: row;
   padding: 4px;
   align-items: center;
-  justify-content: space-between;
   gap: 4px;
   margin-bottom: 10px;
 `;
@@ -45,6 +44,9 @@ export const RouterLink = styled(Link)`
 
 export const Image = styled.img`
   max-height: 200px;
+  max-width: 350px;
+  aspect-ratio: 16/9;
+  object-fit: cover;
   flex: 1;
 `;
 
