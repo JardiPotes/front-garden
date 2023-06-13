@@ -11,6 +11,7 @@ import HomePage from "./pages/HomePage";
 import { Intro } from "./pages/Intro";
 import MessagesPage from "./pages/Messages";
 import { Profile } from "./pages/Profile";
+import { Wip } from "./pages/WIP";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
       {
         path: "intro",
         element: <Intro />
+      },
+      {
+        path: "wip",
+        element: <Wip />
       }
     ]
   }

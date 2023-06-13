@@ -1,18 +1,19 @@
 import { CenterElement } from "../../components/SignUpForm/styles";
 import { Wrapper } from "./styles";
 
-export const Intro = () => {
+export const Intro = (): JSX.Element => {
   return (
     <Wrapper>
       <CenterElement>
         <h1>Bienvenue sur Jardipotes !</h1>
       </CenterElement>
       <p>
-        {`Le principe est simple : mettre en relation ceux qui voudraient jardiner
-    mais n’ont pas de jardin (invité.e.s), avec ceux qui ont un jardin et sont
-    d’accord pour le partager (hôtes) ! Tout utilisateur.ice possède un profil
-    permettant de connaitre ses envies de jardinage et de le/la contacter. Un
-    système de commentaire permet de s’assurer que tout le monde est cool :)`}
+        Le principe est simple : mettre en relation ceux qui voudraient jardiner
+        mais n’ont pas de jardin (invité.e.s), avec ceux qui ont un jardin et
+        sont d’accord pour le partager (hôtes) ! Tout utilisateur.ice possède un
+        profil permettant de connaitre ses envies de jardinage et de le/la
+        contacter. Un système de commentaire permet de s’assurer que tout le
+        monde est cool :)
       </p>
       <p>
         Hôtes et invité.e.s conviennent des modalités en toute liberté,
@@ -28,7 +29,7 @@ export const Intro = () => {
             pouvez y accéder quand vous le souhaitez pour y faire pousser ce que
             vous voulez sauf des plantes invasives » ou encore « Je jardine tous
             les dimanche après-midi, parfois aussi un peu de bricolage, une ou
-            deux personne sont les bienvenues pour se joindre à moi »{" "}
+            deux personnes sont les bienvenues pour se joindre à moi »
           </li>
           <li>
             Honnêteté : Jardipotes n’est pas un outil magique pour trouver un
@@ -53,18 +54,17 @@ export const Intro = () => {
         Pour tout le monde:
         <ul>
           <li>
-            {" "}
-            {`Respect et bienveillance : aucun propos haineux, raciste, sexiste,
-        lgbt-phobe ou validiste ne sera toléré dans les messages et les
-        commentaires. Et IRL c’est la même chose, restez poli, respectueux et
-        bienveillant. Inutile aussi de vous signaler que Jardipote n’est pas une
-        appli de rencontre ;) En cas de soucis avec un.e hôte ou invité.e,
-        n’hésitez pas à nous contacter.`}
-          </li>{" "}
+            Respect et bienveillance : aucun propos haineux, raciste, sexiste,
+            lgbt-phobe ou validiste ne sera toléré dans les messages et les
+            commentaires. Et IRL c’est la même chose, restez poli, respectueux
+            et bienveillant. Inutile aussi de vous signaler que Jardipote n’est
+            pas une appli de rencontre ;) En cas de soucis avec un.e hôte ou
+            invité.e, n’hésitez pas à nous contacter.
+          </li>
           <li>
             Fiabilité : on peut faire poussez des carottes sans poser de lapin !
             Si vous devez annuler une session de jardinage, essayez de prévenir
-            le plus tôt possible votre jardipote.{" "}
+            le plus tôt possible votre jardipote.
           </li>
           <li>
             Partage : ce n’est pas obligatoire mais n’hésitez pas à partager vos
