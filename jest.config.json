@@ -1,0 +1,12 @@
+{
+  "testEnvironment": "jsdom",
+  "transform": {
+    "^.+\\.tsx?$": "ts-jest",
+    "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "/Users/victoirestahl/Developer/front-garden/fileTransformer.ts"
+  },
+  "setupFilesAfterEnv": ["@testing-library/jest-dom/extend-expect"],
+  "preset": "ts-jest",
+  "transformIgnorePatterns": [
+    "node_modules/(?!(use-breakpoint)|use-breakpoint|@use-breakpoint)"
+  ]
+}

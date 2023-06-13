@@ -27,7 +27,7 @@ type CreateMessageArgs = {
 
 type ConversationProps = {
   currentConv: {
-    nickName?: string;
+    nickname?: string;
     avatar?: string;
   };
   convId: string;
@@ -94,7 +94,7 @@ export default function Conversation({
   return (
     <>
       <div>
-        Vos échanges avec {currentConv?.nickName || "utilisateur sans nom"}
+        Vos échanges avec {currentConv?.nickname || "utilisateur sans nom"}
       </div>
       {data?.messages?.length ? (
         <>

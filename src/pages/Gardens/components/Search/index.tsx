@@ -12,12 +12,12 @@ const BREAKPOINTS = { mobile: 0, tablet: 768, desktop: 1280 };
 
 type SearchBarProps = {
   setSearch: React.Dispatch<
-    React.SetStateAction<Record<string, string | null> | null>
+    React.SetStateAction<Record<string, string> | null>
   >;
 };
 
 type SearchData = {
-  zipcode: string | null;
+  zipcode?: string;
 };
 
 export const SearchBar: React.FC<SearchBarProps> = ({ setSearch }) => {
@@ -42,7 +42,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ setSearch }) => {
         <Button
           onClick={(): void => {
             setSearch(null);
-            setValue("zipcode", null);
+            setValue("zipcode", "");
           }}
           small={isMobile && true}
         >

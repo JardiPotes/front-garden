@@ -1,14 +1,14 @@
 import { FC } from "react";
 
-import { GardensProps } from "..";
+import { Garden } from "../../..";
 import * as S from "./styles";
 
 interface GardenInfoProps {
-  garden: GardensProps["gardens"][number];
+  garden: Garden;
 }
 
 export const GardenInfo: FC<GardenInfoProps> = ({
-  garden: { title, id, zipcode, description, image },
+  garden: { title, id, zipcode, description, image }
 }) => {
   const defaultImage = "../../../../../../public/images/garden2.jpg";
   return (

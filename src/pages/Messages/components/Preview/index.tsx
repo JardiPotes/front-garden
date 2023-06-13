@@ -5,24 +5,30 @@ import { axios } from "../../../../ClientProvider";
 import { getUser } from "../../../../utils/user";
 import * as S from "./styles";
 
-export default function MessagePreview({
+type MessagePreviewProps = {
+  conversation: {
+    id: number;
+    chat_sender_id: string;
+    chat_receiver_id: string;
+    latest_message: {
+      id: number;
+      content: string;
+    };
+  };
+  setCurrentConv: React.Dispatch<React.SetStateAction<unknown>>;
+};
+
+export const MessagePreview: React.FC<MessagePreviewProps> = ({
   conversation,
   setCurrentConv
-}): JSX.Element {
+}) => {
   const user = getUser();
-  console.debug(conversation);
   const contactId =
-    conversation?.chat_sender_id === user.id
+    conversation?.chat_sender_id == user?.id
       ? conversation?.chat_receiver_id
       : conversation?.chat_sender_id;
 
-  const {
-    error,
-    isLoading,
-    refetch,
-    data: contact,
-    isPreviousData
-  } = useQuery({
+  const { data: contact } = useQuery({
     queryKey: ["contact"],
     queryFn: async () => {
       const data = await axios
@@ -35,7 +41,7 @@ export default function MessagePreview({
     keepPreviousData: true
   });
 
-  const handleClick = () => {
+  const handleClick = (): void => {
     setCurrentConv(contact);
   };
 
@@ -51,4 +57,4 @@ export default function MessagePreview({
       </S.MessagePreview>
     </S.PrewiewItem>
   );
-}
+};

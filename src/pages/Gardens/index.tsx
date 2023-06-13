@@ -23,8 +23,8 @@ export type Garden = {
 type User = {
   id: number;
   experience: number;
-  profile_image: string;
   nickname: string;
+  profile_image: string;
 };
 
 type GardenData = {
@@ -42,9 +42,7 @@ type Result = AxiosResponse<string | unknown> & { data: GardenData };
 
 export const GardenPage: React.FC = () => {
   const [offset, setOffset] = useState(0);
-  const [search, setSearch] = useState<Record<string, string | null> | null>(
-    null
-  );
+  const [search, setSearch] = useState<Record<string, string> | null>(null);
 
   const paramsString: string = useMemo(() => {
     if (search) {

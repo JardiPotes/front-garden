@@ -14,8 +14,8 @@ import { CenterElement } from "../SignUpForm/styles";
 
 type ModalProps = {
   setIsOpen: Dispatch<SetStateAction<boolean>>;
-  setShouldRedirect: Dispatch<SetStateAction<boolean>>;
-  setToken: Dispatch<SetStateAction<string>>;
+  setShouldRedirect?: Dispatch<SetStateAction<boolean>>;
+  setToken: (userToken: string) => void;
 };
 
 type LoginData = {
@@ -50,7 +50,7 @@ export const LoginModal: FC<ModalProps> = ({
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors }
   } = useForm<LoginData>();
 
   const navigate = useNavigate();
@@ -61,7 +61,7 @@ export const LoginModal: FC<ModalProps> = ({
 
   const [logInStatus, setlogInStatus] = useState<LoginStatus>({
     status: null,
-    message: "",
+    message: ""
   });
 
   const onSubmit: SubmitHandler<LoginData> = (data) => {
@@ -76,13 +76,16 @@ export const LoginModal: FC<ModalProps> = ({
       onSuccess: (res: UserResult) => {
         setlogInStatus({
           status: "success",
-          message: "connecté !",
+          message: "connecté !"
         });
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         setToken(res.data.auth_token);
         saveUser(res.data.user);
         setIsOpen(false);
-        setShouldRedirect(true), navigate(`/profile/${res.data.user.id}`);
+        if (setShouldRedirect) {
+          setShouldRedirect(true);
+        }
+        navigate(`/profile/${res.data.user.id}`);
       },
       onError: (err: AxiosError) => {
         // eslint-disable-next-line no-console
@@ -90,9 +93,9 @@ export const LoginModal: FC<ModalProps> = ({
         const errMessage = formatResponse(err?.response?.data);
         setlogInStatus({
           status: "error",
-          message: `Oups, il y a un problème : ${errMessage}`,
+          message: `Oups, il y a un problème : ${errMessage}`
         });
-      },
+      }
     }
   );
 
