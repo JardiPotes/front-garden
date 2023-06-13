@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.header`
   background-color: #b5ffac;
   display: flex;
   justify-content: space-evenly;

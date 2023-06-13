@@ -31,10 +31,10 @@ export const CommentSection: FC<CommentSectionProps> = ({ userId }) => {
         previous: string | null;
         next: string | null;
       }>("comments", {
-        params: { receiver_id: userId, offset },
+        params: { receiver_id: userId, offset }
       }),
     {
-      keepPreviousData: true,
+      keepPreviousData: true
     }
   );
 

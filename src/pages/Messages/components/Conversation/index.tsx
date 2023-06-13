@@ -60,9 +60,9 @@ export default function Conversation({
       refetchInterval: 30000
     });
 
-  useEffect(() => {
-    refetch();
-  }, [convId, currentConv]);
+  // useEffect(() => {
+  //   refetch();
+  // }, [convId, currentConv]);
 
   const { isLoading: isCreatingMessage, mutate: createMessage } = useMutation(
     async (data: CreateMessageArgs) => {
@@ -108,11 +108,16 @@ export default function Conversation({
           ))}
         </>
       ) : (
-        <div>pas encore de message ici !</div>
+        <div data-test-id="no_message">pas encore de message ici !</div>
       )}
       <form>
-        <S.MessageArea {...register("message", { required: true })} />
-        <Button onClick={handleSubmit(postData)}>{"envoyer"}</Button>
+        <S.MessageArea
+          {...register("message", { required: true })}
+          id="message_input"
+        />
+        <Button onClick={handleSubmit(postData)} data-test-id="message_submit">
+          {"envoyer"}
+        </Button>
       </form>
     </>
   );

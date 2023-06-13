@@ -31,7 +31,7 @@ export const Message: React.FC<MessageProps> = ({ message, currentConv }) => {
   return (
     <>
       <S.Bubble $right={isFromUser}>
-        <S.Content>{message.content}</S.Content>
+        <S.Content data-test-id="message_content">{message.content}</S.Content>
         <S.Date>{`${date.toLocaleDateString(
           "fr"
         )} à ${hours}h:${minutesStr}`}</S.Date>

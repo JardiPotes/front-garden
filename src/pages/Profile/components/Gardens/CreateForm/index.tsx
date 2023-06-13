@@ -12,6 +12,7 @@ import useToken from "../../../../../utils/useToken";
 import { ButtonWordings, ModalFormWordings } from "../../../../../wordings";
 import { CenterElement } from "./styles";
 import { Uploader } from "./uploader";
+
 const MandatoryField: React.FC = () => {
   return <div>Ce champ est obligatoire !</div>;
 };
@@ -38,7 +39,7 @@ export const CreateGardenForm: React.FC<CreateFormProps> = ({ setIsOpen }) => {
     register,
     handleSubmit,
     getValues,
-    formState: { errors },
+    formState: { errors }
   } = useForm<GardenData>();
 
   const [createGardenResult, setCreateGardenResult] = useState<
@@ -61,7 +62,7 @@ export const CreateGardenForm: React.FC<CreateFormProps> = ({ setIsOpen }) => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     data: gardenId,
     isLoading: isCreatingGarden,
-    mutate: createGarden,
+    mutate: createGarden
   } = useMutation(
     async (data: GardenData) => {
       const user = getUser();
@@ -72,8 +73,8 @@ export const CreateGardenForm: React.FC<CreateFormProps> = ({ setIsOpen }) => {
         .post(`/gardens`, data, {
           headers: {
             // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-            Authorization: `Token ${token}`,
-          },
+            Authorization: `Token ${token}`
+          }
         })
         // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access
         .then((res) => res.data.id);
@@ -85,9 +86,9 @@ export const CreateGardenForm: React.FC<CreateFormProps> = ({ setIsOpen }) => {
         const errMessage = formatResponse(err?.response?.data);
         setCreateGardenResult({
           status: "error",
-          message: `Oups, il y a un problème : ${errMessage}`,
+          message: `Oups, il y a un problème : ${errMessage}`
         });
-      },
+      }
     }
   );
 
@@ -100,15 +101,16 @@ export const CreateGardenForm: React.FC<CreateFormProps> = ({ setIsOpen }) => {
           headers: {
             "Content-Type": "multipart/form-data",
             // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-            Authorization: `Token ${token}`,
-          },
+            Authorization: `Token ${token}`
+          }
         }
       );
     },
     {
       onSuccess: () => {
         setIsOpen(false);
-      },
+        window.location.reload();
+      }
     }
   );
 
@@ -119,9 +121,11 @@ export const CreateGardenForm: React.FC<CreateFormProps> = ({ setIsOpen }) => {
 
   useEffect(() => {
     const photos = getValues("garden_image");
-    if (photos?.length) {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    if (photos !== undefined && photos?.length > 0) {
       uploadPhoto({ gardenId, photos });
+    } else if (gardenId) {
+      setIsOpen(false);
+      window.location.reload();
     }
   }, [gardenId]);
 
@@ -134,6 +138,7 @@ export const CreateGardenForm: React.FC<CreateFormProps> = ({ setIsOpen }) => {
             <S.ModalBodyInputBody
               placeholder="Chez Jade"
               {...register("title", { required: true })}
+              data-test-id="create_garden_title"
             />
             {errors.title && <MandatoryField />}
           </S.labelInputWrapper>
@@ -142,6 +147,7 @@ export const CreateGardenForm: React.FC<CreateFormProps> = ({ setIsOpen }) => {
             <S.ModalBodyInputBody
               placeholder="Décrire ton jardin en quelques mots"
               {...register("description", { required: true })}
+              data-test-id="create_garden_description"
             />
             {errors.description && <MandatoryField />}
           </S.labelInputWrapper>
@@ -150,13 +156,17 @@ export const CreateGardenForm: React.FC<CreateFormProps> = ({ setIsOpen }) => {
             <S.ModalBodyInputBody
               placeholder="75000"
               {...register("zipcode", { required: true })}
+              data-test-id="create_garden_zipcode"
             />
             {errors.zipcode && <MandatoryField />}
           </S.labelInputWrapper>
           <Uploader register={register} />
           <CenterElement>
             {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
-            <Button onClick={handleSubmit(postData)}>
+            <Button
+              onClick={handleSubmit(postData)}
+              data-test-id="create_garden_submit"
+            >
               {ButtonWordings.createGarden}
             </Button>
             {createGardenResult.status && createGardenResult.message}
