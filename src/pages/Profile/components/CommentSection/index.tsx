@@ -4,8 +4,8 @@ import { FC, Fragment, useState } from "react";
 import { useQuery } from "react-query";
 
 import { axios } from "../../../../ClientProvider";
-import { Pagination } from "../../../../components/Pagination";
-import { UserProfileWordings } from "../../../../wordings";
+import { Pagination } from "../../../../Components/Pagination";
+import { UserProfileWordings } from "../../../../assets/wordings";
 import { Comment as IComment } from "../..";
 import { SectionHeader } from "../SectionHeader";
 import { Comment } from "./Comment";

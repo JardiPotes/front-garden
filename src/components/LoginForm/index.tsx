@@ -6,8 +6,8 @@ import { useNavigate } from "react-router-dom";
 
 import axios from "../../ClientProvider/axiosConfig";
 import { saveUser, User } from "../../utils/user";
-import { ButtonWordings, ModalFormWordings } from "../../wordings";
-import { Button } from "../Buttons";
+import { ButtonWordings, ModalFormWordings } from "../../assets/wordings";
+import { Button } from "../Button";
 import { Modal } from "../Modal";
 import * as S from "../Modal/styles";
 import { CenterElement } from "../SignUpForm/styles";

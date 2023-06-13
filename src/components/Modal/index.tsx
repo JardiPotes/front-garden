@@ -1,6 +1,6 @@
 import CrossIcon from "../../assets/cross-icon.png";
 import Logo from "../../assets/jardi-logo-trans.png";
-import { ModalFormWordings } from "../../wordings";
+import { ModalFormWordings } from "../../assets/wordings";
 import * as S from "./styles";
 
 type ModalProps = {

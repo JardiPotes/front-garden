@@ -1,7 +1,7 @@
 import { FC, Fragment } from "react";
 
 import Logo from "../../../../assets/jardi-logo-trans.png";
-import { UserProfileWordings } from "../../../../wordings";
+import { UserProfileWordings } from "../../../../assets/wordings";
 import { UserWithGardens } from "../..";
 import { SectionHeader } from "../SectionHeader";
 import { GardenInfo } from "./GardenInfo";

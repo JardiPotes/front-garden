@@ -4,10 +4,10 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 import Logo from "../../assets/jardi-logo-trans.png";
 import Login from "../../assets/login.png";
+import { ButtonWordings } from "../../assets/wordings";
+import useToken from "../../hooks/useToken";
 import { getUser } from "../../utils/user";
-import useToken from "../../utils/useToken";
-import { ButtonWordings } from "../../wordings";
-import { Button } from "../Buttons";
+import { Button } from "../Button";
 import { LoginModal } from "../LoginForm";
 import { LogOutButton } from "../LogOut";
 import { SearchBar } from "../SearchBar";

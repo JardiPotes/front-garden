@@ -4,9 +4,9 @@ import { useMutation } from "react-query";
 import styled from "styled-components";
 
 import { axios } from "../../../../../ClientProvider";
-import { Button } from "../../../../../components/Buttons";
+import { Button } from "../../../../../Components/Button";
 import { getUser } from "../../../../../utils/user";
-import useToken from "../../../../../utils/useToken";
+import useToken from "../../../../../hooks/useToken";
 
 interface CommentFormProps {
   userId: string;
@@ -26,7 +26,7 @@ const CommentForm: FC<CommentFormProps> = ({ userId, triggerRefetch }) => {
           "comments",
           { author_id: author?.id, receiver_id: userId, content },
           {
-            headers: { Authorization: `Token ${token}` },
+            headers: { Authorization: `Token ${token}` }
           }
         )
         .then((res) => res.data),
@@ -59,7 +59,7 @@ const CommentForm: FC<CommentFormProps> = ({ userId, triggerRefetch }) => {
 
 const Colors = {
   cardBackground: "#FCF9F9",
-  focus: "#CEA37C",
+  focus: "#CEA37C"
 } as const;
 
 const CommentFormStyleWrapper = styled.div`
@@ -90,7 +90,7 @@ const CommentFormStyleWrapper = styled.div`
 
 export const StyledCommentForm: FC<CommentFormProps> = ({
   userId,
-  triggerRefetch,
+  triggerRefetch
 }) => (
   <CommentFormStyleWrapper>
     <CommentForm userId={userId} triggerRefetch={triggerRefetch} />

@@ -3,8 +3,6 @@ import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 
 import { axios } from "../../ClientProvider";
-import { getUser } from "../../utils/user";
-import useToken from "../../utils/useToken";
 import { CommentSection } from "./components/CommentSection";
 import { Gardens } from "./components/Gardens";
 import { UserInfo } from "./components/UserInfo";
