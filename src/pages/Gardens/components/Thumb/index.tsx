@@ -29,7 +29,6 @@ export const GardenThumb: React.FC<GardenThumbProps> = ({ garden }) => {
           </S.TitleWrapper>
           <div>{description}</div>
         </S.RouterLink>
-
         <S.Address>
           <S.Pin src={pin} />
           {zipcode}
