@@ -8,9 +8,9 @@ import {
   ModalFormWordings
 } from "../../../../../assets/wordings";
 import axios from "../../../../../ClientProvider/axiosConfig";
-import { Button } from "../../../../../Components/Button";
-import { Modal } from "../../../../../Components/Modal";
-import * as S from "../../../../../Components/Modal/styles";
+import { Button } from "../../../../../components/Button";
+import { Modal } from "../../../../../components/Modal";
+import * as S from "../../../../../components/Modal/styles";
 import useToken from "../../../../../hooks/useToken";
 import { getUser } from "../../../../../utils/user";
 import { CenterElement } from "./styles";

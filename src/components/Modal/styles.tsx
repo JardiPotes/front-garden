@@ -33,6 +33,10 @@ export const Modal = styled.div`
   transform: translate(-50%, -50%);
   z-index: 3;
 
+  &::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+  }
+
   @media (max-width: 480px) {
     width: 95%;
   }

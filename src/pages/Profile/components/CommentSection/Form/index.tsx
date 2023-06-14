@@ -4,7 +4,7 @@ import { useMutation } from "react-query";
 import styled from "styled-components";
 
 import { axios } from "../../../../../ClientProvider";
-import { Button } from "../../../../../Components/Button";
+import { Button } from "../../../../../components/Button";
 import { getUser } from "../../../../../utils/user";
 import useToken from "../../../../../hooks/useToken";
 

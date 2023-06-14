@@ -40,11 +40,11 @@ export const Profile: FC = () => {
 
   if (!id) return null;
 
-  const { data: { data } = {} } = useQuery(
+  const { data: { data } = {}, refetch } = useQuery(
     ["user", id],
     async () => axios.get<UserWithGardens>(`users/${id}`),
     {
-      keepPreviousData: true
+      keepPreviousData: true,
     }
   );
 
@@ -54,7 +54,7 @@ export const Profile: FC = () => {
 
   return (
     <S.Layout>
-      <UserInfo user={user} />
+      <UserInfo user={user} triggerRefetch={refetch} />
       <Gardens gardens={gardens} />
       <CommentSection userId={id} />
     </S.Layout>

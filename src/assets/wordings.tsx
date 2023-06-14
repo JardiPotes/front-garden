@@ -19,6 +19,7 @@ export const ButtonWordings = {
   connection: "CONNEXION",
   logout: "DÉCONNEXION",
   createGarden: "PUBLIE TON JARDIN",
+  editUserInfo: "ÉDITE TON PROFIL",
 } as const;
 
 export const FooterWordings = {
