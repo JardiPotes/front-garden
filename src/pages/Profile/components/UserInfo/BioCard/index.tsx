@@ -10,6 +10,8 @@ import * as S from "./styles";
 import { getUser } from "../../../../../utils/user";
 import { useParams } from "react-router-dom";
 import { EditForm } from "../EditForm";
+import { SpaceBetweenRow } from "../../../../../components/Wrappers/SpaceBetweenRow";
+import { TransparentButton } from "../../../../../components/Button/TransparentButton";
 
 type BioCardProps = Pick<
   UserInfoProps["user"],
@@ -26,12 +28,12 @@ export const BioCard: FC<BioCardProps> = ({ triggerRefetch, ...userProps }) => {
   const [isFormModalOpen, setFormModalOpen] = useState(false);
   return (
     <Card style={{ width: "100%" }}>
-      <S.SpacerRowWrapper>
+      <SpaceBetweenRow>
         <S.Title>{nickname}</S.Title>
         {isConnectedOwner && (
-          <S.Button onClick={(): void => setFormModalOpen(true)}>
-            <FontAwesomeIcon icon={faEdit} size="lg" />
-          </S.Button>
+          <TransparentButton onClick={(): void => setFormModalOpen(true)}>
+            <FontAwesomeIcon icon={faEdit} size="xl" />
+          </TransparentButton>
         )}
         {isConnectedOwner && isFormModalOpen && (
           <EditForm
@@ -40,7 +42,7 @@ export const BioCard: FC<BioCardProps> = ({ triggerRefetch, ...userProps }) => {
             {...userProps}
           />
         )}
-      </S.SpacerRowWrapper>
+      </SpaceBetweenRow>
       <Experience
         experience={experience}
         wording={UserProfileWordings.experience}

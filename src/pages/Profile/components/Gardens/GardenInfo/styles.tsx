@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { SpaceBetweenRow } from "../../../../../components/Wrappers/SpaceBetweenRow";
+
 export const Title = styled.h1`
   font-size: large;
   margin: 0;
@@ -15,4 +17,8 @@ export const Description = styled.p`
 
 export const Image = styled.img`
   max-width: min(1000px, 100vw);
+`;
+
+export const PaddedRow = styled(SpaceBetweenRow)`
+  padding: 0.5em;
 `;
