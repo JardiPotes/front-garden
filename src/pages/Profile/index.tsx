@@ -55,7 +55,7 @@ export const Profile: FC = () => {
   return (
     <S.Layout>
       <UserInfo user={user} triggerRefetch={refetch} />
-      <Gardens gardens={gardens} />
+      <Gardens gardens={gardens} triggerRefetch={refetch} />
       <CommentSection userId={id} />
     </S.Layout>
   );
