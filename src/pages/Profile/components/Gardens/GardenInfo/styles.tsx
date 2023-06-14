@@ -12,7 +12,8 @@ export const Description = styled.p`
   margin: 1em;
   line-height: 1.5;
   text-align: justify;
-  width: clamp(100px, 90%, 800px);
+  width: fit-content;
+  max-width: 800px;
 `;
 
 export const Image = styled.img`
