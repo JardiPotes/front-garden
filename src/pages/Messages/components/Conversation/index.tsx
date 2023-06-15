@@ -42,7 +42,8 @@ export default function Conversation({
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
+    setValue
   } = useForm();
 
   const { error, isLoading, refetch, data, isPreviousData }: QueryArgs =
@@ -60,9 +61,9 @@ export default function Conversation({
       refetchInterval: 30000
     });
 
-  // useEffect(() => {
-  //   refetch();
-  // }, [convId, currentConv]);
+  useEffect(() => {
+    refetch();
+  }, [convId, currentConv]);
 
   const { isLoading: isCreatingMessage, mutate: createMessage } = useMutation(
     async (data: CreateMessageArgs) => {
@@ -75,6 +76,7 @@ export default function Conversation({
     {
       onSuccess: () => {
         refetch();
+        setValue("message", "");
       },
       onError: (err: AxiosError) => {
         // eslint-disable-next-line no-console
