@@ -4,7 +4,7 @@ const Colors = {
   bg: "#D9D9D9",
   line: "#86E7B8",
   inputArea: "#FCF9F9",
-  textInput: "#9A9595",
+  textInput: "#777",
   cross: "#000000",
 } as const;
 
@@ -142,7 +142,7 @@ export const ModalBodyTextAreaBody = styled.textarea`
   border-radius: 50px;
   align-items: center;
   border: none;
-  overflow: hidden;
+  overflow: scroll;
   padding: 5px 10px;
 
   &:focus {

@@ -1,10 +1,15 @@
 import { useMutation, useQueryClient } from "react-query";
-import useToken from "../../../../../../../hooks/useToken";
-import { axios } from "../../../../../../../ClientProvider";
-import * as S from "./styles";
-import { Button } from "../../../../../../../components/Button";
-import { ButtonWordings } from "../../../../../../../assets/wordings";
 import { useParams } from "react-router-dom";
+
+import { ButtonWordings } from "../../../../../../../assets/wordings";
+import { axios } from "../../../../../../../ClientProvider";
+import { Button } from "../../../../../../../components/Button";
+import { Cross } from "../../../../../../../components/Modal/styles";
+import useToken from "../../../../../../../hooks/useToken";
+import CrossIcon from "../../../../../../../assets/cross-icon.png";
+import * as S from "./styles";
+import { TransparentButton } from "../../../../../../../components/Button/TransparentButton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const ConfirmDelete = ({ setIsOpen, gardenId }) => {
   const { token } = useToken();
@@ -37,6 +42,12 @@ export const ConfirmDelete = ({ setIsOpen, gardenId }) => {
   return (
     <S.AlertBox onClick={(): void => setIsOpen(false)}>
       <S.AlertContent onClick={(e): void => e.stopPropagation()}>
+        <TransparentButton
+          style={{ alignSelf: "end" }}
+          onClick={(): void => setIsOpen(false)}
+        >
+          <S.Icon src={CrossIcon} />
+        </TransparentButton>
         <p>Attention, cette opération n'est pas réversible !</p>
         <Button onClick={deleteGarden}>{ButtonWordings.confirmDelete}</Button>
       </S.AlertContent>
