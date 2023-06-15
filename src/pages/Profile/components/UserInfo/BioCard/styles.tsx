@@ -7,4 +7,6 @@ export const Title = styled.h1`
 
 export const Bio = styled.p`
   margin-block: auto;
+  padding-top: 1em;
+  white-space: pre-wrap;
 `;

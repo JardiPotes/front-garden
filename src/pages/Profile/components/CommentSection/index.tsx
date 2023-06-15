@@ -3,9 +3,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FC, Fragment, useState } from "react";
 import { useQuery } from "react-query";
 
-import { axios } from "../../../../ClientProvider";
-import { Pagination } from "../../../../Components/Pagination";
 import { UserProfileWordings } from "../../../../assets/wordings";
+import { axios } from "../../../../ClientProvider";
+import { Pagination } from "../../../../components/Pagination";
 import { Comment as IComment } from "../..";
 import { SectionHeader } from "../SectionHeader";
 import { Comment } from "./Comment";
@@ -16,10 +16,12 @@ export interface CommentSectionProps {
 }
 
 export const CommentSection: FC<CommentSectionProps> = ({ userId }) => {
+  const [currentPage, setCurrentPage] = useState(0);
   const [offset, setOffset] = useState(0);
   const handlePageClick = (event: { selected: number }): void => {
     const newOffset = (event.selected * 10) % count;
     setOffset(newOffset);
+    setCurrentPage(event.selected);
   };
 
   const { data: { data } = {}, refetch } = useQuery(
@@ -31,10 +33,10 @@ export const CommentSection: FC<CommentSectionProps> = ({ userId }) => {
         previous: string | null;
         next: string | null;
       }>("comments", {
-        params: { receiver_id: userId, offset }
+        params: { receiver_id: userId, offset },
       }),
     {
-      keepPreviousData: true
+      keepPreviousData: true,
     }
   );
 
@@ -50,6 +52,7 @@ export const CommentSection: FC<CommentSectionProps> = ({ userId }) => {
           <Pagination
             pageCount={Math.ceil(count / 10)}
             onPageChange={handlePageClick}
+            forcePage={currentPage}
           />
           {comments.map((comment, index) => (
             <Fragment key={comment.id}>
@@ -66,6 +69,7 @@ export const CommentSection: FC<CommentSectionProps> = ({ userId }) => {
           <Pagination
             pageCount={Math.ceil(count / 10)}
             onPageChange={handlePageClick}
+            forcePage={currentPage}
           />
         </>
       )}

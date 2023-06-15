@@ -44,7 +44,7 @@ export const Profile: FC = () => {
     ["user", id],
     async () => axios.get<UserWithGardens>(`users/${id}`),
     {
-      keepPreviousData: true
+      keepPreviousData: true,
     }
   );
 

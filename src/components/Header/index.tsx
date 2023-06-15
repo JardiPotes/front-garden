@@ -28,7 +28,7 @@ interface HeaderProps {
 const UserProfileLink: React.FC<UserProfileLinkProps> = ({
   isLoggedIn,
   userId,
-  image
+  image,
 }) => {
   const userProfileLink = userId ? `/profile/${userId}` : "/";
 

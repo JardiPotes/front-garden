@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { Card } from "../../../../../Components/Card";
+import { Card } from "../../../../../components/Card";
 import { Experience } from "../../Experience";
 import { Comment as IComment } from "../../..";
 import * as S from "./styles";

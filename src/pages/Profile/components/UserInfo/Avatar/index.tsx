@@ -4,11 +4,11 @@ import { useMutation } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { axios } from "../../../../../ClientProvider";
-import { Button } from "../../../../../Components/Button";
-import { LoginModal } from "../../../../../Components/LoginForm";
-import { CenterElement } from "../../../../../Components/SignUpForm/styles";
-import { getUser } from "../../../../../utils/user";
+import { Button } from "../../../../../components/Button";
+import { LoginModal } from "../../../../../components/LoginForm";
+import { CenterElement } from "../../../../../components/SignUpForm/styles";
 import useToken from "../../../../../hooks/useToken";
+import { getUser } from "../../../../../utils/user";
 import { UserInfoProps } from "..";
 import * as S from "./styles";
 

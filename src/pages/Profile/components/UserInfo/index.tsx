@@ -2,7 +2,7 @@ import { FC, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { ButtonWordings } from "../../../../assets/wordings";
-import { Button } from "../../../../Components/Button";
+import { Button } from "../../../../components/Button";
 import useToken from "../../../../hooks/useToken";
 import { getUser } from "../../../../utils/user";
 import { UserWithGardens } from "../..";
@@ -19,7 +19,7 @@ export interface UserInfoProps {
 }
 
 export const UserInfo: FC<UserInfoProps> = ({
-  user: { profile_image, nickname, experience, bio }
+  user: { profile_image, nickname, experience, bio },
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { id } = useParams();
@@ -39,12 +39,16 @@ export const UserInfo: FC<UserInfoProps> = ({
         id={id}
       />
       <BioCard nickname={nickname} experience={experience} bio={bio} />
-      {isConnectedUser && (
-        <Button onClick={(): void => setIsOpen(true)}>
-          {ButtonWordings.createGarden}
-        </Button>
-      )}
-      {isOpen && isConnectedUser && <CreateGardenForm setIsOpen={setIsOpen} />}
+      <div>
+        {isConnectedUser && (
+          <Button onClick={(): void => setIsOpen(true)}>
+            {ButtonWordings.createGarden}
+          </Button>
+        )}
+        {isOpen && isConnectedUser && (
+          <CreateGardenForm setIsOpen={setIsOpen} />
+        )}
+      </div>
     </S.Wrapper>
   );
 };

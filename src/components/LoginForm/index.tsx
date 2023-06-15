@@ -45,12 +45,12 @@ const MandatoryField: React.FC = () => {
 export const LoginModal: FC<ModalProps> = ({
   setIsOpen,
   setToken,
-  setShouldRedirect
+  setShouldRedirect,
 }) => {
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
   } = useForm<LoginData>();
 
   const navigate = useNavigate();
@@ -61,7 +61,7 @@ export const LoginModal: FC<ModalProps> = ({
 
   const [logInStatus, setlogInStatus] = useState<LoginStatus>({
     status: null,
-    message: ""
+    message: "",
   });
 
   const onSubmit: SubmitHandler<LoginData> = (data) => {
@@ -76,7 +76,7 @@ export const LoginModal: FC<ModalProps> = ({
       onSuccess: (res: UserResult) => {
         setlogInStatus({
           status: "success",
-          message: "connecté !"
+          message: "connecté !",
         });
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         setToken(res.data.auth_token);
@@ -93,9 +93,9 @@ export const LoginModal: FC<ModalProps> = ({
         const errMessage = formatResponse(err?.response?.data);
         setlogInStatus({
           status: "error",
-          message: `Oups : ${errMessage}`
+          message: `Oups : ${errMessage}`,
         });
-      }
+      },
     }
   );
 
@@ -120,8 +120,8 @@ export const LoginModal: FC<ModalProps> = ({
             />
             {errors.password && <MandatoryField />}
           </S.labelInputWrapper>
-          {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
           <Button
+            /* eslint-disable-next-line @typescript-eslint/no-misused-promises */
             onClick={handleSubmit(onSubmit)}
             data-test-id="connexion_submit"
           >

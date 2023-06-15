@@ -18,6 +18,7 @@ export const Wrapper = styled.header`
     justify-content: center;
     padding-top: 1em;
     column-gap: 1em;
+    position: static;
   }
 `;
 

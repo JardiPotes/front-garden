@@ -5,7 +5,7 @@ import Amiko from "./assets/fonts/Amiko-Regular.ttf";
 const Colors = {
   bg: "#FAF0E6",
   txt: "black",
-  TitleCard: "#86E7B8"
+  TitleCard: "#86E7B8",
 } as const;
 
 export const GlobalStyle = createGlobalStyle`
@@ -31,5 +31,9 @@ body {
   flex-direction: column;
   justify-content: space-between;
   font-family: Amiko;
+}
+
+button:hover {
+  cursor: pointer;
 }
 `;

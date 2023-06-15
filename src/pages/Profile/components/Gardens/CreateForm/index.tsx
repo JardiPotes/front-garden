@@ -5,12 +5,12 @@ import { useMutation } from "react-query";
 
 import {
   ButtonWordings,
-  ModalFormWordings
+  ModalFormWordings,
 } from "../../../../../assets/wordings";
 import axios from "../../../../../ClientProvider/axiosConfig";
-import { Button } from "../../../../../Components/Button";
-import { Modal } from "../../../../../Components/Modal";
-import * as S from "../../../../../Components/Modal/styles";
+import { Button } from "../../../../../components/Button";
+import { Modal } from "../../../../../components/Modal";
+import * as S from "../../../../../components/Modal/styles";
 import useToken from "../../../../../hooks/useToken";
 import { getUser } from "../../../../../utils/user";
 import { CenterElement } from "./styles";
@@ -46,7 +46,7 @@ export const CreateGardenForm: React.FC<CreateFormProps> = ({ setIsOpen }) => {
     register,
     handleSubmit,
     getValues,
-    formState: { errors }
+    formState: { errors },
   } = useForm<GardenData>();
 
   const [createGardenResult, setCreateGardenResult] = useState<
@@ -69,7 +69,7 @@ export const CreateGardenForm: React.FC<CreateFormProps> = ({ setIsOpen }) => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     data: gardenId,
     isLoading: isCreatingGarden,
-    mutate: createGarden
+    mutate: createGarden,
   } = useMutation(
     async (data: GardenData) => {
       const user = getUser();
@@ -80,8 +80,8 @@ export const CreateGardenForm: React.FC<CreateFormProps> = ({ setIsOpen }) => {
         .post(`/gardens`, data, {
           headers: {
             // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-            Authorization: `Token ${token}`
-          }
+            Authorization: `Token ${token}`,
+          },
         })
         // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access
         .then((res: AxiosResponse<Res>) => res?.data?.id);
@@ -93,9 +93,9 @@ export const CreateGardenForm: React.FC<CreateFormProps> = ({ setIsOpen }) => {
         const errMessage = formatResponse(err?.response?.data);
         setCreateGardenResult({
           status: "error",
-          message: `Oups, il y a un problème : ${errMessage}`
+          message: `Oups, il y a un problème : ${errMessage}`,
         });
-      }
+      },
     }
   );
 
@@ -107,9 +107,8 @@ export const CreateGardenForm: React.FC<CreateFormProps> = ({ setIsOpen }) => {
         {
           headers: {
             "Content-Type": "multipart/form-data",
-            // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-            Authorization: `Token ${token}`
-          }
+            Authorization: token && `Token ${token}`,
+          },
         }
       );
     },
@@ -117,7 +116,7 @@ export const CreateGardenForm: React.FC<CreateFormProps> = ({ setIsOpen }) => {
       onSuccess: () => {
         setIsOpen(false);
         window.location.reload();
-      }
+      },
     }
   );
 
