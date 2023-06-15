@@ -8,8 +8,10 @@ import { GlobalStyle } from "./GlobalStyles";
 import { Layout } from "./Layout";
 import { GardenPage } from "./pages/Gardens";
 import HomePage from "./pages/HomePage";
+import { Intro } from "./pages/Intro";
 import MessagesPage from "./pages/Messages";
 import { Profile } from "./pages/Profile";
+import { Wip } from "./pages/WIP";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +33,14 @@ const router = createBrowserRouter([
       {
         path: "messages/:convId",
         element: <MessagesPage />
+      },
+      {
+        path: "intro",
+        element: <Intro />
+      },
+      {
+        path: "wip",
+        element: <Wip />
       }
     ]
   }

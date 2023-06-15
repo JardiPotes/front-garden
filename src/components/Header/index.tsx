@@ -77,7 +77,7 @@ export const Header: React.FC<HeaderProps> = () => {
           <S.StyledLink to="gardens" data-test-id="garden_link">
             Jardins
           </S.StyledLink>
-          <S.StyledLink to="rules">FAQ</S.StyledLink>
+          <S.StyledLink to="intro">Présentation</S.StyledLink>
         </S.LinkWrapper>
       </nav>
       <SearchBar />
