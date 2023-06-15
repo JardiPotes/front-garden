@@ -19,7 +19,6 @@ export const ButtonWordings = {
   connection: "CONNEXION",
   logout: "DÉCONNEXION",
   createGarden: "PUBLIE TON JARDIN",
-  editUserInfo: "ÉDITE TON PROFIL",
   confirmDelete: "CONFIRMER LA SUPPRESSION",
 } as const;
 

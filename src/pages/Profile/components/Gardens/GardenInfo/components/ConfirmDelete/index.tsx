@@ -1,34 +1,43 @@
+import { FC } from "react";
 import { useMutation, useQueryClient } from "react-query";
-import useToken from "../../../../../../../hooks/useToken";
-import { axios } from "../../../../../../../ClientProvider";
-import * as S from "./styles";
-import { Button } from "../../../../../../../components/Button";
-import { ButtonWordings } from "../../../../../../../assets/wordings";
 import { useParams } from "react-router-dom";
 
-export const ConfirmDelete = ({ setIsOpen, gardenId }) => {
+import CrossIcon from "../../../../../../../assets/cross-icon.png";
+import { ButtonWordings } from "../../../../../../../assets/wordings";
+import { axios } from "../../../../../../../ClientProvider";
+import { Button } from "../../../../../../../components/Button";
+import { TransparentButton } from "../../../../../../../components/Button/TransparentButton";
+import useToken from "../../../../../../../hooks/useToken";
+import { Garden } from "../../../../..";
+import * as S from "./styles";
+
+export const ConfirmDelete: FC<{
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  gardenId: Garden["id"];
+}> = ({ setIsOpen, gardenId }) => {
   const { token } = useToken();
   const queryClient = useQueryClient();
   const { id: userId } = useParams();
 
   const { mutate: deleteGarden } = useMutation(
     async () =>
-      axios
-        .delete(`gardens/${gardenId}`, {
-          headers: { Authorization: `Token ${token}` },
-        })
-        .then((res) => res.data),
+      axios.delete(`gardens/${gardenId}`, {
+        headers: { Authorization: token && `Token ${token}` },
+      }),
     {
       onSuccess: () => {
-        queryClient.setQueryData(["user", userId], (old) => ({
-          ...old,
-          data: {
-            ...old.data,
-            gardens: old.data.gardens.filter(
-              (garden) => garden.id !== gardenId
-            ),
-          },
-        }));
+        queryClient.setQueryData(
+          ["user", userId],
+          (old?: { data: { gardens: Garden[] } }) => ({
+            ...old,
+            data: {
+              ...old?.data,
+              gardens:
+                old?.data.gardens.filter((garden) => garden.id !== gardenId) ??
+                [],
+            },
+          })
+        );
         setIsOpen(false);
       },
     }
@@ -37,8 +46,16 @@ export const ConfirmDelete = ({ setIsOpen, gardenId }) => {
   return (
     <S.AlertBox onClick={(): void => setIsOpen(false)}>
       <S.AlertContent onClick={(e): void => e.stopPropagation()}>
-        <p>Attention, cette opération n'est pas réversible !</p>
-        <Button onClick={deleteGarden}>{ButtonWordings.confirmDelete}</Button>
+        <TransparentButton
+          style={{ alignSelf: "end" }}
+          onClick={(): void => setIsOpen(false)}
+        >
+          <S.Icon src={CrossIcon} />
+        </TransparentButton>
+        <p>Attention, cette opération n&apos;est pas réversible !</p>
+        <Button onClick={(): void => deleteGarden()}>
+          {ButtonWordings.confirmDelete}
+        </Button>
       </S.AlertContent>
     </S.AlertBox>
   );

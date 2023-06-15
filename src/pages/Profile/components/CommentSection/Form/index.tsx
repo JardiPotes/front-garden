@@ -21,15 +21,13 @@ const CommentForm: FC<CommentFormProps> = ({ userId, triggerRefetch }) => {
 
   const { mutate: postNewComment } = useMutation(
     async (content: string) =>
-      axios
-        .post(
-          "comments",
-          { author_id: author?.id, receiver_id: userId, content },
-          {
-            headers: { Authorization: `Token ${token}` }
-          }
-        )
-        .then((res) => res.data),
+      axios.post(
+        "comments",
+        { author_id: author?.id, receiver_id: userId, content },
+        {
+          headers: { Authorization: token && `Token ${token}` },
+        }
+      ),
     { onSuccess: triggerRefetch }
   );
 
@@ -59,7 +57,7 @@ const CommentForm: FC<CommentFormProps> = ({ userId, triggerRefetch }) => {
 
 const Colors = {
   cardBackground: "#FCF9F9",
-  focus: "#CEA37C"
+  focus: "#CEA37C",
 } as const;
 
 const CommentFormStyleWrapper = styled.div`
@@ -90,7 +88,7 @@ const CommentFormStyleWrapper = styled.div`
 
 export const StyledCommentForm: FC<CommentFormProps> = ({
   userId,
-  triggerRefetch
+  triggerRefetch,
 }) => (
   <CommentFormStyleWrapper>
     <CommentForm userId={userId} triggerRefetch={triggerRefetch} />
