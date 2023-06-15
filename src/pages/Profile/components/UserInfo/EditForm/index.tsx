@@ -5,20 +5,15 @@ import { Modal } from "../../../../../components/Modal";
 import useToken from "../../../../../hooks/useToken";
 import { getUser } from "../../../../../utils/user";
 import { UserInfoProps } from "..";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 
-export const EditForm = ({
-  setIsOpen,
-  triggerRefetch,
-  nickname,
-  experience,
-  bio,
-}) => {
+export const EditForm = ({ setIsOpen, nickname, experience, bio }) => {
   const { register, handleSubmit } = useForm<UserInfoProps["user"]>();
 
   const user = getUser();
   const { token } = useToken();
 
+  const queryClient = useQueryClient();
   const { mutate: editUserInfo } = useMutation(
     async (data: UserInfoProps["user"]) =>
       axios
@@ -27,8 +22,11 @@ export const EditForm = ({
         })
         .then((res) => res.data),
     {
-      onSuccess: () => {
-        triggerRefetch();
+      onSuccess: (_, updatedVariables) => {
+        queryClient.setQueryData(["user", user?.id.toString()], (old) => ({
+          ...old,
+          data: { ...old.data, ...updatedVariables },
+        }));
         setIsOpen(false);
       },
     }

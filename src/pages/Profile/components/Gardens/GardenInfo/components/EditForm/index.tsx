@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 
 import { axios } from "../../../../../../../ClientProvider";
 import { Modal } from "../../../../../../../components/Modal";
@@ -9,7 +9,6 @@ import { getUser } from "../../../../../../../utils/user";
 
 export const EditForm = ({
   setIsOpen,
-  triggerRefetch,
   gardenId,
   title,
   description,
@@ -21,6 +20,7 @@ export const EditForm = ({
   const user = getUser();
   const { token } = useToken();
 
+  const queryClient = useQueryClient();
   const { mutate: editGarden } = useMutation(
     async (data: Exclude<Garden, "id">) =>
       axios
@@ -33,8 +33,18 @@ export const EditForm = ({
         )
         .then((res) => res.data),
     {
-      onSuccess: () => {
-        triggerRefetch();
+      onSuccess: (_, updatedVariables) => {
+        queryClient.setQueryData(["user", user.id.toString()], (old) => ({
+          ...old,
+          data: {
+            ...old.data,
+            gardens: old.data.gardens.map((garden) =>
+              garden.id === gardenId
+                ? { ...garden, ...updatedVariables }
+                : garden
+            ),
+          },
+        }));
         setIsOpen(false);
       },
     }

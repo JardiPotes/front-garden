@@ -9,7 +9,7 @@ import * as S from "./styles";
 
 export type GardensProps = Pick<UserWithGardens, "gardens">;
 
-export const Gardens: FC<GardensProps> = ({ gardens, triggerRefetch }) => {
+export const Gardens: FC<GardensProps> = ({ gardens }) => {
   if (!gardens || !gardens.length) return null;
   const sectionTitle =
     gardens.length > 1
@@ -22,7 +22,7 @@ export const Gardens: FC<GardensProps> = ({ gardens, triggerRefetch }) => {
       {gardens.map((garden, index) => (
         <Fragment key={garden.id}>
           {!!index && <S.SeparationIcon src={Logo} />}
-          <GardenInfo garden={garden} triggerRefetch={triggerRefetch} />
+          <GardenInfo garden={garden} />
         </Fragment>
       ))}
     </>

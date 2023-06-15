@@ -10,6 +10,7 @@ import { getUser } from "../../../../../utils/user";
 import { Garden } from "../../..";
 import { EditForm } from "./components/EditForm";
 import * as S from "./styles";
+import { ConfirmDelete } from "./components/ConfirmDelete";
 
 interface GardenInfoProps {
   garden: Garden;
@@ -19,7 +20,6 @@ const defaultImage = "../../../../../../public/images/garden2.jpg";
 
 export const GardenInfo: FC<GardenInfoProps> = ({
   garden: { title, id, zipcode, description, image },
-  triggerRefetch,
 }) => {
   const { id: userId } = useParams();
   const user = getUser();
@@ -39,7 +39,7 @@ export const GardenInfo: FC<GardenInfoProps> = ({
           <TransparentButton onClick={(): void => setEditModalIsOpen(true)}>
             <FontAwesomeIcon icon={faEdit} size="xl" />
           </TransparentButton>
-          <TransparentButton>
+          <TransparentButton onClick={(): void => setConfirmDeleteIsOpen(true)}>
             <FontAwesomeIcon icon={faTrashCan} size="xl" />
           </TransparentButton>
         </S.PaddedRow>
@@ -48,14 +48,11 @@ export const GardenInfo: FC<GardenInfoProps> = ({
       <S.Image src={image ? image : defaultImage} />
 
       {editModalIsOpen && (
-        <EditForm
-          setIsOpen={setEditModalIsOpen}
-          triggerRefetch={triggerRefetch}
-          gardenId={id}
-          {...formProps}
-        />
+        <EditForm setIsOpen={setEditModalIsOpen} gardenId={id} {...formProps} />
       )}
-      {confirmDeleteIsOpen && <Modal setIsOpen={setConfirmDeleteIsOpen} />}
+      {confirmDeleteIsOpen && (
+        <ConfirmDelete setIsOpen={setConfirmDeleteIsOpen} gardenId={id} />
+      )}
     </>
   );
 };

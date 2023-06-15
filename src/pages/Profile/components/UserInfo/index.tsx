@@ -19,7 +19,6 @@ export interface UserInfoProps {
 }
 
 export const UserInfo: FC<UserInfoProps> = ({
-  triggerRefetch,
   user: { profile_image, nickname, experience, bio },
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -39,12 +38,7 @@ export const UserInfo: FC<UserInfoProps> = ({
         isConnectedUser={isConnectedUser}
         id={id}
       />
-      <BioCard
-        nickname={nickname}
-        experience={experience}
-        bio={bio}
-        triggerRefetch={triggerRefetch}
-      />
+      <BioCard nickname={nickname} experience={experience} bio={bio} />
       <div>
         {isConnectedUser && (
           <Button onClick={(): void => setIsOpen(true)}>

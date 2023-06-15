@@ -18,36 +18,30 @@ type BioCardProps = Pick<
   "nickname" | "bio" | "experience"
 >;
 
-export const BioCard: FC<BioCardProps> = ({ triggerRefetch, ...userProps }) => {
-  const { nickname, bio, experience } = userProps;
-
-  const user = getUser();
+export const BioCard: FC<BioCardProps> = (user) => {
+  const userId = getUser()?.id;
   const { id } = useParams();
-  const isConnectedOwner = !!user && user.id.toString() === id;
+  const isConnectedOwner = !!userId && userId.toString() === id;
 
   const [isFormModalOpen, setFormModalOpen] = useState(false);
   return (
     <Card style={{ width: "100%" }}>
       <SpaceBetweenRow>
-        <S.Title>{nickname}</S.Title>
+        <S.Title>{user.nickname}</S.Title>
         {isConnectedOwner && (
           <TransparentButton onClick={(): void => setFormModalOpen(true)}>
             <FontAwesomeIcon icon={faEdit} size="xl" />
           </TransparentButton>
         )}
         {isConnectedOwner && isFormModalOpen && (
-          <EditForm
-            setIsOpen={setFormModalOpen}
-            triggerRefetch={triggerRefetch}
-            {...userProps}
-          />
+          <EditForm setIsOpen={setFormModalOpen} {...user} />
         )}
       </SpaceBetweenRow>
       <Experience
-        experience={experience}
+        experience={user.experience}
         wording={UserProfileWordings.experience}
       />
-      <S.Bio>{bio}</S.Bio>
+      <S.Bio>{user.bio}</S.Bio>
     </Card>
   );
 };
