@@ -1,1 +1,1 @@
-export { SpaceBetweenRow } from "./styles";
+export {SpaceBetweenRow} from './styles';

@@ -8,14 +8,14 @@ export type User = {
 };
 
 export const getUser = (): User | null => {
-  const user: string | null = sessionStorage.getItem("user");
+  const user: string | null = sessionStorage.getItem('user');
   return user ? (JSON.parse(user) as User) : null;
 };
 
 export const saveUser = (user: User): void => {
-  sessionStorage.setItem("user", JSON.stringify(user));
+  sessionStorage.setItem('user', JSON.stringify(user));
 };
 
 export const removeUser = (): void => {
-  sessionStorage.removeItem("user");
+  sessionStorage.removeItem('user');
 };

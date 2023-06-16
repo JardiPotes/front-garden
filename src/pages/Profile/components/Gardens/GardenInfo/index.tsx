@@ -1,34 +1,33 @@
-import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
-import { faEdit } from "@fortawesome/free-solid-svg-icons/faEdit";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { FC, useState } from "react";
-import { useParams } from "react-router-dom";
+import {faTrashCan} from '@fortawesome/free-solid-svg-icons';
+import {faEdit} from '@fortawesome/free-solid-svg-icons/faEdit';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {FC, useState} from 'react';
+import {useParams} from 'react-router-dom';
 
-import { TransparentButton } from "../../../../../components/Button/TransparentButton";
-import { Modal } from "../../../../../components/Modal";
-import { getUser } from "../../../../../utils/user";
-import { Garden } from "../../..";
-import { EditForm } from "./components/EditForm";
-import * as S from "./styles";
-import { ConfirmDelete } from "./components/ConfirmDelete";
+import {TransparentButton} from '../../../../../components/Button/TransparentButton';
+import {getUser} from '../../../../../utils/user';
+import {Garden} from '../../..';
+import {ConfirmDelete} from './components/ConfirmDelete';
+import {EditForm} from './components/EditForm';
+import * as S from './styles';
 
 interface GardenInfoProps {
   garden: Garden;
 }
 
-const defaultImage = "../../../../../../public/images/garden2.jpg";
+const defaultImage = '../../../../../../public/images/garden2.jpg';
 
 export const GardenInfo: FC<GardenInfoProps> = ({
-  garden: { title, id, zipcode, description, image },
+  garden: {title, id, zipcode, description, image},
 }) => {
-  const { id: userId } = useParams();
+  const {id: userId} = useParams();
   const user = getUser();
   const isConnectedOwner = user && user.id.toString() === userId;
 
   const [editModalIsOpen, setEditModalIsOpen] = useState(false);
   const [confirmDeleteIsOpen, setConfirmDeleteIsOpen] = useState(false);
 
-  const formProps = { title, zipcode, description, image };
+  const formProps = {title, zipcode, description, image};
   return (
     <>
       <S.Title id={`${id}`}>

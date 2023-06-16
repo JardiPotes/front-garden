@@ -1,1 +1,1 @@
-export { TransparentButton } from "./styles";
+export {TransparentButton} from './styles';

@@ -1,56 +1,56 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import { QueryClientProvider } from "react-query";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import {QueryClientProvider} from 'react-query';
+import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 
-import { queryClient } from "./ClientProvider";
-import { GlobalStyle } from "./GlobalStyles";
-import { Layout } from "./Layout";
-import { GardenPage } from "./pages/Gardens";
-import HomePage from "./pages/HomePage";
-import { Intro } from "./pages/Intro";
-import MessagesPage from "./pages/Messages";
-import { Profile } from "./pages/Profile";
-import { Wip } from "./pages/WIP";
+import {queryClient} from './ClientProvider';
+import {GlobalStyle} from './GlobalStyles';
+import {Layout} from './Layout';
+import {GardenPage} from './pages/Gardens';
+import HomePage from './pages/HomePage';
+import {Intro} from './pages/Intro';
+import MessagesPage from './pages/Messages';
+import {Profile} from './pages/Profile';
+import {Wip} from './pages/WIP';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <Layout />,
     children: [
       {
-        path: "/",
+        path: '/',
         element: <HomePage />,
       },
       {
-        path: "gardens",
+        path: 'gardens',
         element: <GardenPage />,
       },
       {
-        path: "profile/:id",
+        path: 'profile/:id',
         element: <Profile />,
       },
       {
-        path: "messages/:convId",
+        path: 'messages/:convId',
         element: <MessagesPage />,
       },
       {
-        path: "intro",
+        path: 'intro',
         element: <Intro />,
       },
       {
-        path: "wip",
+        path: 'wip',
         element: <Wip />,
       },
     ],
   },
 ]);
 
-ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <QueryClientProvider client={queryClient}>
     <React.StrictMode>
       <GlobalStyle />
       <RouterProvider router={router} />
     </React.StrictMode>
-  </QueryClientProvider>
+  </QueryClientProvider>,
 );

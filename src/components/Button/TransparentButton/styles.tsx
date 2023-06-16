@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const TransparentButton = styled.button`
   background-color: transparent;

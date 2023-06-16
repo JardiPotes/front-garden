@@ -1,9 +1,9 @@
-import { useEffect } from "react";
-import { useQuery } from "react-query";
+import {useEffect} from 'react';
+import {useQuery} from 'react-query';
 
-import { axios } from "../../../../ClientProvider";
-import { getUser } from "../../../../utils/user";
-import * as S from "./styles";
+import {axios} from '../../../../ClientProvider';
+import {getUser, User} from '../../../../utils/user';
+import * as S from './styles';
 
 type MessagePreviewProps = {
   conversation: {
@@ -20,25 +20,25 @@ type MessagePreviewProps = {
 
 export const MessagePreview: React.FC<MessagePreviewProps> = ({
   conversation,
-  setCurrentConv
+  setCurrentConv,
 }) => {
   const user = getUser();
   const contactId =
-    conversation?.chat_sender_id == user?.id
+    conversation?.chat_sender_id == String(user?.id)
       ? conversation?.chat_receiver_id
       : conversation?.chat_sender_id;
 
-  const { data: contact } = useQuery({
-    queryKey: ["contact"],
+  const {data: contact} = useQuery({
+    queryKey: ['contact'],
     queryFn: async () => {
       const data = await axios
-        .get(`users/${contactId}`)
-        .then((res) => res.data)
+        .get<User>(`users/${contactId}`)
+        .then(res => res.data)
         // eslint-disable-next-line no-console
-        .catch((err) => console.log(err));
+        .catch(err => console.log(err));
       return data;
     },
-    keepPreviousData: true
+    keepPreviousData: true,
   });
 
   const handleClick = (): void => {
@@ -51,9 +51,9 @@ export const MessagePreview: React.FC<MessagePreviewProps> = ({
 
   return (
     <S.PrewiewItem to={`/messages/${conversation?.id}`} onClick={handleClick}>
-      <S.Name>{contact?.nickname || "no name"}</S.Name>
+      <S.Name>{contact?.nickname || 'no name'}</S.Name>
       <S.MessagePreview>
-        {conversation?.latest_message?.content || "no message yet"}
+        {conversation?.latest_message?.content || 'no message yet'}
       </S.MessagePreview>
     </S.PrewiewItem>
   );

@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-export const Bubble = styled.div<{ $right: boolean }>`
+export const Bubble = styled.div<{$right: boolean}>`
   position: relative;
   font-family: sans-serif;
   font-size: 18px;
@@ -33,7 +33,7 @@ export const Bubble = styled.div<{ $right: boolean }>`
   }`}
 
   &:before {
-    content: "";
+    content: '';
     width: 0px;
     height: 0px;
     position: absolute;

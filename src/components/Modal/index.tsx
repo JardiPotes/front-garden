@@ -1,14 +1,14 @@
-import CrossIcon from "../../assets/cross-icon.png";
-import Logo from "../../assets/jardi-logo-trans.png";
-import { ModalFormWordings } from "../../assets/wordings";
-import * as S from "./styles";
+import CrossIcon from '../../assets/cross-icon.png';
+import Logo from '../../assets/jardi-logo-trans.png';
+import {ModalFormWordings} from '../../assets/wordings';
+import * as S from './styles';
 
 type ModalProps = {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   children: React.ReactNode;
 };
 
-export const Modal: React.FC<ModalProps> = ({ setIsOpen, children }) => {
+export const Modal: React.FC<ModalProps> = ({setIsOpen, children}) => {
   return (
     <>
       <S.Modal>

@@ -1,6 +1,6 @@
-import { getUser } from "../../../../utils/user";
-import { Name } from "../Preview/styles";
-import * as S from "./styles";
+import {getUser} from '../../../../utils/user';
+import {Name} from '../Preview/styles';
+import * as S from './styles';
 
 type MessageProps = {
   message: {
@@ -15,17 +15,17 @@ type MessageProps = {
   };
 };
 
-export const Message: React.FC<MessageProps> = ({ message, currentConv }) => {
+export const Message: React.FC<MessageProps> = ({message, currentConv}) => {
   const user = getUser();
   const date = new Date(Date.parse(message.sent_at));
   const hours = date.getHours();
   const minutes = date.getMinutes();
   let minutesStr = minutes.toString();
   if (minutes < 10) {
-    minutesStr = "0" + minutesStr;
+    minutesStr = '0' + minutesStr;
   }
 
-  const isFromUser = message?.sender_id === user?.id;
+  const isFromUser = message?.sender_id === String(user?.id);
   const author = isFromUser ? user?.nickname : currentConv?.nickname;
 
   return (
@@ -33,7 +33,7 @@ export const Message: React.FC<MessageProps> = ({ message, currentConv }) => {
       <S.Bubble $right={isFromUser}>
         <S.Content data-test-id="message_content">{message.content}</S.Content>
         <S.Date>{`${date.toLocaleDateString(
-          "fr"
+          'fr',
         )} à ${hours}h:${minutesStr}`}</S.Date>
       </S.Bubble>
       <Name>{author}</Name>

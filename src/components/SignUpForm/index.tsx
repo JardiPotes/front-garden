@@ -1,18 +1,18 @@
-import { AxiosError } from "axios";
-import { useEffect, useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { useMutation } from "react-query";
-import { useNavigate } from "react-router-dom";
+import {AxiosError} from 'axios';
+import {useEffect, useState} from 'react';
+import {SubmitHandler, useForm} from 'react-hook-form';
+import {useMutation} from 'react-query';
+import {useNavigate} from 'react-router-dom';
 
-import axios from "../../ClientProvider/axiosConfig";
-import { saveUser } from "../../utils/user";
-import useToken from "../../hooks/useToken";
-import { ButtonWordings, ModalFormWordings } from "../../assets/wordings";
-import { Button } from "../Button";
-import { Modal } from "../Modal";
-import * as S from "../Modal/styles";
-import { Uploader } from "../Uploader";
-import { CenterElement } from "./styles";
+import {ButtonWordings, ModalFormWordings} from '../../assets/wordings';
+import axios from '../../ClientProvider/axiosConfig';
+import useToken from '../../hooks/useToken';
+import {saveUser, User} from '../../utils/user';
+import {Button} from '../Button';
+import {Modal} from '../Modal';
+import * as S from '../Modal/styles';
+import {Uploader} from '../Uploader';
+import {CenterElement} from './styles';
 
 const MandatoryField: React.FC = () => {
   return <div>Ce champ est obligatoire !</div>;
@@ -31,80 +31,88 @@ export type UserData = {
   experience?: number;
 };
 
-export const SignUpModal: React.FC<SignUpModalProps> = ({ setIsOpen }) => {
+export const SignUpModal: React.FC<SignUpModalProps> = ({setIsOpen}) => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: {errors},
   } = useForm<UserData>();
 
   const expOptions = [1, 2, 3, 4, 5];
 
   const [createUserResult, setCreateUserResult] = useState<
     Record<string, string | null>
-  >({ status: null, message: "" });
+  >({status: null, message: ''});
 
   const navigate = useNavigate();
-  const { setToken } = useToken();
+  const {setToken} = useToken();
   const formatResponse = (res: unknown): string => {
     return JSON.stringify(res, null, 2);
   };
 
-  const postData: SubmitHandler<UserData> = (data) => {
+  const postData: SubmitHandler<UserData> = data => {
     try {
       createUser(data);
     } catch (err) {
-      setCreateUserResult({ status: "error", message: formatResponse(err) });
+      setCreateUserResult({status: 'error', message: formatResponse(err)});
     }
   };
 
-  const { isLoading: isCreatingUser, mutate: createUser } = useMutation(
+  const {isLoading: isCreatingUser, mutate: createUser} = useMutation(
     async (data: UserData) => {
       if (data.profile_image instanceof FileList) {
         data.profile_image = data.profile_image[0];
       }
-      return await axios.post(`auth/register`, data, {
-        headers: { "Content-Type": "multipart/form-data" },
+      return await axios.post<User>(`auth/register`, data, {
+        headers: {'Content-Type': 'multipart/form-data'},
       });
     },
     {
       onSuccess: async (res, data) => {
         const userId = res?.data?.id;
         setCreateUserResult({
-          status: "success",
-          message: "votre compte est bien créé !",
+          status: 'success',
+          message: 'votre compte est bien créé !',
         });
         try {
-          const loginResponse = await axios.post("auth/login", {
+          const loginResponse = await axios.post<{
+            auth_token: string;
+            user: User;
+          }>('auth/login', {
             email: data.email,
             password: data.password,
           });
-          const authToken = loginResponse?.data?.auth_token;
+          const authToken = loginResponse.data.auth_token;
           if (userId && authToken) {
             setToken(authToken);
             saveUser(loginResponse.data.user);
             navigate(`/profile/${userId}`);
           }
         } catch (error) {
-          console.error("Login error", error);
+          // eslint-disable-next-line no-console
+          console.error('Login error', error);
         }
       },
       onError: (err: AxiosError) => {
         // eslint-disable-next-line no-console
-        console.dir({ err });
+        console.dir({err});
         const errMessage = formatResponse(err?.response?.data);
         setCreateUserResult({
-          status: "error",
+          status: 'error',
           message: `Oups, il y a un problème : ${errMessage}`,
         });
       },
-    }
+    },
   );
 
   useEffect(() => {
     if (isCreatingUser)
-      setCreateUserResult({ status: "creating", message: "...creating" });
+      setCreateUserResult({status: 'creating', message: '...creating'});
   }, [isCreatingUser]);
+
+  const onSubmit = (data: UserData): void => {
+    postData(data);
+  };
 
   return (
     <Modal setIsOpen={setIsOpen}>
@@ -114,7 +122,7 @@ export const SignUpModal: React.FC<SignUpModalProps> = ({ setIsOpen }) => {
             <S.inputLabel>{ModalFormWordings.email}</S.inputLabel>
             <S.ModalBodyInputBody
               placeholder="ilovecss@sarcasm.fr"
-              {...register("email", { required: true })}
+              {...register('email', {required: true})}
               data-test-id="register_email"
             />
             {errors.email && <MandatoryField />}
@@ -124,7 +132,7 @@ export const SignUpModal: React.FC<SignUpModalProps> = ({ setIsOpen }) => {
             <S.ModalBodyInputBody
               type="password"
               placeholder="********"
-              {...register("password", { required: true })}
+              {...register('password', {required: true})}
               data-test-id="register_password"
             />
             {errors.password && <MandatoryField />}
@@ -133,7 +141,7 @@ export const SignUpModal: React.FC<SignUpModalProps> = ({ setIsOpen }) => {
             <S.inputLabel>{ModalFormWordings.pseudo}</S.inputLabel>
             <S.ModalBodyInputBody
               placeholder="Huguette-JMiche"
-              {...register("nickname", { required: true })}
+              {...register('nickname', {required: true})}
               data-test-id="register_nickname"
             />
             {errors.nickname && <MandatoryField />}
@@ -142,18 +150,18 @@ export const SignUpModal: React.FC<SignUpModalProps> = ({ setIsOpen }) => {
             <S.inputLabel>{ModalFormWordings.bio}</S.inputLabel>
             <S.ModalBodyTextAreaBody
               placeholder="J'aimerais bien vous inviter à faire une raclette dans mon jardin situé Paris 16ème arrondissement quand il fait 50 degrés."
-              {...register("bio")}
+              {...register('bio')}
             />
           </S.labelInputWrapper>
           <S.radioWrapper>
             <S.inputLabel>{ModalFormWordings.experience}</S.inputLabel>
-            {expOptions.map((option) => (
+            {expOptions.map(option => (
               <S.radioInputWrapper key={option.toString()}>
                 <S.inputLabel>{option}</S.inputLabel>
                 <S.radioInput
                   type="radio"
                   id={option.toString()}
-                  {...register("experience")}
+                  {...register('experience')}
                   value={option}
                   data-test-id="register_experience"
                 />
@@ -163,11 +171,9 @@ export const SignUpModal: React.FC<SignUpModalProps> = ({ setIsOpen }) => {
           <S.Tip>{ModalFormWordings.experienceTip}</S.Tip>
           <Uploader register={register} />
           <CenterElement>
-            {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
-            <Button
-              onClick={handleSubmit(postData)}
-              data-test-id="register_submit"
-            >
+            <Button /* eslint-disable-next-line @typescript-eslint/no-misused-promises */
+              onClick={handleSubmit(onSubmit)}
+              data-test-id="register_submit">
               {ButtonWordings.join}
             </Button>
             {createUserResult.status && createUserResult.message}

@@ -1,31 +1,31 @@
-import { faEdit } from "@fortawesome/free-solid-svg-icons/faEdit";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { FC, useState } from "react";
+import {faEdit} from '@fortawesome/free-solid-svg-icons/faEdit';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {FC, useState} from 'react';
+import {useParams} from 'react-router-dom';
 
-import { UserProfileWordings } from "../../../../../assets/wordings";
-import { Card } from "../../../../../components/Card";
-import { Experience } from "../../Experience";
-import { UserInfoProps } from "..";
-import * as S from "./styles";
-import { getUser } from "../../../../../utils/user";
-import { useParams } from "react-router-dom";
-import { EditForm } from "../EditForm";
-import { SpaceBetweenRow } from "../../../../../components/Wrappers/SpaceBetweenRow";
-import { TransparentButton } from "../../../../../components/Button/TransparentButton";
+import {UserProfileWordings} from '../../../../../assets/wordings';
+import {TransparentButton} from '../../../../../components/Button/TransparentButton';
+import {Card} from '../../../../../components/Card';
+import {SpaceBetweenRow} from '../../../../../components/Wrappers/SpaceBetweenRow';
+import {getUser} from '../../../../../utils/user';
+import {Experience} from '../../Experience';
+import {UserInfoProps} from '..';
+import {EditForm} from '../EditForm';
+import * as S from './styles';
 
 type BioCardProps = Pick<
-  UserInfoProps["user"],
-  "nickname" | "bio" | "experience"
+  UserInfoProps['user'],
+  'nickname' | 'bio' | 'experience'
 >;
 
-export const BioCard: FC<BioCardProps> = (user) => {
+export const BioCard: FC<BioCardProps> = user => {
   const userId = getUser()?.id;
-  const { id } = useParams();
+  const {id} = useParams();
   const isConnectedOwner = !!userId && userId.toString() === id;
 
   const [isFormModalOpen, setFormModalOpen] = useState(false);
   return (
-    <Card style={{ width: "100%" }}>
+    <Card style={{width: '100%'}}>
       <SpaceBetweenRow>
         <S.Title>{user.nickname}</S.Title>
         {isConnectedOwner && (

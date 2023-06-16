@@ -1,7 +1,7 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const Colors = {
-  cardBackground: "#FCF9F9",
+  cardBackground: '#FCF9F9',
 } as const;
 
 export const Card = styled.div`

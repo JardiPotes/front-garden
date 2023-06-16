@@ -1,15 +1,15 @@
-import { Garden } from "../../index";
-import * as S from "./styles";
+import {Garden} from '../../index';
+import * as S from './styles';
 
 type GardenThumbProps = {
   garden: Garden;
 };
 
-export const GardenThumb: React.FC<GardenThumbProps> = ({ garden }) => {
-  const defaultImage = "public/images/garden2.jpg";
-  const defaultUserImage = "public/images/jardinier.jpg";
-  const pin = "public/images/pin.png";
-  const { title, description, zipcode, image, user, user_id } = garden;
+export const GardenThumb: React.FC<GardenThumbProps> = ({garden}) => {
+  const defaultImage = 'public/images/garden2.jpg';
+  const defaultUserImage = 'public/images/jardinier.jpg';
+  const pin = 'public/images/pin.png';
+  const {title, description, zipcode, image, user, user_id} = garden;
 
   /* FIXME When we have address in the future, we can use this.
 

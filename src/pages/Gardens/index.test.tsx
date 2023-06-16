@@ -1,24 +1,27 @@
-import { render, screen } from "@testing-library/react";
-import { BrowserRouter } from "react-router-dom";
+import {render, screen} from '@testing-library/react';
+import reactQuery from 'react-query';
+import {BrowserRouter} from 'react-router-dom';
 
-import { GardenPage } from "./index";
+import {GardenPage} from './index';
 
-const mockedUseQuery = jest.fn();
+const mockedRefetch = jest.fn();
 
-jest.mock("react-query", () => ({
-  ...jest.requireActual("react-query"),
-  useQuery: () => mockedUseQuery
+jest.mock('react-query', () => ({
+  ...jest.requireActual<typeof reactQuery>('react-query'),
+  useQuery: (): {refetch: jest.Mock} => ({
+    refetch: mockedRefetch,
+  }),
 }));
 
-describe.skip("render", () => {
-  it("should render without crash", () => {
+describe('render', () => {
+  it('should render without crash', () => {
     render(
       <BrowserRouter>
         <GardenPage />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
     expect(
-      screen.getByText("Trouve le jardin de tes rêves !")
+      screen.getByText('Trouve le jardin de tes rêves !'),
     ).toBeInTheDocument();
   });
 });

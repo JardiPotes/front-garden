@@ -1,16 +1,16 @@
-import { AxiosError, AxiosResponse } from "axios";
-import { Dispatch, FC, SetStateAction, useEffect, useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { useMutation } from "react-query";
-import { useNavigate } from "react-router-dom";
+import {AxiosError, AxiosResponse} from 'axios';
+import {Dispatch, FC, SetStateAction, useEffect, useState} from 'react';
+import {SubmitHandler, useForm} from 'react-hook-form';
+import {useMutation} from 'react-query';
+import {useNavigate} from 'react-router-dom';
 
-import axios from "../../ClientProvider/axiosConfig";
-import { saveUser, User } from "../../utils/user";
-import { ButtonWordings, ModalFormWordings } from "../../assets/wordings";
-import { Button } from "../Button";
-import { Modal } from "../Modal";
-import * as S from "../Modal/styles";
-import { CenterElement } from "../SignUpForm/styles";
+import {ButtonWordings, ModalFormWordings} from '../../assets/wordings';
+import axios from '../../ClientProvider/axiosConfig';
+import {saveUser, User} from '../../utils/user';
+import {Button} from '../Button';
+import {Modal} from '../Modal';
+import * as S from '../Modal/styles';
+import {CenterElement} from '../SignUpForm/styles';
 
 type ModalProps = {
   setIsOpen: Dispatch<SetStateAction<boolean>>;
@@ -24,7 +24,7 @@ type LoginData = {
 };
 
 type LoginStatus = {
-  status: "success" | "error" | "loading" | null;
+  status: 'success' | 'error' | 'loading' | null;
   message: string;
 };
 
@@ -50,7 +50,7 @@ export const LoginModal: FC<ModalProps> = ({
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: {errors},
   } = useForm<LoginData>();
 
   const navigate = useNavigate();
@@ -61,22 +61,22 @@ export const LoginModal: FC<ModalProps> = ({
 
   const [logInStatus, setlogInStatus] = useState<LoginStatus>({
     status: null,
-    message: "",
+    message: '',
   });
 
-  const onSubmit: SubmitHandler<LoginData> = (data) => {
+  const onSubmit: SubmitHandler<LoginData> = data => {
     loginUser(data);
   };
 
-  const { isLoading, mutate: loginUser } = useMutation(
+  const {isLoading, mutate: loginUser} = useMutation(
     async (data: LoginData) => {
       return await axios.post(`auth/login`, data);
     },
     {
       onSuccess: (res: UserResult) => {
         setlogInStatus({
-          status: "success",
-          message: "connecté !",
+          status: 'success',
+          message: 'connecté !',
         });
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         setToken(res.data.auth_token);
@@ -89,18 +89,18 @@ export const LoginModal: FC<ModalProps> = ({
       },
       onError: (err: AxiosError) => {
         // eslint-disable-next-line no-console
-        console.dir({ err });
+        console.dir({err});
         const errMessage = formatResponse(err?.response?.data);
         setlogInStatus({
-          status: "error",
+          status: 'error',
           message: `Oups : ${errMessage}`,
         });
       },
-    }
+    },
   );
 
   useEffect(() => {
-    if (isLoading) setlogInStatus({ status: "loading", message: "...loading" });
+    if (isLoading) setlogInStatus({status: 'loading', message: '...loading'});
   }, [logInStatus]);
 
   return (
@@ -109,22 +109,21 @@ export const LoginModal: FC<ModalProps> = ({
         <CenterElement>
           <S.labelInputWrapper>
             <S.inputLabel>{ModalFormWordings.email}</S.inputLabel>
-            <S.ModalBodyInputBody {...register("email", { required: true })} />
+            <S.ModalBodyInputBody {...register('email', {required: true})} />
             {errors.email && <MandatoryField />}
           </S.labelInputWrapper>
           <S.labelInputWrapper>
             <S.inputLabel>{ModalFormWordings.password}</S.inputLabel>
             <S.ModalBodyInputBody
               type="password"
-              {...register("password", { required: true })}
+              {...register('password', {required: true})}
             />
             {errors.password && <MandatoryField />}
           </S.labelInputWrapper>
           <Button
             /* eslint-disable-next-line @typescript-eslint/no-misused-promises */
             onClick={handleSubmit(onSubmit)}
-            data-test-id="connexion_submit"
-          >
+            data-test-id="connexion_submit">
             {ButtonWordings.connection}
           </Button>
           <div data-test-id="connexion_error">

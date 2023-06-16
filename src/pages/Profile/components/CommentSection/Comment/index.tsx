@@ -1,20 +1,20 @@
-import { FC } from "react";
+import {FC} from 'react';
 
-import { Card } from "../../../../../components/Card";
-import { Experience } from "../../Experience";
-import { Comment as IComment } from "../../..";
-import * as S from "./styles";
+import {Card} from '../../../../../components/Card';
+import {Comment as IComment} from '../../..';
+import {Experience} from '../../Experience';
+import * as S from './styles';
 
 interface CommentProps {
   comment: IComment;
 }
 
 interface AuthorInfoProps {
-  author: CommentProps["comment"]["author"];
+  author: CommentProps['comment']['author'];
 }
 
 const AuthorInfo: FC<AuthorInfoProps> = ({
-  author: { profile_image, experience }
+  author: {profile_image, experience},
 }) => {
   return (
     <S.Stack>
@@ -25,22 +25,22 @@ const AuthorInfo: FC<AuthorInfoProps> = ({
 };
 
 export const Comment: FC<CommentProps> = ({
-  comment: { author, content, created_at }
+  comment: {author, content, created_at},
 }) => (
   <S.Wrapper>
     <AuthorInfo author={author} />
-    <Card style={{ maxWidth: "1000px", width: "100%" }}>
+    <Card style={{maxWidth: '1000px', width: '100%'}}>
       <S.NameDatetimeWrapper>
         <S.Name>{author.nickname}</S.Name>
         <S.Datetime dateTime={created_at}>
-          {new Intl.DateTimeFormat("fr-FR", {
-            dateStyle: "long",
-            timeStyle: "short",
-            timeZone: "Europe/Paris"
+          {new Intl.DateTimeFormat('fr-FR', {
+            dateStyle: 'long',
+            timeStyle: 'short',
+            timeZone: 'Europe/Paris',
           }).format(new Date(created_at))}
         </S.Datetime>
       </S.NameDatetimeWrapper>
-      <p style={{ whiteSpace: "pre-wrap" }}>{content}</p>
+      <p style={{whiteSpace: 'pre-wrap'}}>{content}</p>
     </Card>
   </S.Wrapper>
 );

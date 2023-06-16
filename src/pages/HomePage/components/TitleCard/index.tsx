@@ -1,9 +1,9 @@
-import { FC } from "react";
+import {FC} from 'react';
 
-import WhiteChicken from "../../../../assets/white-chicken.png";
-import WhiteFlower from "../../../../assets/white-flower.png";
-import { HomePageWordings } from "../../../../assets/wordings";
-import * as S from "./styles";
+import WhiteChicken from '../../../../assets/white-chicken.png';
+import WhiteFlower from '../../../../assets/white-flower.png';
+import {HomePageWordings} from '../../../../assets/wordings';
+import * as S from './styles';
 
 export const TitleCard: FC = () => {
   return (

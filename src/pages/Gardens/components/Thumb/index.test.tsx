@@ -1,32 +1,32 @@
-import { render, screen } from "@testing-library/react";
-import { BrowserRouter } from "react-router-dom";
+import {render, screen} from '@testing-library/react';
+import {BrowserRouter} from 'react-router-dom';
 
-import { GardenThumb } from "./index";
+import {GardenThumb} from './index';
 
 const MOCK_GARDEN = {
   id: 1,
   user_id: 1,
-  title: "Mon beau jardin",
-  description: "Il est beau mon jardin !",
-  address: "coin perdu",
+  title: 'Mon beau jardin',
+  description: 'Il est beau mon jardin !',
+  address: 'coin perdu',
   zipcode: 11111,
-  image: "",
-  profile_image: "",
+  image: '',
+  profile_image: '',
   user: {
     id: 1,
-    nickname: "Plouf",
+    nickname: 'Plouf',
     experience: 1,
-    profile_image: ""
-  }
+    profile_image: '',
+  },
 };
 
-describe("render", () => {
-  it("should render without crash", () => {
+describe('render', () => {
+  it('should render without crash', () => {
     render(
       <BrowserRouter>
         <GardenThumb garden={MOCK_GARDEN} />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
-    expect(screen.getByText("Mon beau jardin")).toBeInTheDocument();
+    expect(screen.getByText('Mon beau jardin')).toBeInTheDocument();
   });
 });
