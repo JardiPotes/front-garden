@@ -1,13 +1,13 @@
-import { AxiosError, AxiosResponse } from "axios";
-import { useEffect, useMemo, useState } from "react";
-import { useQuery } from "react-query";
+import {AxiosError, AxiosResponse} from 'axios';
+import {useEffect, useMemo, useState} from 'react';
+import {useQuery} from 'react-query';
 
-import axios from "../../ClientProvider/axiosConfig";
-import { CommonQueryArgs } from "../../types";
-import { GardenBanner } from "./components/Banner";
-import { SearchBar } from "./components/Search";
-import { GardenThumb } from "./components/Thumb";
-import { PageButton } from "./styles";
+import axios from '../../ClientProvider/axiosConfig';
+import {CommonQueryArgs} from '../../types';
+import {GardenBanner} from './components/Banner';
+import {SearchBar} from './components/Search';
+import {GardenThumb} from './components/Thumb';
+import {PageButton} from './styles';
 
 export type Garden = {
   id: number;
@@ -38,7 +38,7 @@ type QueryArgs = CommonQueryArgs & {
   data?: void | GardenData | undefined;
 };
 
-type Result = AxiosResponse<string | unknown> & { data: GardenData };
+type Result = AxiosResponse<string | unknown> & {data: GardenData};
 
 export const GardenPage: React.FC = () => {
   const [offset, setOffset] = useState(0);
@@ -50,16 +50,16 @@ export const GardenPage: React.FC = () => {
         (prev: string, [key, value]: string[]) => {
           return `${prev}${key}=${value}&`;
         },
-        ""
+        '',
       );
     } else {
-      return "";
+      return '';
     }
   }, [search]);
 
-  const { error, isLoading, refetch, data, isPreviousData }: QueryArgs =
-    useQuery({
-      queryKey: ["gardens", offset],
+  const {error, isLoading, refetch, data, isPreviousData}: QueryArgs = useQuery(
+    {
+      queryKey: ['gardens', offset],
       queryFn: async () => {
         const data: GardenData | void = await axios
           .get(`gardens?offset=${offset}&${paramsString}`)
@@ -68,8 +68,9 @@ export const GardenPage: React.FC = () => {
           .catch((err: AxiosError) => console.log(err));
         return data;
       },
-      keepPreviousData: true
-    });
+      keepPreviousData: true,
+    },
+  );
 
   useEffect(() => {
     refetch();
@@ -82,7 +83,7 @@ export const GardenPage: React.FC = () => {
       <GardenBanner />
       <SearchBar setSearch={setSearch} />
       <div>
-        {data?.results.map((result) => (
+        {data?.results.map(result => (
           <GardenThumb key={result.id} garden={result} />
         ))}
       </div>

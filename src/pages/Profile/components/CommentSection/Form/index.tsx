@@ -1,48 +1,47 @@
-import { FC } from "react";
-import { useForm } from "react-hook-form";
-import { useMutation } from "react-query";
-import styled from "styled-components";
+import {FC} from 'react';
+import {useForm} from 'react-hook-form';
+import {useMutation} from 'react-query';
+import styled from 'styled-components';
 
-import { axios } from "../../../../../ClientProvider";
-import { Button } from "../../../../../components/Button";
-import { getUser } from "../../../../../utils/user";
-import useToken from "../../../../../hooks/useToken";
+import {axios} from '../../../../../ClientProvider';
+import {Button} from '../../../../../components/Button';
+import useToken from '../../../../../hooks/useToken';
+import {getUser} from '../../../../../utils/user';
 
 interface CommentFormProps {
   userId: string;
   triggerRefetch: () => void;
 }
 
-const CommentForm: FC<CommentFormProps> = ({ userId, triggerRefetch }) => {
-  const { register, handleSubmit } = useForm<{ comment: string }>();
+const CommentForm: FC<CommentFormProps> = ({userId, triggerRefetch}) => {
+  const {register, handleSubmit} = useForm<{comment: string}>();
 
-  const { token } = useToken();
+  const {token} = useToken();
   const author = getUser();
 
-  const { mutate: postNewComment } = useMutation(
+  const {mutate: postNewComment} = useMutation(
     async (content: string) =>
       axios.post(
-        "comments",
-        { author_id: author?.id, receiver_id: userId, content },
+        'comments',
+        {author_id: author?.id, receiver_id: userId, content},
         {
-          headers: { Authorization: token && `Token ${token}` },
-        }
+          headers: {Authorization: token && `Token ${token}`},
+        },
       ),
-    { onSuccess: triggerRefetch }
+    {onSuccess: triggerRefetch},
   );
 
-  const onSubmit = (data: { comment: string }): void => {
+  const onSubmit = (data: {comment: string}): void => {
     postNewComment(data.comment);
   };
 
   return (
     author && (
       <form // eslint-disable-next-line @typescript-eslint/no-misused-promises
-        onSubmit={handleSubmit(onSubmit)}
-      >
+        onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="comment">Ajouter un commentaire :</label>
         <textarea
-          {...register("comment")}
+          {...register('comment')}
           id="comment"
           rows={5}
           required
@@ -56,8 +55,8 @@ const CommentForm: FC<CommentFormProps> = ({ userId, triggerRefetch }) => {
 };
 
 const Colors = {
-  cardBackground: "#FCF9F9",
-  focus: "#CEA37C",
+  cardBackground: '#FCF9F9',
+  focus: '#CEA37C',
 } as const;
 
 const CommentFormStyleWrapper = styled.div`

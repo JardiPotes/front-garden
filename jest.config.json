@@ -1,12 +1,13 @@
 {
   "testEnvironment": "jsdom",
   "transform": {
+    "^.+\\.js$": "<rootDir>/jestEsmTransformer.ts",
     "^.+\\.tsx?$": "ts-jest",
-    "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "/Users/victoirestahl/Developer/front-garden/fileTransformer.ts"
+    "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/fileTransformer.ts"
   },
-  "setupFilesAfterEnv": ["@testing-library/jest-dom/extend-expect"],
+  "setupFilesAfterEnv": ["./src/setUpTests.ts"],
   "preset": "ts-jest",
   "transformIgnorePatterns": [
-    "node_modules/(?!(use-breakpoint)|use-breakpoint|@use-breakpoint)"
+    "/node_modules/(?!(use-breakpoint|@use-breakpoint)/)"
   ]
 }

@@ -1,20 +1,20 @@
-import { FC } from "react";
-import { useForm } from "react-hook-form";
-import { useMutation, useQueryClient } from "react-query";
+import {FC} from 'react';
+import {useForm} from 'react-hook-form';
+import {useMutation, useQueryClient} from 'react-query';
 
-import { axios } from "../../../../../ClientProvider";
-import { Button } from "../../../../../components/Button";
-import { Modal } from "../../../../../components/Modal";
-import * as S from "../../../../../components/Modal/styles";
-import useToken from "../../../../../hooks/useToken";
-import { getUser } from "../../../../../utils/user";
-import { UserWithGardens } from "../../..";
-import { CenterElement } from "../../Gardens/CreateForm/styles";
-import { UserInfoProps } from "..";
+import {axios} from '../../../../../ClientProvider';
+import {Button} from '../../../../../components/Button';
+import {Modal} from '../../../../../components/Modal';
+import * as S from '../../../../../components/Modal/styles';
+import useToken from '../../../../../hooks/useToken';
+import {getUser} from '../../../../../utils/user';
+import {UserWithGardens} from '../../..';
+import {CenterElement} from '../../Gardens/CreateForm/styles';
+import {UserInfoProps} from '..';
 
 type EditFormProps = Pick<
   UserWithGardens,
-  "nickname" | "experience" | "bio"
+  'nickname' | 'experience' | 'bio'
 > & {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
@@ -25,36 +25,36 @@ export const EditForm: FC<EditFormProps> = ({
   experience,
   bio,
 }) => {
-  const { register, handleSubmit } = useForm<UserInfoProps["user"]>();
+  const {register, handleSubmit} = useForm<UserInfoProps['user']>();
 
   const user = getUser();
-  const { token } = useToken();
+  const {token} = useToken();
 
   const queryClient = useQueryClient();
-  const { mutate: editUserInfo } = useMutation(
-    async (data: UserInfoProps["user"]) =>
+  const {mutate: editUserInfo} = useMutation(
+    async (data: UserInfoProps['user']) =>
       axios.put(`users/${String(user?.id)}`, data, {
-        headers: { Authorization: token && `Token ${token}` },
+        headers: {Authorization: token && `Token ${token}`},
       }),
     {
       onSuccess: (_, updatedVariables) => {
         queryClient.setQueryData(
-          ["user", user?.id.toString()],
-          (old?: { data: UserWithGardens | typeof updatedVariables }) => ({
+          ['user', user?.id.toString()],
+          (old?: {data: UserWithGardens | typeof updatedVariables}) => ({
             ...old,
-            data: { ...old?.data, ...updatedVariables },
-          })
+            data: {...old?.data, ...updatedVariables},
+          }),
         );
         setIsOpen(false);
       },
-    }
+    },
   );
 
   const onSubmit = (
     data: Pick<
       UserWithGardens,
-      "nickname" | "experience" | "bio" | "profile_image"
-    >
+      'nickname' | 'experience' | 'bio' | 'profile_image'
+    >,
   ): void => {
     editUserInfo(data);
   };
@@ -62,15 +62,14 @@ export const EditForm: FC<EditFormProps> = ({
   return (
     <Modal setIsOpen={setIsOpen}>
       <form /* eslint-disable-next-line @typescript-eslint/no-misused-promises */
-        onSubmit={handleSubmit(onSubmit)}
-      >
+        onSubmit={handleSubmit(onSubmit)}>
         <S.FormWrapper>
           <S.labelInputWrapper>
             <S.inputLabel htmlFor="nickname">Pseudonyme : </S.inputLabel>
             <S.ModalBodyInputBody
               type="text"
               id="nickname"
-              {...register("nickname")}
+              {...register('nickname')}
               defaultValue={nickname}
               required
             />
@@ -78,7 +77,7 @@ export const EditForm: FC<EditFormProps> = ({
           <S.labelInputWrapper>
             <S.inputLabel htmlFor="bio">Description : </S.inputLabel>
             <S.ModalBodyTextAreaBody
-              {...register("bio")}
+              {...register('bio')}
               defaultValue={bio}
               required
             />
@@ -87,7 +86,7 @@ export const EditForm: FC<EditFormProps> = ({
             <S.inputLabel htmlFor="experience">Expérience : </S.inputLabel>
             <S.ModalBodyInputBody
               type="number"
-              {...register("experience")}
+              {...register('experience')}
               defaultValue={experience}
               required
               min={0}

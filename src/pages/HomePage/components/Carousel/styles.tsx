@@ -1,4 +1,4 @@
-import styled, { css, FlattenSimpleInterpolation } from "styled-components";
+import styled, {css, FlattenSimpleInterpolation} from 'styled-components';
 
 export const ImageBox = styled.div`
   position: relative;
@@ -14,7 +14,7 @@ export const ImageBox = styled.div`
   }
 `;
 
-export const NavButton = styled.button<{ position: "left" | "right" }>`
+export const NavButton = styled.button<{position: 'left' | 'right'}>`
   cursor: pointer;
   position: absolute;
   top: 45%;
@@ -23,14 +23,14 @@ export const NavButton = styled.button<{ position: "left" | "right" }>`
   border: none;
   background: rgba(255, 255, 255, 0.7);
 
-  ${({ position }): false | FlattenSimpleInterpolation =>
-    position === "left" &&
+  ${({position}): false | FlattenSimpleInterpolation =>
+    position === 'left' &&
     css`
       left: 10px;
     `}
 
-  ${({ position }): false | FlattenSimpleInterpolation =>
-    position === "right" &&
+  ${({position}): false | FlattenSimpleInterpolation =>
+    position === 'right' &&
     css`
       right: 10px;
     `}

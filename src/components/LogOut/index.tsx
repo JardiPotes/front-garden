@@ -1,22 +1,22 @@
-import { AxiosError } from "axios";
-import { FC } from "react";
-import { useMutation } from "react-query";
-import { useNavigate } from "react-router-dom";
+import {AxiosError} from 'axios';
+import {FC} from 'react';
+import {useMutation} from 'react-query';
+import {useNavigate} from 'react-router-dom';
 
-import { ButtonWordings } from "../../assets/wordings";
-import axios from "../../ClientProvider/axiosConfig";
-import { removeUser } from "../../utils/user";
-import { Button } from "../Button";
+import {ButtonWordings} from '../../assets/wordings';
+import axios from '../../ClientProvider/axiosConfig';
+import {removeUser} from '../../utils/user';
+import {Button} from '../Button';
 
 type LogOutButtonProps = {
   removeToken: () => void;
   token: string | null;
 };
 
-export const LogOutButton: FC<LogOutButtonProps> = ({ removeToken }) => {
+export const LogOutButton: FC<LogOutButtonProps> = ({removeToken}) => {
   const navigate = useNavigate();
 
-  const { mutate: logOut } = useMutation(
+  const {mutate: logOut} = useMutation(
     async () => {
       return await axios.post(`auth/logout`);
     },
@@ -24,13 +24,13 @@ export const LogOutButton: FC<LogOutButtonProps> = ({ removeToken }) => {
       onSuccess: () => {
         removeToken();
         removeUser();
-        navigate("/", { replace: true });
+        navigate('/', {replace: true});
       },
       onError: (err: AxiosError) => {
         // eslint-disable-next-line no-console
-        console.dir({ err });
-      }
-    }
+        console.dir({err});
+      },
+    },
   );
 
   return (

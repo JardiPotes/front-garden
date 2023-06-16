@@ -1,14 +1,14 @@
-import { faRotateRight } from "@fortawesome/free-solid-svg-icons";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { SubmitHandler, useForm } from "react-hook-form";
-import useBreakpoint from "use-breakpoint";
+import {faRotateRight} from '@fortawesome/free-solid-svg-icons';
+import {faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {SubmitHandler, useForm} from 'react-hook-form';
+import useBreakpoint from 'use-breakpoint';
 
-import { Button } from "../../../../components/Button";
-import { intentionallyFloatingPromiseReturn } from "../../../../utils/intentionallyFloatingPromiseReturn";
-import { Search, SearchInput, Wrapper } from "./styles";
+import {Button} from '../../../../components/Button';
+import {intentionallyFloatingPromiseReturn} from '../../../../utils/intentionallyFloatingPromiseReturn';
+import {Search, SearchInput, Wrapper} from './styles';
 
-const BREAKPOINTS = { mobile: 0, tablet: 768, desktop: 1280 };
+const BREAKPOINTS = {mobile: 0, tablet: 768, desktop: 1280};
 
 type SearchBarProps = {
   setSearch: React.Dispatch<
@@ -20,12 +20,12 @@ type SearchData = {
   zipcode?: string;
 };
 
-export const SearchBar: React.FC<SearchBarProps> = ({ setSearch }) => {
-  const { register, handleSubmit, setValue } = useForm<SearchData>();
-  const { breakpoint } = useBreakpoint(BREAKPOINTS);
+export const SearchBar: React.FC<SearchBarProps> = ({setSearch}) => {
+  const {register, handleSubmit, setValue} = useForm<SearchData>();
+  const {breakpoint} = useBreakpoint(BREAKPOINTS);
 
-  const isMobile = breakpoint === "mobile";
-  const onSearch: SubmitHandler<SearchData> = (data) => {
+  const isMobile = breakpoint === 'mobile';
+  const onSearch: SubmitHandler<SearchData> = data => {
     setSearch(data);
   };
 
@@ -33,28 +33,26 @@ export const SearchBar: React.FC<SearchBarProps> = ({ setSearch }) => {
     <Wrapper>
       <Search>
         <SearchInput
-          {...register("zipcode")}
+          {...register('zipcode')}
           placeholder="search by zipcode"
           data-test-id="zipcode"
         />
         <Button
           onClick={intentionallyFloatingPromiseReturn(handleSubmit(onSearch))}
           small={isMobile && true}
-          data-test-id="search_submit"
-        >
-          {isMobile ? <FontAwesomeIcon icon={faMagnifyingGlass} /> : "Filtrer"}
+          data-test-id="search_submit">
+          {isMobile ? <FontAwesomeIcon icon={faMagnifyingGlass} /> : 'Filtrer'}
         </Button>
         <Button
           onClick={(): void => {
             setSearch(null);
-            setValue("zipcode", "");
+            setValue('zipcode', '');
           }}
-          small={isMobile && true}
-        >
+          small={isMobile && true}>
           {isMobile ? (
             <FontAwesomeIcon icon={faRotateRight} />
           ) : (
-            "Réinitialiser"
+            'Réinitialiser'
           )}
         </Button>
       </Search>

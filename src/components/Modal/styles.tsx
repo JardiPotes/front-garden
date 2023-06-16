@@ -1,11 +1,11 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const Colors = {
-  bg: "#D9D9D9",
-  line: "#86E7B8",
-  inputArea: "#FCF9F9",
-  textInput: "#777",
-  cross: "#000000",
+  bg: '#D9D9D9',
+  line: '#86E7B8',
+  inputArea: '#FCF9F9',
+  textInput: '#777',
+  cross: '#000000',
 } as const;
 
 export const BackgroundOverlay = styled.div`
@@ -170,13 +170,13 @@ export const UploadImage = styled.button`
 
 export const radioInput = styled.input`
   text-align: center;
-  color: "black";
+  color: 'black';
 `;
 
 export const inputLabel = styled.label`
   font-size: 1em;
   text-align: left;
-  color: "black";
+  color: 'black';
 `;
 
 export const labelInputWrapper = styled.div`

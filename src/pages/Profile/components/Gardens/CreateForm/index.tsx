@@ -1,20 +1,20 @@
-import { AxiosError, AxiosResponse } from "axios";
-import { useEffect, useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { useMutation } from "react-query";
+import {AxiosError, AxiosResponse} from 'axios';
+import {useEffect, useState} from 'react';
+import {SubmitHandler, useForm} from 'react-hook-form';
+import {useMutation} from 'react-query';
 
 import {
   ButtonWordings,
   ModalFormWordings,
-} from "../../../../../assets/wordings";
-import axios from "../../../../../ClientProvider/axiosConfig";
-import { Button } from "../../../../../components/Button";
-import { Modal } from "../../../../../components/Modal";
-import * as S from "../../../../../components/Modal/styles";
-import useToken from "../../../../../hooks/useToken";
-import { getUser } from "../../../../../utils/user";
-import { CenterElement } from "./styles";
-import { Uploader } from "./uploader";
+} from '../../../../../assets/wordings';
+import axios from '../../../../../ClientProvider/axiosConfig';
+import {Button} from '../../../../../components/Button';
+import {Modal} from '../../../../../components/Modal';
+import * as S from '../../../../../components/Modal/styles';
+import useToken from '../../../../../hooks/useToken';
+import {getUser} from '../../../../../utils/user';
+import {CenterElement} from './styles';
+import {Uploader} from './uploader';
 
 const MandatoryField: React.FC = () => {
   return <div>Ce champ est obligatoire !</div>;
@@ -41,27 +41,27 @@ type PhotosData = {
   photos: File[] | FileList;
 };
 
-export const CreateGardenForm: React.FC<CreateFormProps> = ({ setIsOpen }) => {
+export const CreateGardenForm: React.FC<CreateFormProps> = ({setIsOpen}) => {
   const {
     register,
     handleSubmit,
     getValues,
-    formState: { errors },
+    formState: {errors},
   } = useForm<GardenData>();
 
   const [createGardenResult, setCreateGardenResult] = useState<
     Record<string, string | null>
-  >({ status: null, message: "" });
+  >({status: null, message: ''});
 
   const formatResponse = (res: unknown): string => {
     return JSON.stringify(res, null, 2);
   };
-  const { token } = useToken();
-  const postData: SubmitHandler<GardenData> = (data) => {
+  const {token} = useToken();
+  const postData: SubmitHandler<GardenData> = data => {
     try {
       createGarden(data);
     } catch (err) {
-      setCreateGardenResult({ status: "error", message: formatResponse(err) });
+      setCreateGardenResult({status: 'error', message: formatResponse(err)});
     }
   };
 
@@ -74,7 +74,7 @@ export const CreateGardenForm: React.FC<CreateFormProps> = ({ setIsOpen }) => {
     async (data: GardenData) => {
       const user = getUser();
       // eslint-disable-next-line @typescript-eslint/no-unsafe-call, no-console
-      user ? (data.user_id = user.id) : console.log("No User");
+      user ? (data.user_id = String(user.id)) : console.log('No User');
       // eslint-disable-next-line @typescript-eslint/no-unsafe-return
       return await axios
         .post(`/gardens`, data, {
@@ -89,27 +89,27 @@ export const CreateGardenForm: React.FC<CreateFormProps> = ({ setIsOpen }) => {
     {
       onError: (err: AxiosError) => {
         // eslint-disable-next-line no-console
-        console.dir({ err });
+        console.dir({err});
         const errMessage = formatResponse(err?.response?.data);
         setCreateGardenResult({
-          status: "error",
+          status: 'error',
           message: `Oups, il y a un problème : ${errMessage}`,
         });
       },
-    }
+    },
   );
 
-  const { isLoading: isUploadingPhoto, mutate: uploadPhoto } = useMutation(
+  const {mutate: uploadPhoto} = useMutation(
     async (data: PhotosData) => {
       return await axios.post(
         `/photos`,
-        { garden_id: data?.gardenId, image: data?.photos[0] },
+        {garden_id: data?.gardenId, image: data?.photos[0]},
         {
           headers: {
-            "Content-Type": "multipart/form-data",
+            'Content-Type': 'multipart/form-data',
             Authorization: token && `Token ${token}`,
           },
-        }
+        },
       );
     },
     {
@@ -117,18 +117,18 @@ export const CreateGardenForm: React.FC<CreateFormProps> = ({ setIsOpen }) => {
         setIsOpen(false);
         window.location.reload();
       },
-    }
+    },
   );
 
   useEffect(() => {
     if (isCreatingGarden)
-      setCreateGardenResult({ status: "creating", message: "...creating" });
+      setCreateGardenResult({status: 'creating', message: '...creating'});
   }, [isCreatingGarden]);
 
   useEffect(() => {
-    const photos = getValues("garden_image");
+    const photos = getValues('garden_image');
     if (photos !== undefined && photos?.length > 0 && gardenId !== undefined) {
-      uploadPhoto({ gardenId, photos });
+      uploadPhoto({gardenId, photos});
     } else if (gardenId) {
       setIsOpen(false);
       window.location.reload();
@@ -143,7 +143,7 @@ export const CreateGardenForm: React.FC<CreateFormProps> = ({ setIsOpen }) => {
             <S.inputLabel>{ModalFormWordings.title}</S.inputLabel>
             <S.ModalBodyInputBody
               placeholder="Chez Jade"
-              {...register("title", { required: true })}
+              {...register('title', {required: true})}
               data-test-id="create_garden_title"
             />
             {errors.title && <MandatoryField />}
@@ -152,7 +152,7 @@ export const CreateGardenForm: React.FC<CreateFormProps> = ({ setIsOpen }) => {
             <S.inputLabel>{ModalFormWordings.description}</S.inputLabel>
             <S.ModalBodyInputBody
               placeholder="Décrire ton jardin en quelques mots"
-              {...register("description", { required: true })}
+              {...register('description', {required: true})}
               data-test-id="create_garden_description"
             />
             {errors.description && <MandatoryField />}
@@ -161,18 +161,16 @@ export const CreateGardenForm: React.FC<CreateFormProps> = ({ setIsOpen }) => {
             <S.inputLabel>{ModalFormWordings.zipcode}</S.inputLabel>
             <S.ModalBodyInputBody
               placeholder="75000"
-              {...register("zipcode", { required: true })}
+              {...register('zipcode', {required: true})}
               data-test-id="create_garden_zipcode"
             />
             {errors.zipcode && <MandatoryField />}
           </S.labelInputWrapper>
           <Uploader register={register} />
           <CenterElement>
-            {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
-            <Button
+            <Button /* eslint-disable-next-line @typescript-eslint/no-misused-promises */
               onClick={handleSubmit(postData)}
-              data-test-id="create_garden_submit"
-            >
+              data-test-id="create_garden_submit">
               {ButtonWordings.createGarden}
             </Button>
             {createGardenResult.status && createGardenResult.message}

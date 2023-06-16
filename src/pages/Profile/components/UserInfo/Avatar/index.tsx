@@ -1,18 +1,18 @@
-import { AxiosError, AxiosResponse } from "axios";
-import { FC, useState } from "react";
-import { useMutation } from "react-query";
-import { useNavigate, useParams } from "react-router-dom";
+import {AxiosError, AxiosResponse} from 'axios';
+import {FC, useState} from 'react';
+import {useMutation} from 'react-query';
+import {useNavigate} from 'react-router-dom';
 
-import { axios } from "../../../../../ClientProvider";
-import { Button } from "../../../../../components/Button";
-import { LoginModal } from "../../../../../components/LoginForm";
-import { CenterElement } from "../../../../../components/SignUpForm/styles";
-import useToken from "../../../../../hooks/useToken";
-import { getUser } from "../../../../../utils/user";
-import { UserInfoProps } from "..";
-import * as S from "./styles";
+import {axios} from '../../../../../ClientProvider';
+import {Button} from '../../../../../components/Button';
+import {LoginModal} from '../../../../../components/LoginForm';
+import {CenterElement} from '../../../../../components/SignUpForm/styles';
+import useToken from '../../../../../hooks/useToken';
+import {getUser} from '../../../../../utils/user';
+import {UserInfoProps} from '..';
+import * as S from './styles';
 
-type AvatarProps = Pick<UserInfoProps["user"], "profile_image"> & {
+type AvatarProps = Pick<UserInfoProps['user'], 'profile_image'> & {
   isConnected: boolean;
   isConnectedUser: boolean;
   id: string | undefined;
@@ -35,10 +35,10 @@ export const Avatar: FC<AvatarProps> = ({
   profile_image,
   isConnected,
   isConnectedUser,
-  id
+  id,
 }) => {
   const user = getUser();
-  const { token, setToken } = useToken();
+  const {token, setToken} = useToken();
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -46,7 +46,7 @@ export const Avatar: FC<AvatarProps> = ({
     try {
       createConversation({
         chat_sender_id: user?.id,
-        chat_receiver_id: id
+        chat_receiver_id: id,
       });
     } catch (err) {
       // eslint-disable-next-line no-console
@@ -54,7 +54,7 @@ export const Avatar: FC<AvatarProps> = ({
     }
   };
 
-  const { mutate: createConversation } = useMutation(
+  const {mutate: createConversation} = useMutation(
     async (data: CreateConvArgs) => {
       return await axios.post(
         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
@@ -62,10 +62,10 @@ export const Avatar: FC<AvatarProps> = ({
         data,
         {
           headers: {
-            "Content-type": "application/json",
-            Authorization: token && `Token ${token}`
-          }
-        }
+            'Content-type': 'application/json',
+            Authorization: token && `Token ${token}`,
+          },
+        },
       );
     },
     {
@@ -74,12 +74,12 @@ export const Avatar: FC<AvatarProps> = ({
       },
       onError: (err: AxiosError<ErrorData>) => {
         // eslint-disable-next-line no-console
-        console.dir({ err });
+        console.dir({err});
         if (err?.response?.data?.conversation_id) {
           navigate(`/messages/${err.response.data.conversation_id}`);
         }
-      }
-    }
+      },
+    },
   );
 
   return (

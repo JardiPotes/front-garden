@@ -1,12 +1,12 @@
-import { FC } from "react";
-import { useQuery } from "react-query";
-import { useParams } from "react-router-dom";
+import {FC} from 'react';
+import {useQuery} from 'react-query';
+import {useParams} from 'react-router-dom';
 
-import { axios } from "../../ClientProvider";
-import { CommentSection } from "./components/CommentSection";
-import { Gardens } from "./components/Gardens";
-import { UserInfo } from "./components/UserInfo";
-import * as S from "./styles";
+import {axios} from '../../ClientProvider';
+import {CommentSection} from './components/CommentSection';
+import {Gardens} from './components/Gardens';
+import {UserInfo} from './components/UserInfo';
+import * as S from './styles';
 
 export interface UserWithGardens {
   id: number;
@@ -36,21 +36,21 @@ export interface Comment {
 }
 
 export const Profile: FC = () => {
-  const { id } = useParams<{ id: string }>();
+  const {id} = useParams<{id: string}>();
 
   if (!id) return null;
 
-  const { data: { data } = {} } = useQuery(
-    ["user", id],
+  const {data: {data} = {}} = useQuery(
+    ['user', id],
     async () => axios.get<UserWithGardens>(`users/${id}`),
     {
       keepPreviousData: true,
-    }
+    },
   );
 
   if (!data) return null;
 
-  const { gardens, ...user } = data;
+  const {gardens, ...user} = data;
 
   return (
     <S.Layout>

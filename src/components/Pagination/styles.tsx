@@ -1,5 +1,5 @@
-import UnstyledReactPaginate from "react-paginate";
-import styled from "styled-components";
+import UnstyledReactPaginate from 'react-paginate';
+import styled from 'styled-components';
 
 export const ReactPaginate = styled(UnstyledReactPaginate)`
   margin-block: 2rem;

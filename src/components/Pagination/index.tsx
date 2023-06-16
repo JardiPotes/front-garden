@@ -1,11 +1,11 @@
-import { faFrog } from "@fortawesome/free-solid-svg-icons/faFrog";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { FC } from "react";
-import { ReactPaginateProps } from "react-paginate";
+import {faFrog} from '@fortawesome/free-solid-svg-icons/faFrog';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {FC} from 'react';
+import {ReactPaginateProps} from 'react-paginate';
 
-import * as S from "./styles";
+import * as S from './styles';
 
-export const Pagination: FC<ReactPaginateProps> = (props) => {
+export const Pagination: FC<ReactPaginateProps> = props => {
   if (props.pageCount <= 1) {
     return null;
   }

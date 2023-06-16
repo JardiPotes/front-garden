@@ -1,15 +1,15 @@
-import { FC, Fragment } from "react";
+import {FC, Fragment} from 'react';
 
-import Logo from "../../../../assets/jardi-logo-trans.png";
-import { UserProfileWordings } from "../../../../assets/wordings";
-import { UserWithGardens } from "../..";
-import { SectionHeader } from "../SectionHeader";
-import { GardenInfo } from "./GardenInfo";
-import * as S from "./styles";
+import Logo from '../../../../assets/jardi-logo-trans.png';
+import {UserProfileWordings} from '../../../../assets/wordings';
+import {UserWithGardens} from '../..';
+import {SectionHeader} from '../SectionHeader';
+import {GardenInfo} from './GardenInfo';
+import * as S from './styles';
 
-export type GardensProps = Pick<UserWithGardens, "gardens">;
+export type GardensProps = Pick<UserWithGardens, 'gardens'>;
 
-export const Gardens: FC<GardensProps> = ({ gardens }) => {
+export const Gardens: FC<GardensProps> = ({gardens}) => {
   if (!gardens || !gardens.length) return null;
   const sectionTitle =
     gardens.length > 1

@@ -16,6 +16,12 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src", "src/declaration.d.ts", "fileTransformer.ts", "cypress"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": [
+    "src",
+    "src/declaration.d.ts",
+    "fileTransformer.ts",
+    "src/setUpTests.ts",
+    "cypress"
+  ],
+  "references": [{"path": "./tsconfig.node.json"}]
 }

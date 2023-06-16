@@ -1,7 +1,7 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const Colors = {
-  background: "#e6b873",
+  background: '#e6b873',
 } as const;
 
 export const SectionHeader = styled.h2`

@@ -1,10 +1,10 @@
-import { ComponentMeta } from "@storybook/react";
-import { FC } from "react";
+import {ComponentMeta} from '@storybook/react';
+import {FC} from 'react';
 
-import { Header } from "../components/Header";
+import {Header} from '../components/Header';
 
 export default {
-  title: "Header",
+  title: 'Header',
   component: Header,
   parameters: {},
 } as ComponentMeta<typeof Header>;
