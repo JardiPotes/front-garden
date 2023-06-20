@@ -11,7 +11,7 @@
 //
 //
 // -- This is a parent command --
-Cypress.Commands.add("login", (email, password) => {
+Cypress.Commands.add("login", (email: string, password: string) => {
   cy.visit("/");
   cy.get('[data-test-id="connexion_button"]').click();
   cy.get('[data-test-id="connexion_email"]').type(email);

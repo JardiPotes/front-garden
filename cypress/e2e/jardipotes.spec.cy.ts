@@ -32,7 +32,7 @@ describe("register, login, logout", () => {
     cy.wait("@login");
     cy.get('[data-test-id="connexion_error"]').should("contain.text", "Oups");
   });
-  it("allows user to connect and redirects to profile page", () => {
+  it("allows user to login and redirects to profile page", () => {
     cy.intercept("http://127.0.0.1:8000/api/auth/login").as("login");
     cy.login(Cypress.env("login_id"), Cypress.env("password"));
     cy.wait("@login").its("response.statusCode").should("eq", 200);

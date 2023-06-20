@@ -19,7 +19,7 @@ export interface UserInfoProps {
 }
 
 export const UserInfo: FC<UserInfoProps> = ({
-  user: { profile_image, nickname, experience, bio },
+  user: { profile_image, nickname, experience, bio }
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { id } = useParams();
@@ -41,7 +41,10 @@ export const UserInfo: FC<UserInfoProps> = ({
       <BioCard nickname={nickname} experience={experience} bio={bio} />
       <div>
         {isConnectedUser && (
-          <Button onClick={(): void => setIsOpen(true)}>
+          <Button
+            onClick={(): void => setIsOpen(true)}
+            data-test-id="create_garden"
+          >
             {ButtonWordings.createGarden}
           </Button>
         )}

@@ -17,7 +17,7 @@ export const GardenThumb: React.FC<GardenThumbProps> = ({ garden }) => {
     address && `https://maps.google.com/maps?q=${address}+${zipcode}`;
 */
   return (
-    <S.Wrapper>
+    <S.Wrapper data-test-id="garden_thumb">
       <S.Image src={image ? image : defaultImage} />
       <S.InfoWrapper>
         <S.RouterLink to={`../profile/${user_id}`} data-test-id="garden_thumb">

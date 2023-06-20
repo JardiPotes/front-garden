@@ -4,9 +4,9 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 
+import { ButtonWordings, ModalFormWordings } from "../../assets/wordings";
 import axios from "../../ClientProvider/axiosConfig";
 import { saveUser, User } from "../../utils/user";
-import { ButtonWordings, ModalFormWordings } from "../../assets/wordings";
 import { Button } from "../Button";
 import { Modal } from "../Modal";
 import * as S from "../Modal/styles";
@@ -45,12 +45,12 @@ const MandatoryField: React.FC = () => {
 export const LoginModal: FC<ModalProps> = ({
   setIsOpen,
   setToken,
-  setShouldRedirect
+  setShouldRedirect,
 }) => {
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
   } = useForm<LoginData>();
 
   const navigate = useNavigate();
@@ -61,7 +61,7 @@ export const LoginModal: FC<ModalProps> = ({
 
   const [logInStatus, setlogInStatus] = useState<LoginStatus>({
     status: null,
-    message: ""
+    message: "",
   });
 
   const onSubmit: SubmitHandler<LoginData> = (data) => {
@@ -76,7 +76,7 @@ export const LoginModal: FC<ModalProps> = ({
       onSuccess: (res: UserResult) => {
         setlogInStatus({
           status: "success",
-          message: "connecté !"
+          message: "connecté !",
         });
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         setToken(res.data.auth_token);
@@ -93,9 +93,9 @@ export const LoginModal: FC<ModalProps> = ({
         const errMessage = formatResponse(err?.response?.data);
         setlogInStatus({
           status: "error",
-          message: `Oups : ${errMessage}`
+          message: `Oups : ${errMessage}`,
         });
-      }
+      },
     }
   );
 
@@ -109,7 +109,10 @@ export const LoginModal: FC<ModalProps> = ({
         <CenterElement>
           <S.labelInputWrapper>
             <S.inputLabel>{ModalFormWordings.email}</S.inputLabel>
-            <S.ModalBodyInputBody {...register("email", { required: true })} />
+            <S.ModalBodyInputBody
+              {...register("email", { required: true })}
+              data-test-id="connexion_email"
+            />
             {errors.email && <MandatoryField />}
           </S.labelInputWrapper>
           <S.labelInputWrapper>
@@ -117,6 +120,7 @@ export const LoginModal: FC<ModalProps> = ({
             <S.ModalBodyInputBody
               type="password"
               {...register("password", { required: true })}
+              data-test-id="connexion_password"
             />
             {errors.password && <MandatoryField />}
           </S.labelInputWrapper>
