@@ -44,27 +44,25 @@ export default function MessagesPage(): JSX.Element {
   const { convId } = useParams();
   const navigate = useNavigate();
 
-  // To-do replace with proper component and connection button
   if (!user) {
-    return "connectez-vous !";
+    return <div>connectez-vous !</div>;
   }
 
   const [currentConv, setCurrentConv] = useState();
 
-  const { error, isLoading, refetch, data, isPreviousData }: QueryArgs =
-    useQuery({
-      queryKey: ["conversations"],
-      queryFn: async () => {
-        const data: ConvResults | void = await axios
-          .get(`conversations?current_user_id=${user?.id}`)
-          .then((res: Result) => res.data)
-          // eslint-disable-next-line no-console
-          .catch((err) => console.log(err));
-        return data;
-      },
-      keepPreviousData: true,
-      refetchInterval: 30000
-    });
+  const { error, isLoading, data }: QueryArgs = useQuery({
+    queryKey: ["conversations"],
+    queryFn: async () => {
+      const data: ConvResults | void = await axios
+        .get(`conversations?current_user_id=${user?.id}`)
+        .then((res: Result) => res.data)
+        // eslint-disable-next-line no-console
+        .catch((err) => console.log(err));
+      return data;
+    },
+    keepPreviousData: true,
+    refetchInterval: 30000
+  });
 
   const hasResults = data?.results?.length;
   const firstConv = data?.results[0]?.id;
@@ -92,6 +90,7 @@ export default function MessagesPage(): JSX.Element {
         </>
       )}
       {!isLoading && !hasResults && "You don't have any conversation yet"}
+      {error && `Oups, il y a un problème : ${error.message}`}
     </S.Wrapper>
   );
 }

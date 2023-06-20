@@ -21,14 +21,10 @@ interface UserProfileLinkProps {
   setShouldRedirect: Dispatch<SetStateAction<boolean>>;
 }
 
-interface HeaderProps {
-  token: string;
-}
-
 const UserProfileLink: React.FC<UserProfileLinkProps> = ({
   isLoggedIn,
   userId,
-  image,
+  image
 }) => {
   const userProfileLink = userId ? `/profile/${userId}` : "/";
 
@@ -51,7 +47,7 @@ const UserProfileLink: React.FC<UserProfileLinkProps> = ({
   );
 };
 
-export const Header: React.FC<HeaderProps> = () => {
+export const Header: React.FC = () => {
   const [shouldRedirect, setShouldRedirect] = useState<boolean>(false);
   const [isLoginOpen, setIsLoginOpen] = useState<boolean>(false);
   const { setToken, removeToken, token } = useToken();
