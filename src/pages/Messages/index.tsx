@@ -5,7 +5,7 @@ import {useNavigate, useParams} from 'react-router-dom';
 
 import {axios} from '../../ClientProvider';
 import {CommonQueryArgs} from '../../types';
-import {getUser} from '../../utils/user';
+import {getUser, User} from '../../utils/user';
 import Conversation from './components/Conversation';
 import PreviewSection from './components/PreviewSection';
 import * as S from './styles';
@@ -48,7 +48,9 @@ export default function MessagesPage(): JSX.Element {
     return <div>connectez-vous !</div>;
   }
 
-  const [currentConv, setCurrentConv] = useState();
+  const [currentConv, setCurrentConv] = useState<
+    void | Partial<User> | undefined
+  >();
 
   const {error, isLoading, data}: QueryArgs = useQuery({
     queryKey: ['conversations'],

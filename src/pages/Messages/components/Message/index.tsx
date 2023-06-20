@@ -1,18 +1,15 @@
-import {getUser} from '../../../../utils/user';
+import {getUser, User} from '../../../../utils/user';
 import {Name} from '../Preview/styles';
 import * as S from './styles';
 
 type MessageProps = {
   message: {
     id: number;
-    sender_id: string;
+    sender_id: number;
     content: string;
     sent_at: string;
   };
-  currentConv: {
-    nickname: string;
-    avatar?: string;
-  };
+  currentConv?: void | Partial<User>;
 };
 
 export const Message: React.FC<MessageProps> = ({message, currentConv}) => {
@@ -25,7 +22,7 @@ export const Message: React.FC<MessageProps> = ({message, currentConv}) => {
     minutesStr = '0' + minutesStr;
   }
 
-  const isFromUser = message?.sender_id === String(user?.id);
+  const isFromUser = String(message?.sender_id) === String(user?.id);
   const author = isFromUser ? user?.nickname : currentConv?.nickname;
 
   return (

@@ -5,11 +5,11 @@ import {Message} from './index';
 const MOCK_PROPS = {
   currentConv: {
     nickname: 'bidule',
-    avatar: 'string',
+    profile_image: 'string',
   },
   message: {
     id: 1,
-    sender_id: '1',
+    sender_id: 1,
     content: 'coucou',
     sent_at: '',
   },

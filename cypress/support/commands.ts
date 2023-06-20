@@ -9,10 +9,18 @@
 // https://on.cypress.io/custom-commands
 // ***********************************************
 //
-//
+// eslint-disable @typescript/interface-name
+declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
+  namespace Cypress {
+    interface Chainable {
+      login(email: string, password: string): Chainable<void>;
+    }
+  }
+}
 // -- This is a parent command --
-Cypress.Commands.add("login", (email: string, password: string) => {
-  cy.visit("/");
+Cypress.Commands.add('login', (email, password) => {
+  cy.visit('/');
   cy.get('[data-test-id="connexion_button"]').click();
   cy.get('[data-test-id="connexion_email"]').type(email);
   cy.get('[data-test-id="connexion_password"]').type(password);
@@ -31,20 +39,5 @@ Cypress.Commands.add("login", (email: string, password: string) => {
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 //
-// declare global {
-// namespace Cypress {
-//   interface Chainable {
-//     login(email: string, password: string): Chainable<void>;
-//     drag(subject: string, options?: Partial<TypeOptions>): Chainable<Element>;
-//     dismiss(
-//       subject: string,
-//       options?: Partial<TypeOptions>
-//     ): Chainable<Element>;
-//     visit(
-//       originalFn: CommandOriginalFn,
-//       url: string,
-//       options: Partial<VisitOptions>
-//     ): Chainable<Element>;
-//   }
-// }
-// }
+
+export {};
