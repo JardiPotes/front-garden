@@ -44,14 +44,13 @@ export default function MessagesPage(): JSX.Element {
   const {convId} = useParams();
   const navigate = useNavigate();
 
-  // To-do replace with proper component and connection button
   if (!user) {
-    return 'connectez-vous !';
+    return <div>connectez-vous !</div>;
   }
 
   const [currentConv, setCurrentConv] = useState();
 
-  const {isLoading, data}: QueryArgs = useQuery({
+  const {error, isLoading, data}: QueryArgs = useQuery({
     queryKey: ['conversations'],
     queryFn: async () => {
       const data: ConvResults | void = await axios
@@ -91,6 +90,7 @@ export default function MessagesPage(): JSX.Element {
         </>
       )}
       {!isLoading && !hasResults && "You don't have any conversation yet"}
+      {error && `Oups, il y a un problème : ${error.message}`}
     </S.Wrapper>
   );
 }
