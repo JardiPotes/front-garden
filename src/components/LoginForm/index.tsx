@@ -109,7 +109,10 @@ export const LoginModal: FC<ModalProps> = ({
         <CenterElement>
           <S.labelInputWrapper>
             <S.inputLabel>{ModalFormWordings.email}</S.inputLabel>
-            <S.ModalBodyInputBody {...register('email', {required: true})} />
+            <S.ModalBodyInputBody
+              {...register('email', {required: true})}
+              data-test-id="connexion_email"
+            />
             {errors.email && <MandatoryField />}
           </S.labelInputWrapper>
           <S.labelInputWrapper>
@@ -117,6 +120,7 @@ export const LoginModal: FC<ModalProps> = ({
             <S.ModalBodyInputBody
               type="password"
               {...register('password', {required: true})}
+              data-test-id="connexion_password"
             />
             {errors.password && <MandatoryField />}
           </S.labelInputWrapper>
