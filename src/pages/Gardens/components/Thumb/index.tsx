@@ -1,5 +1,8 @@
 import {useQuery} from 'react-query';
 
+import defaultImage from '../../../../../public/images/garden2.jpg';
+import defaultUserImage from '../../../../../public/images/jardinier.jpg';
+import pin from '../../../../../public/images/pin.png';
 import {axios} from '../../../../ClientProvider';
 import {User} from '../../../../utils/user';
 import {Garden} from '../../index';
@@ -10,9 +13,6 @@ type GardenThumbProps = {
 };
 
 export const GardenThumb: React.FC<GardenThumbProps> = ({garden}) => {
-  const defaultImage = 'public/images/garden2.jpg';
-  const defaultUserImage = 'public/images/jardinier.jpg';
-  const pin = 'public/images/pin.png';
   const {title, description, zipcode, image, user_id} = garden;
 
   const {data: user} = useQuery({

@@ -2,6 +2,9 @@ import {faChevronLeft, faChevronRight} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {FC, useState} from 'react';
 
+import garden1 from '../../../../../public/images/garden1.jpg';
+import garden2 from '../../../../../public/images/garden2.jpg';
+import garden3 from '../../../../../public/images/garden3.jpg';
 import * as S from './styles';
 
 type CarouselItemType = {
@@ -20,15 +23,15 @@ interface SlideData {
 
 const data = [
   {
-    imageSrc: '/images/garden1.jpg',
+    imageSrc: garden1,
     imageAlt: 'Garden1',
   },
   {
-    imageSrc: '/images/garden2.jpg',
+    imageSrc: garden2,
     imageAlt: 'A rock formation',
   },
   {
-    imageSrc: '/images/garden3.jpg',
+    imageSrc: garden3,
     imageAlt: 'Some flowers',
   },
 ];

@@ -21,7 +21,8 @@
     "src/declaration.d.ts",
     "fileTransformer.cjs",
     "src/setUpTests.ts",
-    "cypress"
+    "cypress",
+    "jestEsmTransformer.cjs"
   ],
   "references": [{"path": "./tsconfig.node.json"}]
 }
