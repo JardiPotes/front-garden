@@ -14,7 +14,7 @@ interface CommentFormProps {
 }
 
 const CommentForm: FC<CommentFormProps> = ({userId, triggerRefetch}) => {
-  const {register, handleSubmit} = useForm<{comment: string}>();
+  const {register, handleSubmit, setValue} = useForm<{comment: string}>();
 
   const {token} = useToken();
   const author = getUser();
@@ -28,7 +28,12 @@ const CommentForm: FC<CommentFormProps> = ({userId, triggerRefetch}) => {
           headers: {Authorization: token && `Token ${token}`},
         },
       ),
-    {onSuccess: triggerRefetch},
+    {
+      onSuccess: () => {
+        triggerRefetch();
+        setValue('comment', '');
+      },
+    },
   );
 
   const onSubmit = (data: {comment: string}): void => {

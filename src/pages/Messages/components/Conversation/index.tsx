@@ -113,11 +113,13 @@ export default function Conversation({
           {...register('message', {required: true})}
           id="message_input"
         />
-        <Button // eslint-disable-next-line @typescript-eslint/no-misused-promises
-          onClick={handleSubmit(postData)}
-          data-test-id="message_submit">
-          {'envoyer'}
-        </Button>
+        <CenterElement>
+          <Button // eslint-disable-next-line @typescript-eslint/no-misused-promises
+            onClick={handleSubmit(postData)}
+            data-test-id="message_submit">
+            {'envoyer'}
+          </Button>
+        </CenterElement>
       </form>
     </>
   );
