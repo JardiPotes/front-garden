@@ -2,6 +2,8 @@ import {useEffect} from 'react';
 import {useQuery} from 'react-query';
 
 import {axios} from '../../../../ClientProvider';
+import {RoundImage} from '../../../../components/Header/styles';
+import {LogoTitleWrapper} from '../../../../components/Header/styles';
 import {getUser, User} from '../../../../utils/user';
 import * as S from './styles';
 
@@ -52,7 +54,10 @@ export const MessagePreview: React.FC<MessagePreviewProps> = ({
 
   return (
     <S.PrewiewItem to={`/messages/${conversation?.id}`} onClick={handleClick}>
-      <S.Name>{contact?.nickname || 'no name'}</S.Name>
+      <LogoTitleWrapper>
+        {contact?.profile_image && <RoundImage src={contact.profile_image} />}
+        <S.Name>{contact?.nickname || 'no name'}</S.Name>
+      </LogoTitleWrapper>
       <S.MessagePreview>
         {conversation?.latest_message?.content || 'no message yet'}
       </S.MessagePreview>

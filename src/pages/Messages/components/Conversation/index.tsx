@@ -10,6 +10,7 @@ import {getUser, User} from '../../../../utils/user';
 import {Message as MessageType} from '../..';
 import {Message} from '../Message';
 import * as S from './styles';
+import {CenterElement} from '../../../../components/SignUpForm/styles';
 
 type ConvResults = {
   messages: MessageType[];
@@ -91,9 +92,9 @@ export default function Conversation({
 
   return (
     <>
-      <div>
+      <CenterElement>
         Vos échanges avec {currentConv?.nickname || 'utilisateur sans nom'}
-      </div>
+      </CenterElement>
       {data?.messages?.length ? (
         <>
           {data.messages.map((message, index) => (

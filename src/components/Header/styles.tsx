@@ -62,6 +62,8 @@ export const StyledLink = styled(Link)`
 export const LogoTitleWrapper = styled.div`
   display: flex;
   align-items: center;
+  gap: 0.5rem;
+  margin: 0.5rem;
 `;
 
 export const LinkWrapper = styled.div`
