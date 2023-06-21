@@ -9,11 +9,11 @@ export const Wrapper = styled.header`
   position: sticky;
   top: 0px;
   width: 100%;
-  height: 7em;
+  height: auto;
   z-index: 3;
+  flex-wrap: wrap;
 
   @media (max-width: 768px) {
-    flex-wrap: wrap;
     height: auto;
     justify-content: center;
     padding-top: 1em;
