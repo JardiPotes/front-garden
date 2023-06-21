@@ -31,7 +31,7 @@ export const MessagePreview: React.FC<MessagePreviewProps> = ({
       : conversation?.chat_sender_id;
 
   const {data: contact} = useQuery({
-    queryKey: ['contact'],
+    queryKey: [`contact_${conversation.id}`],
     queryFn: async () => {
       const data = await axios
         .get<User>(`users/${contactId}`)
@@ -40,7 +40,6 @@ export const MessagePreview: React.FC<MessagePreviewProps> = ({
         .catch(err => console.log(err));
       return data;
     },
-    keepPreviousData: true,
   });
 
   const handleClick = (): void => {
