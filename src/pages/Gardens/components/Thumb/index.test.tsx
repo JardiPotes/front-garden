@@ -1,4 +1,5 @@
 import {render, screen} from '@testing-library/react';
+import reactQuery from 'react-query';
 import {BrowserRouter} from 'react-router-dom';
 
 import {GardenThumb} from './index';
@@ -19,6 +20,13 @@ const MOCK_GARDEN = {
     profile_image: '',
   },
 };
+
+const mockedUseQuery = jest.fn();
+
+jest.mock('react-query', () => ({
+  ...jest.requireActual<typeof reactQuery>('react-query'),
+  useQuery: (): jest.Mock => mockedUseQuery,
+}));
 
 describe('render', () => {
   it('should render without crash', () => {
