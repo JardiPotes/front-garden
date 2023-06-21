@@ -4,6 +4,7 @@ import {useQuery} from 'react-query';
 import {useNavigate, useParams} from 'react-router-dom';
 
 import {axios} from '../../ClientProvider';
+import useToken from '../../hooks/useToken';
 import {CommonQueryArgs} from '../../types';
 import {getUser, User} from '../../utils/user';
 import Conversation from './components/Conversation';
@@ -43,6 +44,7 @@ export default function MessagesPage(): JSX.Element {
   const user = getUser();
   const {convId} = useParams();
   const navigate = useNavigate();
+  const {token} = useToken();
 
   if (!user) {
     return <div>connectez-vous !</div>;
@@ -56,7 +58,11 @@ export default function MessagesPage(): JSX.Element {
     queryKey: ['conversations'],
     queryFn: async () => {
       const data: ConvResults | void = await axios
-        .get(`conversations?current_user_id=${user?.id}`)
+        .get(`conversations?current_user_id=${user?.id}`, {
+          headers: {
+            Authorization: token && `Token ${token}`,
+          },
+        })
         .then((res: Result) => res.data)
         // eslint-disable-next-line no-console
         .catch(err => console.log(err));
