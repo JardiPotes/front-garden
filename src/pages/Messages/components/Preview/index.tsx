@@ -1,5 +1,6 @@
 import {useEffect} from 'react';
 import {useQuery} from 'react-query';
+import {useParams} from 'react-router-dom';
 
 import {axios} from '../../../../ClientProvider';
 import {RoundImage} from '../../../../components/Header/styles';
@@ -26,6 +27,7 @@ export const MessagePreview: React.FC<MessagePreviewProps> = ({
   conversation,
   setCurrentConv,
 }) => {
+  const {convId} = useParams();
   const user = getUser();
   const contactId =
     String(conversation?.chat_sender_id) == String(user?.id)
@@ -49,8 +51,10 @@ export const MessagePreview: React.FC<MessagePreviewProps> = ({
   };
 
   useEffect(() => {
-    setCurrentConv(contact);
-  }, [contact]);
+    if (String(convId) === String(conversation?.id)) {
+      setCurrentConv(contact);
+    }
+  }, [contact, convId]);
 
   return (
     <S.PrewiewItem to={`/messages/${conversation?.id}`} onClick={handleClick}>
