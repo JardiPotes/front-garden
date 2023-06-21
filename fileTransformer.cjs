@@ -5,10 +5,15 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-var-requires */
-import {basename} from 'path';
+const path = require('path');
+const TsJestTransformer = require('ts-jest-transformer');
 
-export function process(_sourceText, sourcePath, _options) {
-  return {
-    code: `module.exports = ${JSON.stringify(basename(sourcePath))};`,
-  };
+class FileTransformer extends TsJestTransformer {
+  process(_sourceText, sourcePath, _options) {
+    return {
+      code: `module.exports = ${JSON.stringify(path.basename(sourcePath))};`,
+    };
+  }
 }
+
+module.exports = new FileTransformer();

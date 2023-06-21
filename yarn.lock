@@ -12562,6 +12562,11 @@ ts-dedent@^2.0.0, ts-dedent@^2.2.0:
   resolved "https://registry.npmjs.org/ts-dedent/-/ts-dedent-2.2.0.tgz"
   integrity sha512-q5W7tVM71e2xjHZTlgfTDoPF/SmqKG5hddq9SzR49CH2hayqRKJtQ4mtRlSxKaJlR/+9rEM+mnBHf7I2/BQcpQ==
 
+ts-jest-transformer@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/ts-jest-transformer/-/ts-jest-transformer-1.0.0.tgz#fa46f79759eb02b195c3c0be74dc44842c8b55e3"
+  integrity sha512-nqdkv2McSxBnZ315xfMs7gWkzNF+zIZne4qLBuCPprR6antadUjC+nSGoN4630uJqNFUkHxr8NT2Nnevde4gcw==
+
 ts-jest@^29.1.0:
   version "29.1.0"
   resolved "https://registry.yarnpkg.com/ts-jest/-/ts-jest-29.1.0.tgz#4a9db4104a49b76d2b368ea775b6c9535c603891"

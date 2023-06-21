@@ -28,6 +28,7 @@
     "react-router-dom": "^6.11.2",
     "storybook-addon-react-router-v6": "^0.2.1",
     "styled-components": "^5.3.5",
+    "ts-jest-transformer": "^1.0.0",
     "use-breakpoint": "^3.0.7"
   },
   "devDependencies": {
