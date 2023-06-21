@@ -41,7 +41,9 @@ export const UserInfo: FC<UserInfoProps> = ({
       <BioCard nickname={nickname} experience={experience} bio={bio} />
       <div>
         {isConnectedUser && (
-          <Button onClick={(): void => setIsOpen(true)}>
+          <Button
+            onClick={(): void => setIsOpen(true)}
+            data-test-id="create_garden">
             {ButtonWordings.createGarden}
           </Button>
         )}

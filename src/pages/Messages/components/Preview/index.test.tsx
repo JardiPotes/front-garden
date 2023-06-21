@@ -8,8 +8,8 @@ const MOCK_PROPS = {
   setCurrentConv: jest.fn(),
   conversation: {
     id: 1,
-    chat_sender_id: '2',
-    chat_receiver_id: '1',
+    chat_sender_id: 2,
+    chat_receiver_id: 1,
     latest_message: {
       id: 1,
       content: 'blabla',

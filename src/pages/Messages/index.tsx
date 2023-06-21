@@ -5,7 +5,7 @@ import {useNavigate, useParams} from 'react-router-dom';
 
 import {axios} from '../../ClientProvider';
 import {CommonQueryArgs} from '../../types';
-import {getUser} from '../../utils/user';
+import {getUser, User} from '../../utils/user';
 import Conversation from './components/Conversation';
 import PreviewSection from './components/PreviewSection';
 import * as S from './styles';
@@ -44,14 +44,15 @@ export default function MessagesPage(): JSX.Element {
   const {convId} = useParams();
   const navigate = useNavigate();
 
-  // To-do replace with proper component and connection button
   if (!user) {
-    return 'connectez-vous !';
+    return <div>connectez-vous !</div>;
   }
 
-  const [currentConv, setCurrentConv] = useState();
+  const [currentConv, setCurrentConv] = useState<
+    void | Partial<User> | undefined
+  >();
 
-  const {isLoading, data}: QueryArgs = useQuery({
+  const {error, isLoading, data}: QueryArgs = useQuery({
     queryKey: ['conversations'],
     queryFn: async () => {
       const data: ConvResults | void = await axios
@@ -91,6 +92,7 @@ export default function MessagesPage(): JSX.Element {
         </>
       )}
       {!isLoading && !hasResults && "You don't have any conversation yet"}
+      {error && `Oups, il y a un problème : ${error.message}`}
     </S.Wrapper>
   );
 }

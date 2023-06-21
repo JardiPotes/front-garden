@@ -19,7 +19,7 @@
   "include": [
     "src",
     "src/declaration.d.ts",
-    "fileTransformer.ts",
+    "fileTransformer.cjs",
     "src/setUpTests.ts",
     "cypress"
   ],

@@ -1,9 +1,12 @@
+import {User} from '../../../../utils/user';
 import {Conversation} from '../..';
 import {MessagePreview} from '../Preview';
 
 type PreviewSectionProps = {
   conversations: Conversation[];
-  setCurrentConv: React.Dispatch<unknown>;
+  setCurrentConv: React.Dispatch<
+    React.SetStateAction<void | Partial<User> | undefined>
+  >;
 };
 
 export default function PreviewSection({

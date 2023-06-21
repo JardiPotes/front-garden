@@ -6,7 +6,7 @@ import {useMutation, useQuery} from 'react-query';
 import {axios} from '../../../../ClientProvider';
 import {Button} from '../../../../components/Button';
 import {CommonQueryArgs} from '../../../../types';
-import {getUser} from '../../../../utils/user';
+import {getUser, User} from '../../../../utils/user';
 import {Message as MessageType} from '../..';
 import {Message} from '../Message';
 import * as S from './styles';
@@ -26,11 +26,8 @@ type CreateMessageArgs = {
 };
 
 type ConversationProps = {
-  currentConv: {
-    nickname?: string;
-    avatar?: string;
-  };
-  convId: string;
+  currentConv?: void | Partial<User>;
+  convId: string | undefined;
 };
 
 export default function Conversation({
@@ -40,6 +37,10 @@ export default function Conversation({
   // replaces with api call to retrieve conv with id
   const user = getUser();
   const {register, handleSubmit, setValue} = useForm<CreateMessageArgs>();
+
+  if (!convId) {
+    return <div> Nous n'avons pas trouvé cette conversation</div>;
+  }
 
   const {refetch, data}: QueryArgs = useQuery({
     queryKey: ['conversation'],
@@ -98,7 +99,7 @@ export default function Conversation({
           {data.messages.map((message, index) => (
             <S.MessageWrapper
               key={`messages${index}`}
-              $right={message?.sender_id === user?.id}>
+              $right={String(message?.sender_id) === String(user?.id)}>
               <Message message={message} currentConv={currentConv} />
             </S.MessageWrapper>
           ))}

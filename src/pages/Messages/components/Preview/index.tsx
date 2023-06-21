@@ -8,14 +8,16 @@ import * as S from './styles';
 type MessagePreviewProps = {
   conversation: {
     id: number;
-    chat_sender_id: string;
-    chat_receiver_id: string;
+    chat_sender_id: number;
+    chat_receiver_id: number;
     latest_message: {
       id: number;
       content: string;
     };
   };
-  setCurrentConv: React.Dispatch<React.SetStateAction<unknown>>;
+  setCurrentConv: React.Dispatch<
+    React.SetStateAction<void | Partial<User> | undefined>
+  >;
 };
 
 export const MessagePreview: React.FC<MessagePreviewProps> = ({
@@ -24,7 +26,7 @@ export const MessagePreview: React.FC<MessagePreviewProps> = ({
 }) => {
   const user = getUser();
   const contactId =
-    conversation?.chat_sender_id == String(user?.id)
+    String(conversation?.chat_sender_id) == String(user?.id)
       ? conversation?.chat_receiver_id
       : conversation?.chat_sender_id;
 
