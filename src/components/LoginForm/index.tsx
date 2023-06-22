@@ -6,11 +6,11 @@ import {useNavigate} from 'react-router-dom';
 
 import {ButtonWordings, ModalFormWordings} from '../../assets/wordings';
 import axios from '../../ClientProvider/axiosConfig';
+import {CenterElement} from '../../GlobalStyles';
 import {saveUser, User} from '../../utils/user';
 import {Button} from '../Button';
 import {Modal} from '../Modal';
 import * as S from '../Modal/styles';
-import {CenterElement} from '../SignUpForm/styles';
 
 type ModalProps = {
   setIsOpen: Dispatch<SetStateAction<boolean>>;

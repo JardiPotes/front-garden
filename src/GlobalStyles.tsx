@@ -1,4 +1,5 @@
 import {createGlobalStyle} from 'styled-components';
+import styled from 'styled-components';
 
 import Amiko from './assets/fonts/Amiko-Regular.ttf';
 
@@ -37,3 +38,15 @@ button:hover {
   cursor: pointer;
 }
 `;
+
+export const CenterElement = styled.div<{
+  flexDirection?: 'column' | 'row';
+  $fit?: boolean;
+}>`
+  width: ${(props): string => (props.$fit ? 'auto' : '100%')};
+  display: flex;
+  flex-direction: ${({flexDirection}): string => flexDirection ?? 'column'};
+  align-items: center;
+`;
+
+export const BREAKPOINTS = {mobile: 0, tablet: 768, desktop: 1280};

@@ -1,15 +1,17 @@
 import {FC} from 'react';
 import {useForm} from 'react-hook-form';
 import {useMutation, useQueryClient} from 'react-query';
+import useBreakpoint from 'use-breakpoint';
 
 import {axios} from '../../../../../../../ClientProvider';
 import {Button} from '../../../../../../../components/Button';
 import {Modal} from '../../../../../../../components/Modal';
 import * as S from '../../../../../../../components/Modal/styles';
+import {CenterElement} from '../../../../../../../GlobalStyles';
+import {BREAKPOINTS} from '../../../../../../../GlobalStyles';
 import useToken from '../../../../../../../hooks/useToken';
 import {getUser} from '../../../../../../../utils/user';
 import {Garden} from '../../../../..';
-import {CenterElement} from '../../../CreateForm/styles';
 
 type EditFormProps = Omit<Garden, 'id'> & {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -24,6 +26,9 @@ export const EditForm: FC<EditFormProps> = ({
   zipcode,
 }) => {
   const {register, handleSubmit} = useForm<Omit<Garden, 'id'>>();
+  const {breakpoint} = useBreakpoint(BREAKPOINTS);
+
+  const isMobile = breakpoint === 'mobile';
 
   const user = getUser();
   const {token} = useToken();
@@ -108,7 +113,7 @@ export const EditForm: FC<EditFormProps> = ({
               required
             />
           </S.labelInputWrapper>
-          <CenterElement flexDirection="row">
+          <CenterElement flexDirection={isMobile ? 'column' : 'row'}>
             <Button type="submit">SOUMETTRE</Button>
             <Button type="reset">RÉINITIALISER</Button>
           </CenterElement>

@@ -5,7 +5,7 @@ import {useMutation, useQuery} from 'react-query';
 
 import {axios} from '../../../../ClientProvider';
 import {Button} from '../../../../components/Button';
-import {CenterElement} from '../../../../components/SignUpForm/styles';
+import {CenterElement} from '../../../../GlobalStyles';
 import useToken from '../../../../hooks/useToken';
 import {CommonQueryArgs} from '../../../../types';
 import {getUser, User} from '../../../../utils/user';
