@@ -6,7 +6,7 @@ import {useNavigate} from 'react-router-dom';
 import {axios} from '../../../../../ClientProvider';
 import {Button} from '../../../../../components/Button';
 import {LoginModal} from '../../../../../components/LoginForm';
-import {CenterElement} from '../../../../../components/SignUpForm/styles';
+import {CenterElement} from '../../../../../GlobalStyles';
 import useToken from '../../../../../hooks/useToken';
 import {getUser} from '../../../../../utils/user';
 import {UserInfoProps} from '..';

@@ -1,15 +1,16 @@
 import {FC} from 'react';
 import {useForm} from 'react-hook-form';
 import {useMutation, useQueryClient} from 'react-query';
+import {useBreakpoint} from 'use-breakpoint';
 
 import {axios} from '../../../../../ClientProvider';
 import {Button} from '../../../../../components/Button';
 import {Modal} from '../../../../../components/Modal';
 import * as S from '../../../../../components/Modal/styles';
+import {BREAKPOINTS, CenterElement} from '../../../../../GlobalStyles';
 import useToken from '../../../../../hooks/useToken';
 import {getUser} from '../../../../../utils/user';
 import {UserWithGardens} from '../../..';
-import {CenterElement} from '../../Gardens/CreateForm/styles';
 import {UserInfoProps} from '..';
 
 type EditFormProps = Pick<
@@ -26,6 +27,9 @@ export const EditForm: FC<EditFormProps> = ({
   bio,
 }) => {
   const {register, handleSubmit} = useForm<UserInfoProps['user']>();
+  const {breakpoint} = useBreakpoint(BREAKPOINTS);
+
+  const isMobile = breakpoint === 'mobile';
 
   const user = getUser();
   const {token} = useToken();
@@ -93,7 +97,7 @@ export const EditForm: FC<EditFormProps> = ({
               max={5}
             />
           </S.labelInputWrapper>
-          <CenterElement flexDirection="row">
+          <CenterElement flexDirection={isMobile ? 'column' : 'row'}>
             <Button type="submit">SOUMETTRE</Button>
             <Button type="reset">RÉINITIALISER</Button>
           </CenterElement>

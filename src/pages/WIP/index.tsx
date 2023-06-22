@@ -1,4 +1,4 @@
-import {CenterElement} from '../../components/SignUpForm/styles';
+import {CenterElement} from '../../GlobalStyles';
 
 export const Wip = (): JSX.Element => {
   return (

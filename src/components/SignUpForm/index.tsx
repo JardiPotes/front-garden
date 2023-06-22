@@ -6,13 +6,13 @@ import {useNavigate} from 'react-router-dom';
 
 import {ButtonWordings, ModalFormWordings} from '../../assets/wordings';
 import axios from '../../ClientProvider/axiosConfig';
+import {CenterElement} from '../../GlobalStyles';
 import useToken from '../../hooks/useToken';
 import {saveUser, User} from '../../utils/user';
 import {Button} from '../Button';
 import {Modal} from '../Modal';
 import * as S from '../Modal/styles';
 import {Uploader} from '../Uploader';
-import {CenterElement} from './styles';
 
 const MandatoryField: React.FC = () => {
   return <div>Ce champ est obligatoire !</div>;

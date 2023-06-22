@@ -11,9 +11,9 @@ import axios from '../../../../../ClientProvider/axiosConfig';
 import {Button} from '../../../../../components/Button';
 import {Modal} from '../../../../../components/Modal';
 import * as S from '../../../../../components/Modal/styles';
+import {CenterElement} from '../../../../../GlobalStyles';
 import useToken from '../../../../../hooks/useToken';
 import {getUser} from '../../../../../utils/user';
-import {CenterElement} from './styles';
 import {Uploader} from './uploader';
 
 const MandatoryField: React.FC = () => {

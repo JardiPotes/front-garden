@@ -1,5 +1,5 @@
+import {CenterElement} from '../../../../GlobalStyles';
 import {User} from '../../../../utils/user';
-import {CenterElement} from '../../../Profile/components/Gardens/CreateForm/styles';
 import {Conversation} from '../..';
 import {MessagePreview} from '../Preview';
 
