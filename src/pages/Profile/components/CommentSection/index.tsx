@@ -7,7 +7,7 @@ import {UserProfileWordings} from '../../../../assets/wordings';
 import {axios} from '../../../../ClientProvider';
 import {Pagination} from '../../../../components/Pagination';
 import {Comment as IComment} from '../..';
-import {SectionHeader} from '../SectionHeader';
+import {SectionHeader} from '../../styles';
 import {Comment} from './Comment';
 import {StyledCommentForm} from './Form';
 

@@ -3,7 +3,7 @@ import {FC, Fragment} from 'react';
 import Logo from '../../../../assets/jardi-logo-trans.png';
 import {UserProfileWordings} from '../../../../assets/wordings';
 import {UserWithGardens} from '../..';
-import {SectionHeader} from '../SectionHeader';
+import {SectionHeader} from '../../styles';
 import {GardenInfo} from './GardenInfo';
 import * as S from './styles';
 
