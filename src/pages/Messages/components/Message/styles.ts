@@ -2,14 +2,11 @@ import styled from 'styled-components';
 
 export const Bubble = styled.div<{$right: boolean}>`
   position: relative;
-  font-family: sans-serif;
-  font-size: 18px;
-  line-height: 24px;
   background: #fff;
   border-radius: 40px;
   min-width: 100px;
-  padding: 24px;
-  text-align: center;
+  padding: 1.5rem;
+  text-align: start;
   color: #000;
   margin-bottom: 1.5rem;
   margin-top: 0.5rem;
@@ -37,9 +34,8 @@ export const Bubble = styled.div<{$right: boolean}>`
     width: 0px;
     height: 0px;
     position: absolute;
-    border-top: 12px solid #fff;
     border-bottom: 20px solid transparent;
-    bottom: -24px;
+    bottom: -20px;
   }
 `;
 
