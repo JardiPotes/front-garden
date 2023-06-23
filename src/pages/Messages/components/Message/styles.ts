@@ -12,10 +12,10 @@ export const Bubble = styled.div<{$right: boolean}>`
   text-align: center;
   color: #000;
   margin-bottom: 1.5rem;
+  margin-top: 0.5rem;
 
   @media (max-width: 480px) {
     padding: 1rem;
-    margin-bottom: 1rem;
   }
 
   ${(props): string =>

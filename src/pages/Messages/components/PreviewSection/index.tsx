@@ -1,4 +1,5 @@
 import {User} from '../../../../utils/user';
+import {CenterElement} from '../../../Profile/components/Gardens/CreateForm/styles';
 import {Conversation} from '../..';
 import {MessagePreview} from '../Preview';
 
@@ -15,6 +16,7 @@ export default function PreviewSection({
 }: PreviewSectionProps): JSX.Element {
   return (
     <>
+      <CenterElement>Vos conversations</CenterElement>
       {conversations?.map((conversation, index) => (
         <MessagePreview
           key={`conv${index}`}

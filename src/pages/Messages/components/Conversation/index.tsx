@@ -5,6 +5,8 @@ import {useMutation, useQuery} from 'react-query';
 
 import {axios} from '../../../../ClientProvider';
 import {Button} from '../../../../components/Button';
+import {CenterElement} from '../../../../components/SignUpForm/styles';
+import useToken from '../../../../hooks/useToken';
 import {CommonQueryArgs} from '../../../../types';
 import {getUser, User} from '../../../../utils/user';
 import {Message as MessageType} from '../..';
@@ -37,16 +39,21 @@ export default function Conversation({
   // replaces with api call to retrieve conv with id
   const user = getUser();
   const {register, handleSubmit, setValue} = useForm<CreateMessageArgs>();
+  const {token} = useToken();
 
   if (!convId) {
     return <div> Nous n'avons pas trouvé cette conversation</div>;
   }
 
   const {refetch, data}: QueryArgs = useQuery({
-    queryKey: ['conversation'],
+    queryKey: [`conversation${convId}`],
     queryFn: async () => {
       const data: ConvResults | void = await axios
-        .get(`conversations/${convId}?current_user_id=${String(user?.id)}`)
+        .get(`conversations/${convId}?current_user_id=${String(user?.id)}`, {
+          headers: {
+            Authorization: token && `Token ${token}`,
+          },
+        })
         .then((res: Result) => res.data)
         // eslint-disable-next-line no-console
         .catch((err: AxiosError) => console.log(err));
@@ -91,9 +98,9 @@ export default function Conversation({
 
   return (
     <>
-      <div>
+      <CenterElement>
         Vos échanges avec {currentConv?.nickname || 'utilisateur sans nom'}
-      </div>
+      </CenterElement>
       {data?.messages?.length ? (
         <>
           {data.messages.map((message, index) => (
@@ -112,11 +119,13 @@ export default function Conversation({
           {...register('message', {required: true})}
           id="message_input"
         />
-        <Button // eslint-disable-next-line @typescript-eslint/no-misused-promises
-          onClick={handleSubmit(postData)}
-          data-test-id="message_submit">
-          {'envoyer'}
-        </Button>
+        <CenterElement>
+          <Button // eslint-disable-next-line @typescript-eslint/no-misused-promises
+            onClick={handleSubmit(postData)}
+            data-test-id="message_submit">
+            {'envoyer'}
+          </Button>
+        </CenterElement>
       </form>
     </>
   );

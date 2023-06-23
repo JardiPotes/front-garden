@@ -1,7 +1,10 @@
 import {useEffect} from 'react';
 import {useQuery} from 'react-query';
+import {useParams} from 'react-router-dom';
 
 import {axios} from '../../../../ClientProvider';
+import {RoundImage} from '../../../../components/Header/styles';
+import {LogoTitleWrapper} from '../../../../components/Header/styles';
 import {getUser, User} from '../../../../utils/user';
 import * as S from './styles';
 
@@ -24,6 +27,7 @@ export const MessagePreview: React.FC<MessagePreviewProps> = ({
   conversation,
   setCurrentConv,
 }) => {
+  const {convId} = useParams();
   const user = getUser();
   const contactId =
     String(conversation?.chat_sender_id) == String(user?.id)
@@ -31,7 +35,7 @@ export const MessagePreview: React.FC<MessagePreviewProps> = ({
       : conversation?.chat_sender_id;
 
   const {data: contact} = useQuery({
-    queryKey: ['contact'],
+    queryKey: [`contact_${conversation.id}`],
     queryFn: async () => {
       const data = await axios
         .get<User>(`users/${contactId}`)
@@ -40,7 +44,6 @@ export const MessagePreview: React.FC<MessagePreviewProps> = ({
         .catch(err => console.log(err));
       return data;
     },
-    keepPreviousData: true,
   });
 
   const handleClick = (): void => {
@@ -48,12 +51,17 @@ export const MessagePreview: React.FC<MessagePreviewProps> = ({
   };
 
   useEffect(() => {
-    setCurrentConv(contact);
-  }, [contact]);
+    if (String(convId) === String(conversation?.id)) {
+      setCurrentConv(contact);
+    }
+  }, [contact, convId]);
 
   return (
     <S.PrewiewItem to={`/messages/${conversation?.id}`} onClick={handleClick}>
-      <S.Name>{contact?.nickname || 'no name'}</S.Name>
+      <LogoTitleWrapper>
+        {contact?.profile_image && <RoundImage src={contact.profile_image} />}
+        <S.Name>{contact?.nickname || 'no name'}</S.Name>
+      </LogoTitleWrapper>
       <S.MessagePreview>
         {conversation?.latest_message?.content || 'no message yet'}
       </S.MessagePreview>
