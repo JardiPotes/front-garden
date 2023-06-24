@@ -4,8 +4,9 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {SubmitHandler, useForm} from 'react-hook-form';
 import useBreakpoint from 'use-breakpoint';
 
-import {Button} from '../../../../components/Button';
-import {intentionallyFloatingPromiseReturn} from '../../../../utils/intentionallyFloatingPromiseReturn';
+import {Button} from '@/components/Button';
+import {intentionallyFloatingPromiseReturn} from '@/utils/intentionallyFloatingPromiseReturn';
+
 import {Search, SearchInput, Wrapper} from './styles';
 
 const BREAKPOINTS = {mobile: 0, tablet: 768, desktop: 1280};

@@ -1,5 +1,5 @@
 export type User = {
-  id: string;
+  id: number;
   nickname: string;
   bio: string | null;
   gardens: Record<string, unknown>[];

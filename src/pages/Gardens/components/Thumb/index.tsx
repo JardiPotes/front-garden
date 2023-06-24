@@ -1,11 +1,12 @@
 import {useQuery} from 'react-query';
 
-import defaultImage from '../../../../../public/images/garden2.jpg';
-import defaultUserImage from '../../../../../public/images/jardinier.jpg';
-import pin from '../../../../../public/images/pin.png';
-import {axios} from '../../../../ClientProvider';
-import {User} from '../../../../utils/user';
-import {Garden} from '../../index';
+import defaultImage from '@/assets/garden2.jpg';
+import defaultUserImage from '@/assets/jardinier.jpg';
+import pin from '@/assets/pin.png';
+import {axios} from '@/ClientProvider';
+import {Garden} from '@/pages/Gardens/index';
+import {User} from '@/utils/user';
+
 import * as S from './styles';
 
 type GardenThumbProps = {

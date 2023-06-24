@@ -1,6 +1,7 @@
 import {FC} from 'react';
 
-import {FooterWordings} from '../../assets/wordings';
+import {FooterWordings} from '@/assets/wordings';
+
 import * as S from './styles';
 
 export const Footer: FC = () => (

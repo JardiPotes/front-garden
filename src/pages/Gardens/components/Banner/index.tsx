@@ -1,4 +1,5 @@
-import {GardenPageWordings} from '../../../../assets/wordings';
+import {GardenPageWordings} from '@/assets/wordings';
+
 import {Banner} from './styles';
 
 export const GardenBanner: React.FC = () => {

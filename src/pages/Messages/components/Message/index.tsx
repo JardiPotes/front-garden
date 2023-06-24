@@ -1,4 +1,5 @@
-import {getUser, User} from '../../../../utils/user';
+import {getUser, User} from '@/utils/user';
+
 import {Name} from '../Preview/styles';
 import * as S from './styles';
 
@@ -22,7 +23,7 @@ export const Message: React.FC<MessageProps> = ({message, currentConv}) => {
     minutesStr = '0' + minutesStr;
   }
 
-  const isFromUser = String(message?.sender_id) === String(user?.id);
+  const isFromUser = message.sender_id === user?.id;
   const author = isFromUser ? user?.nickname : currentConv?.nickname;
 
   return (

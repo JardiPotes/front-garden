@@ -10,5 +10,8 @@
   "transformIgnorePatterns": [
     "/node_modules/(?!(use-breakpoint|@use-breakpoint)/)"
   ],
-  "moduleFileExtensions": ["ts", "tsx", "js"]
+  "moduleFileExtensions": ["ts", "tsx", "js"],
+  "moduleNameMapper": {
+    "@/(.*)": "<rootDir>/src/$1"
+  }
 }

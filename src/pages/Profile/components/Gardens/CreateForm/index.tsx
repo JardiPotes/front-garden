@@ -3,16 +3,14 @@ import {useEffect, useState} from 'react';
 import {SubmitHandler, useForm} from 'react-hook-form';
 import {useMutation} from 'react-query';
 
-import {
-  ButtonWordings,
-  ModalFormWordings,
-} from '../../../../../assets/wordings';
-import axios from '../../../../../ClientProvider/axiosConfig';
-import {Button} from '../../../../../components/Button';
-import {Modal} from '../../../../../components/Modal';
-import * as S from '../../../../../components/Modal/styles';
-import useToken from '../../../../../hooks/useToken';
-import {getUser} from '../../../../../utils/user';
+import {ButtonWordings, ModalFormWordings} from '@/assets/wordings';
+import axios from '@/ClientProvider/axiosConfig';
+import {Button} from '@/components/Button';
+import {Modal} from '@/components/Modal';
+import * as S from '@/components/Modal/styles';
+import useToken from '@/hooks/useToken';
+import {getUser} from '@/utils/user';
+
 import {CenterElement} from './styles';
 import {Uploader} from './uploader';
 
@@ -66,24 +64,21 @@ export const CreateGardenForm: React.FC<CreateFormProps> = ({setIsOpen}) => {
   };
 
   const {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     data: gardenId,
     isLoading: isCreatingGarden,
     mutate: createGarden,
   } = useMutation(
     async (data: GardenData) => {
       const user = getUser();
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, no-console
+      // eslint-disable-next-line no-console
       user ? (data.user_id = String(user.id)) : console.log('No User');
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+
       return await axios
         .post(`/gardens`, data, {
           headers: {
-            // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-            Authorization: `Token ${token}`,
+            Authorization: token && `Token ${token}`,
           },
         })
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access
         .then((res: AxiosResponse<Res>) => res?.data?.id);
     },
     {

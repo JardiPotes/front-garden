@@ -1,6 +1,6 @@
 import {createGlobalStyle} from 'styled-components';
 
-import Amiko from './assets/fonts/Amiko-Regular.ttf';
+import Amiko from '@/assets/fonts/Amiko-Regular.ttf';
 
 const Colors = {
   bg: '#FAF0E6',

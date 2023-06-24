@@ -2,12 +2,13 @@ import {FC} from 'react';
 import {useForm} from 'react-hook-form';
 import {useMutation, useQueryClient} from 'react-query';
 
-import {axios} from '../../../../../ClientProvider';
-import {Button} from '../../../../../components/Button';
-import {Modal} from '../../../../../components/Modal';
-import * as S from '../../../../../components/Modal/styles';
-import useToken from '../../../../../hooks/useToken';
-import {getUser} from '../../../../../utils/user';
+import {axios} from '@/ClientProvider';
+import {Button} from '@/components/Button';
+import {Modal} from '@/components/Modal';
+import * as S from '@/components/Modal/styles';
+import useToken from '@/hooks/useToken';
+import {getUser} from '@/utils/user';
+
 import {UserWithGardens} from '../../..';
 import {CenterElement} from '../../Gardens/CreateForm/styles';
 import {UserInfoProps} from '..';

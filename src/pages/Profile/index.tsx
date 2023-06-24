@@ -2,7 +2,8 @@ import {FC} from 'react';
 import {useQuery} from 'react-query';
 import {useParams} from 'react-router-dom';
 
-import {axios} from '../../ClientProvider';
+import {axios} from '@/ClientProvider';
+
 import {CommentSection} from './components/CommentSection';
 import {Gardens} from './components/Gardens';
 import {UserInfo} from './components/UserInfo';

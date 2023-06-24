@@ -3,10 +3,11 @@ import {useEffect, useState} from 'react';
 import {useQuery} from 'react-query';
 import {useNavigate, useParams} from 'react-router-dom';
 
-import {axios} from '../../ClientProvider';
-import useToken from '../../hooks/useToken';
-import {CommonQueryArgs} from '../../types';
-import {getUser, User} from '../../utils/user';
+import {axios} from '@/ClientProvider';
+import useToken from '@/hooks/useToken';
+import {CommonQueryArgs} from '@/types';
+import {getUser, User} from '@/utils/user';
+
 import Conversation from './components/Conversation';
 import PreviewSection from './components/PreviewSection';
 import * as S from './styles';

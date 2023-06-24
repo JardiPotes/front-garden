@@ -3,12 +3,13 @@ import {FC, useState} from 'react';
 import {useMutation} from 'react-query';
 import {useNavigate} from 'react-router-dom';
 
-import {axios} from '../../../../../ClientProvider';
-import {Button} from '../../../../../components/Button';
-import {LoginModal} from '../../../../../components/LoginForm';
-import {CenterElement} from '../../../../../components/SignUpForm/styles';
-import useToken from '../../../../../hooks/useToken';
-import {getUser} from '../../../../../utils/user';
+import {axios} from '@/ClientProvider';
+import {Button} from '@/components/Button';
+import {LoginModal} from '@/components/LoginForm';
+import {CenterElement} from '@/components/SignUpForm/styles';
+import useToken from '@/hooks/useToken';
+import {getUser} from '@/utils/user';
+
 import {UserInfoProps} from '..';
 import * as S from './styles';
 
@@ -56,9 +57,11 @@ export const Avatar: FC<AvatarProps> = ({
 
   const {mutate: createConversation} = useMutation(
     async (data: CreateConvArgs) => {
+      if (!user) {
+        throw new Error('User is not defined. Are you connected ?');
+      }
       return await axios.post(
-        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-        `conversations?current_user_id=${user?.id}`,
+        `conversations?current_user_id=${user.id}`,
         data,
         {
           headers: {

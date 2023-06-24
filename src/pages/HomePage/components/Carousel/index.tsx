@@ -2,9 +2,10 @@ import {faChevronLeft, faChevronRight} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {FC, useState} from 'react';
 
-import garden1 from '../../../../../public/images/garden1.jpg';
-import garden2 from '../../../../../public/images/garden2.jpg';
-import garden3 from '../../../../../public/images/garden3.jpg';
+import garden1 from '@/assets/garden1.jpg';
+import garden2 from '@/assets/garden2.jpg';
+import garden3 from '@/assets/garden3.jpg';
+
 import * as S from './styles';
 
 type CarouselItemType = {

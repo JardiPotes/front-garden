@@ -3,9 +3,10 @@ import {FC} from 'react';
 import {useMutation} from 'react-query';
 import {useNavigate} from 'react-router-dom';
 
-import {ButtonWordings} from '../../assets/wordings';
-import axios from '../../ClientProvider/axiosConfig';
-import {removeUser} from '../../utils/user';
+import {ButtonWordings} from '@/assets/wordings';
+import axios from '@/ClientProvider/axiosConfig';
+import {removeUser} from '@/utils/user';
+
 import {Button} from '../Button';
 
 type LogOutButtonProps = {

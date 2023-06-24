@@ -3,10 +3,10 @@ import {useForm} from 'react-hook-form';
 import {useMutation} from 'react-query';
 import styled from 'styled-components';
 
-import {axios} from '../../../../../ClientProvider';
-import {Button} from '../../../../../components/Button';
-import useToken from '../../../../../hooks/useToken';
-import {getUser} from '../../../../../utils/user';
+import {axios} from '@/ClientProvider';
+import {Button} from '@/components/Button';
+import useToken from '@/hooks/useToken';
+import {getUser} from '@/utils/user';
 
 interface CommentFormProps {
   userId: string;

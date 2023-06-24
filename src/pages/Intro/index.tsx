@@ -1,4 +1,5 @@
-import {CenterElement} from '../../components/SignUpForm/styles';
+import {CenterElement} from '@/components/SignUpForm/styles';
+
 import {Wrapper} from './styles';
 
 export const Intro = (): JSX.Element => {

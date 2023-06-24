@@ -4,10 +4,11 @@ import {SubmitHandler, useForm} from 'react-hook-form';
 import {useMutation} from 'react-query';
 import {useNavigate} from 'react-router-dom';
 
-import {ButtonWordings, ModalFormWordings} from '../../assets/wordings';
-import axios from '../../ClientProvider/axiosConfig';
-import useToken from '../../hooks/useToken';
-import {saveUser, User} from '../../utils/user';
+import {ButtonWordings, ModalFormWordings} from '@/assets/wordings';
+import axios from '@/ClientProvider/axiosConfig';
+import useToken from '@/hooks/useToken';
+import {saveUser, User} from '@/utils/user';
+
 import {Button} from '../Button';
 import {Modal} from '../Modal';
 import * as S from '../Modal/styles';

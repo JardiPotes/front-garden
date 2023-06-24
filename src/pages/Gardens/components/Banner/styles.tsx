@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import bannerGardenUrl from '../../../../../public/images/garden3.jpg';
+import bannerGardenUrl from '@/assets/garden3.jpg';
 
 export const Banner = styled.div`
   background-image: url(${bannerGardenUrl});
