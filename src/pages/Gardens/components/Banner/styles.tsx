@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 
+import bannerGardenUrl from '@/assets/garden3.jpg';
+
 export const Banner = styled.div`
-  background-image: url('public/images/jardin3.jpg');
+  background-image: url(${bannerGardenUrl});
   background-size: cover;
   background-position: 100% 36%;
   height: 120px;

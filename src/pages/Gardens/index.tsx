@@ -2,8 +2,9 @@ import {AxiosError, AxiosResponse} from 'axios';
 import {useEffect, useMemo, useState} from 'react';
 import {useQuery} from 'react-query';
 
-import axios from '../../ClientProvider/axiosConfig';
-import {CommonQueryArgs} from '../../types';
+import axios from '@/ClientProvider/axiosConfig';
+import {CommonQueryArgs} from '@/types';
+
 import {GardenBanner} from './components/Banner';
 import {SearchBar} from './components/Search';
 import {GardenThumb} from './components/Thumb';

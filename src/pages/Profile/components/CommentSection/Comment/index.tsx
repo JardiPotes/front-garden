@@ -1,8 +1,9 @@
 import {FC} from 'react';
 
-import {Card} from '../../../../../components/Card';
-import {Comment as IComment} from '../../..';
-import {Experience} from '../../Experience';
+import {Card} from '@/components/Card';
+import {Comment as IComment} from '@/pages/Profile';
+import {Experience} from '@/pages/Profile/components/Experience';
+
 import * as S from './styles';
 
 interface CommentProps {

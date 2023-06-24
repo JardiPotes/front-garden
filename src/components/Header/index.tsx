@@ -2,20 +2,21 @@ import {faEnvelope} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {Dispatch, SetStateAction, useEffect, useState} from 'react';
 
-import Logo from '../../assets/jardi-logo-trans.png';
-import Login from '../../assets/login.png';
-import {ButtonWordings} from '../../assets/wordings';
-import useToken from '../../hooks/useToken';
-import {getUser} from '../../utils/user';
-import {Button} from '../Button';
-import {LoginModal} from '../LoginForm';
-import {LogOutButton} from '../LogOut';
-import {SearchBar} from '../SearchBar';
+import Logo from '@/assets/jardi-logo-trans.png';
+import Login from '@/assets/login.png';
+import {ButtonWordings} from '@/assets/wordings';
+import {Button} from '@/components/Button';
+import {LoginModal} from '@/components/LoginForm';
+import {LogOutButton} from '@/components/LogOut';
+import {SearchBar} from '@/components/SearchBar';
+import useToken from '@/hooks/useToken';
+import {getUser} from '@/utils/user';
+
 import * as S from './styles';
 
 interface UserProfileLinkProps {
   isLoggedIn: boolean;
-  userId: string;
+  userId?: number;
   image: string;
   shouldRedirect: boolean;
   setShouldRedirect: Dispatch<SetStateAction<boolean>>;
@@ -83,7 +84,7 @@ export const Header: React.FC = () => {
             <LogOutButton removeToken={removeToken} token={token} />
             <UserProfileLink
               isLoggedIn={isLoggedIn}
-              userId={String(user?.id) || ''}
+              userId={user?.id}
               image={user?.profile_image || Login}
               shouldRedirect={shouldRedirect}
               setShouldRedirect={setShouldRedirect}

@@ -3,12 +3,13 @@ import {useEffect} from 'react';
 import {useForm} from 'react-hook-form';
 import {useMutation, useQuery} from 'react-query';
 
-import {axios} from '../../../../ClientProvider';
-import {Button} from '../../../../components/Button';
-import {CenterElement} from '../../../../components/SignUpForm/styles';
-import useToken from '../../../../hooks/useToken';
-import {CommonQueryArgs} from '../../../../types';
-import {getUser, User} from '../../../../utils/user';
+import {axios} from '@/ClientProvider';
+import {Button} from '@/components/Button';
+import {CenterElement} from '@/components/SignUpForm/styles';
+import useToken from '@/hooks/useToken';
+import {CommonQueryArgs} from '@/types';
+import {getUser, User} from '@/utils/user';
+
 import {Message as MessageType} from '../..';
 import {Message} from '../Message';
 import * as S from './styles';
@@ -41,6 +42,15 @@ export default function Conversation({
   const {register, handleSubmit, setValue} = useForm<CreateMessageArgs>();
   const {token} = useToken();
 
+  if (!user) {
+    return (
+      <>
+        Êtes-vous connecté⋅e ? Essayez de vous reconnecter, ou bien n'hésitez
+        pas à contacter le service technique.
+      </>
+    );
+  }
+
   if (!convId) {
     return <div> Nous n'avons pas trouvé cette conversation</div>;
   }
@@ -49,7 +59,7 @@ export default function Conversation({
     queryKey: [`conversation${convId}`],
     queryFn: async () => {
       const data: ConvResults | void = await axios
-        .get(`conversations/${convId}?current_user_id=${String(user?.id)}`, {
+        .get(`conversations/${convId}?current_user_id=${user?.id}`, {
           headers: {
             Authorization: token && `Token ${token}`,
           },
@@ -69,11 +79,19 @@ export default function Conversation({
 
   const {mutate: createMessage} = useMutation(
     async (data: CreateMessageArgs) => {
-      return await axios.post(`messages`, {
-        conversation_id: convId,
-        sender_id: user?.id,
-        content: data.message,
-      });
+      return await axios.post(
+        `messages`,
+        {
+          conversation_id: convId,
+          sender_id: user?.id,
+          content: data.message,
+        },
+        {
+          headers: {
+            Authorization: token && `Token ${token}`,
+          },
+        },
+      );
     },
     {
       onSuccess: () => {
@@ -106,7 +124,7 @@ export default function Conversation({
           {data.messages.map((message, index) => (
             <S.MessageWrapper
               key={`messages${index}`}
-              $right={String(message?.sender_id) === String(user?.id)}>
+              $right={message.sender_id === user.id}>
               <Message message={message} currentConv={currentConv} />
             </S.MessageWrapper>
           ))}

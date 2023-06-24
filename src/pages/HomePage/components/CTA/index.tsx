@@ -1,10 +1,11 @@
 import {useState} from 'react';
 
-import DocImg from '../../../../assets/dog-icon.png';
-import {ButtonWordings, HomePageWordings} from '../../../../assets/wordings';
-import {Button} from '../../../../components/Button';
-import {SignUpModal} from '../../../../components/SignUpForm';
-import useToken from '../../../../hooks/useToken';
+import DocImg from '@/assets/dog-icon.png';
+import {ButtonWordings, HomePageWordings} from '@/assets/wordings';
+import {Button} from '@/components/Button';
+import {SignUpModal} from '@/components/SignUpForm';
+import useToken from '@/hooks/useToken';
+
 import * as S from './styles';
 
 export const CTA: React.FC = () => {

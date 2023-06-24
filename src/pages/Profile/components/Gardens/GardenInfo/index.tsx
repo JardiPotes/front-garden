@@ -4,8 +4,10 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {FC, useState} from 'react';
 import {useParams} from 'react-router-dom';
 
-import {TransparentButton} from '../../../../../components/Button/TransparentButton';
-import {getUser} from '../../../../../utils/user';
+import defaultImage from '@/assets/garden2.jpg';
+import {TransparentButton} from '@/components/Button/TransparentButton';
+import {getUser} from '@/utils/user';
+
 import {Garden} from '../../..';
 import {ConfirmDelete} from './components/ConfirmDelete';
 import {EditForm} from './components/EditForm';
@@ -14,8 +16,6 @@ import * as S from './styles';
 interface GardenInfoProps {
   garden: Garden;
 }
-
-const defaultImage = '../../../../../../public/images/garden2.jpg';
 
 export const GardenInfo: FC<GardenInfoProps> = ({
   garden: {title, id, zipcode, description, image},

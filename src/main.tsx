@@ -3,15 +3,16 @@ import ReactDOM from 'react-dom/client';
 import {QueryClientProvider} from 'react-query';
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 
+import {GardenPage} from '@/pages/Gardens';
+import HomePage from '@/pages/HomePage';
+import {Intro} from '@/pages/Intro';
+import MessagesPage from '@/pages/Messages';
+import {Profile} from '@/pages/Profile';
+import {Wip} from '@/pages/WIP';
+
 import {queryClient} from './ClientProvider';
 import {GlobalStyle} from './GlobalStyles';
 import {Layout} from './Layout';
-import {GardenPage} from './pages/Gardens';
-import HomePage from './pages/HomePage';
-import {Intro} from './pages/Intro';
-import MessagesPage from './pages/Messages';
-import {Profile} from './pages/Profile';
-import {Wip} from './pages/WIP';
 
 const router = createBrowserRouter([
   {

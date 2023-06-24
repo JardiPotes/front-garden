@@ -2,10 +2,11 @@ import {useEffect} from 'react';
 import {useQuery} from 'react-query';
 import {useParams} from 'react-router-dom';
 
-import {axios} from '../../../../ClientProvider';
-import {RoundImage} from '../../../../components/Header/styles';
-import {LogoTitleWrapper} from '../../../../components/Header/styles';
-import {getUser, User} from '../../../../utils/user';
+import {axios} from '@/ClientProvider';
+import {RoundImage} from '@/components/Header/styles';
+import {LogoTitleWrapper} from '@/components/Header/styles';
+import {getUser, User} from '@/utils/user';
+
 import * as S from './styles';
 
 type MessagePreviewProps = {
@@ -30,9 +31,9 @@ export const MessagePreview: React.FC<MessagePreviewProps> = ({
   const {convId} = useParams();
   const user = getUser();
   const contactId =
-    String(conversation?.chat_sender_id) == String(user?.id)
-      ? conversation?.chat_receiver_id
-      : conversation?.chat_sender_id;
+    conversation.chat_sender_id == user?.id
+      ? conversation.chat_receiver_id
+      : conversation.chat_sender_id;
 
   const {data: contact} = useQuery({
     queryKey: [`contact_${conversation.id}`],
@@ -51,7 +52,7 @@ export const MessagePreview: React.FC<MessagePreviewProps> = ({
   };
 
   useEffect(() => {
-    if (String(convId) === String(conversation?.id)) {
+    if (convId === String(conversation?.id)) {
       setCurrentConv(contact);
     }
   }, [contact, convId]);

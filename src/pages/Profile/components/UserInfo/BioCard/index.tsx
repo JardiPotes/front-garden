@@ -3,11 +3,12 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {FC, useState} from 'react';
 import {useParams} from 'react-router-dom';
 
-import {UserProfileWordings} from '../../../../../assets/wordings';
-import {TransparentButton} from '../../../../../components/Button/TransparentButton';
-import {Card} from '../../../../../components/Card';
-import {SpaceBetweenRow} from '../../../../../components/Wrappers/SpaceBetweenRow';
-import {getUser} from '../../../../../utils/user';
+import {UserProfileWordings} from '@/assets/wordings';
+import {TransparentButton} from '@/components/Button/TransparentButton';
+import {Card} from '@/components/Card';
+import {SpaceBetweenRow} from '@/components/Wrappers/SpaceBetweenRow';
+import {getUser} from '@/utils/user';
+
 import {Experience} from '../../Experience';
 import {UserInfoProps} from '..';
 import {EditForm} from '../EditForm';

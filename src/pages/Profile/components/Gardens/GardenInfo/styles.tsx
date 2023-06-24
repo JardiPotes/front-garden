@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import {SpaceBetweenRow} from '../../../../../components/Wrappers/SpaceBetweenRow';
+import {SpaceBetweenRow} from '@/components/Wrappers/SpaceBetweenRow';
 
 export const Title = styled.h1`
   font-size: large;

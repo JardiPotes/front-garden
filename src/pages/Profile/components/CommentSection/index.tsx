@@ -3,9 +3,10 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {FC, Fragment, useState} from 'react';
 import {useQuery} from 'react-query';
 
-import {UserProfileWordings} from '../../../../assets/wordings';
-import {axios} from '../../../../ClientProvider';
-import {Pagination} from '../../../../components/Pagination';
+import {UserProfileWordings} from '@/assets/wordings';
+import {axios} from '@/ClientProvider';
+import {Pagination} from '@/components/Pagination';
+
 import {Comment as IComment} from '../..';
 import {SectionHeader} from '../SectionHeader';
 import {Comment} from './Comment';

@@ -2,12 +2,13 @@ import {FC} from 'react';
 import {useMutation, useQueryClient} from 'react-query';
 import {useParams} from 'react-router-dom';
 
-import CrossIcon from '../../../../../../../assets/cross-icon.png';
-import {ButtonWordings} from '../../../../../../../assets/wordings';
-import {axios} from '../../../../../../../ClientProvider';
-import {Button} from '../../../../../../../components/Button';
-import {TransparentButton} from '../../../../../../../components/Button/TransparentButton';
-import useToken from '../../../../../../../hooks/useToken';
+import CrossIcon from '@/assets/cross-icon.png';
+import {ButtonWordings} from '@/assets/wordings';
+import {axios} from '@/ClientProvider';
+import {Button} from '@/components/Button';
+import {TransparentButton} from '@/components/Button/TransparentButton';
+import useToken from '@/hooks/useToken';
+
 import {Garden} from '../../../../..';
 import * as S from './styles';
 

@@ -9,7 +9,6 @@
 // https://on.cypress.io/custom-commands
 // ***********************************************
 //
-// eslint-disable @typescript/interface-name
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace Cypress {
