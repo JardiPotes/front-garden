@@ -79,11 +79,19 @@ export default function Conversation({
 
   const {mutate: createMessage} = useMutation(
     async (data: CreateMessageArgs) => {
-      return await axios.post(`messages`, {
-        conversation_id: convId,
-        sender_id: user?.id,
-        content: data.message,
-      });
+      return await axios.post(
+        `messages`,
+        {
+          conversation_id: convId,
+          sender_id: user?.id,
+          content: data.message,
+        },
+        {
+          headers: {
+            Authorization: token && `Token ${token}`,
+          },
+        },
+      );
     },
     {
       onSuccess: () => {
