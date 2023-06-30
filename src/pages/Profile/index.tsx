@@ -41,7 +41,7 @@ export const Profile: FC = () => {
 
   if (!id) return null;
 
-  const {data: {data} = {}} = useQuery(
+  const {data: {data} = {}, isLoading} = useQuery(
     ['user', id],
     async () => axios.get<UserWithGardens>(`users/${id}`),
     {
@@ -55,9 +55,14 @@ export const Profile: FC = () => {
 
   return (
     <S.Layout>
-      <UserInfo user={user} />
-      <Gardens gardens={gardens} />
-      <CommentSection userId={id} />
+      {isLoading && <div>Loading...</div>}
+      {!isLoading && (
+        <>
+          <UserInfo user={user} />
+          <Gardens gardens={gardens} />
+          <CommentSection userId={id} />
+        </>
+      )}
     </S.Layout>
   );
 };
